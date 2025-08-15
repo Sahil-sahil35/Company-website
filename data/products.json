@@ -42,19 +42,6 @@
       ],
       "tags": ["best-seller", "eco-friendly", "high-capacity"]
     },
-
-
-
-
-
-
-
-
-
-
-
-
-    
     {
       "id": "prod-002",
       "name": "Ceramic Filter Candle",
@@ -87,28 +74,258 @@
       ],
       "reviews": [],
       "tags": ["back-to-school", "eco-friendly"]
+    },
+
+    {
+      "id": "prod-003",
+      "name": "Industrial Filter Media",
+      "description": "Heavy-duty solution for commercial needs",
+      "price": 129.99,
+      "salePrice": 119.99,
+      "category": "Filter Media",
+      "material": "Stainless Steel",
+      "stock": 15,
+      "images": ["https://images.unsplash.com/photo-1586771107445-d3ca888129ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"]
+    },
+    {
+      "id": "prod-004",
+      "name": "Silica Sand Grade A",
+      "description": "Ultra-pure filtration medium",
+      "price": 29.99,
+      "salePrice": null,
+      "category": "Filter Media",
+      "material": "Silica",
+      "stock": 40,
+      "images": ["https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"]
+    },
+    {
+      "id": "prod-005",
+      "name": "Multi-Stage Filter System",
+      "description": "Complete water purification solution",
+      "price": 349.99,
+      "salePrice": 299.99,
+      "category": "Accessories",
+      "material": "Plastic",
+      "stock": 8,
+      "images": ["https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"]
+    },
+    {
+      "id": "prod-006",
+      "name": "Laboratory Grade Filter",
+      "description": "Precision filtration for sensitive applications",
+      "price": 199.99,
+      "salePrice": null,
+      "category": "Filter Candles",
+      "material": "Glass",
+      "stock": 12,
+      "images": ["https://images.unsplash.com/photo-1603569283847-aa6e0adb9af8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"]
+    },
+    {
+      "id": "prod-007",
+      "name": "Activated Carbon Filter",
+      "description": "High adsorption capacity for contaminants",
+      "price": 59.99,
+      "salePrice": 49.99,
+      "category": "Activated Carbon",
+      "material": "Coconut Shell Carbon",
+      "stock": 30,
+      "images": ["https://images.unsplash.com/photo-1561484930-974554019ade?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"]
+    },
+    {
+      "id": "prod-008",
+      "name": "Sediment Filter",
+      "description": "Removes dirt, rust and other particles",
+      "price": 34.99,
+      "salePrice": null,
+      "category": "Filter Media",
+      "material": "Polypropylene",
+      "stock": 22,
+      "images": ["https://images.unsplash.com/photo-1586771107445-d3ca888129ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"]
+    },
+    {
+      "id": "prod-009",
+      "name": "UV Water Purifier",
+      "description": "Kills bacteria and viruses with UV light",
+      "price": 229.99,
+      "salePrice": 199.99,
+      "category": "Accessories",
+      "material": "Stainless Steel",
+      "stock": 5,
+      "images": ["https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"]
+    },
+    {
+      "id": "prod-010",
+      "name": "Reverse Osmosis System",
+      "description": "Advanced multi-stage filtration system",
+      "price": 399.99,
+      "salePrice": 349.99,
+      "category": "Spare Parts",
+      "material": "Plastic",
+      "stock": 7,
+      "images": ["https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"]
+    },
+    {
+      "id": "prod-011",
+      "name": "Water Softener Salt",
+      "description": "High purity salt for water softeners",
+      "price": 19.99,
+      "salePrice": 16.99,
+      "category": "Filter Media",
+      "material": "Sodium Chloride",
+      "stock": 50,
+      "images": ["https://images.unsplash.com/photo-1603569283847-aa6e0adb9af8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"]
+    },
+    {
+      "id": "prod-012",
+      "name": "Filter Housing",
+      "description": "Durable housing for filter cartridges",
+      "price": 89.99,
+      "salePrice": null,
+      "category": "Spare Parts",
+      "material": "Plastic",
+      "stock": 18,
+      "images": ["https://images.unsplash.com/photo-1561484930-974554019ade?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"]
+    },
+    {
+      "id": "prod-013",
+      "name": "Carbon Block Filter",
+      "description": "Solid carbon block for superior filtration",
+      "price": 49.99,
+      "salePrice": 44.99,
+      "category": "Activated Carbon",
+      "material": "Carbon",
+      "stock": 25,
+      "images": ["https://images.unsplash.com/photo-1586771107445-d3ca888129ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"]
+    },
+    {
+      "id": "prod-014",
+      "name": "Sand Filter Media",
+      "description": "High-grade silica sand for filters",
+      "price": 39.99,
+      "salePrice": null,
+      "category": "Filter Media",
+      "material": "Silica",
+      "stock": 35,
+      "images": ["https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"]
+    },
+    {
+      "id": "prod-015",
+      "name": "Water Test Kit",
+      "description": "Comprehensive water quality testing",
+      "price": 29.99,
+      "salePrice": 24.99,
+      "category": "Accessories",
+      "material": "Plastic",
+      "stock": 20,
+      "images": ["https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"]
+    },
+    {
+      "id": "prod-016",
+      "name": "Filter Wrench",
+      "description": "Tool for easy filter replacement",
+      "price": 14.99,
+      "salePrice": null,
+      "category": "Accessories",
+      "material": "Steel",
+      "stock": 30,
+      "images": ["https://images.unsplash.com/photo-1603569283847-aa6e0adb9af8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"]
+    },
+    {
+      "id": "prod-017",
+      "name": "Faucet Adapter",
+      "description": "Universal adapter for filter systems",
+      "price": 9.99,
+      "salePrice": 7.99,
+      "category": "Spare Parts",
+      "material": "Plastic",
+      "stock": 45,
+      "images": ["https://images.unsplash.com/photo-1561484930-974554019ade?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"]
+    },
+    {
+      "id": "prod-018",
+      "name": "Sediment Pre-Filter",
+      "description": "Pre-filter for sediment removal",
+      "price": 24.99,
+      "salePrice": null,
+      "category": "Filter Media",
+      "material": "Polypropylene",
+      "stock": 28,
+      "images": ["https://images.unsplash.com/photo-1586771107445-d3ca888129ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"]
+    },
+    {
+      "id": "prod-019",
+      "name": "Alkaline Filter",
+      "description": "Adds beneficial minerals to water",
+      "price": 69.99,
+      "salePrice": 59.99,
+      "category": "Filter Candles",
+      "material": "Ceramic",
+      "stock": 15,
+      "images": ["https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"]
+    },
+    {
+      "id": "prod-020",
+      "name": "Iron Removal Filter",
+      "description": "Specialized filter for iron removal",
+      "price": 149.99,
+      "salePrice": null,
+      "category": "Filter Media",
+      "material": "Manganese Dioxide",
+      "stock": 10,
+      "images": ["https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"]
+    },
+    {
+      "id": "prod-021",
+      "name": "Water Pressure Gauge",
+      "description": "Monitors system water pressure",
+      "price": 19.99,
+      "salePrice": 16.99,
+      "category": "Accessories",
+      "material": "Stainless Steel",
+      "stock": 25,
+      "images": ["https://images.unsplash.com/photo-1603569283847-aa6e0adb9af8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"]
+    },
+    {
+      "id": "prod-022",
+      "name": "Filter O-Rings Set",
+      "description": "Replacement seals for filters",
+      "price": 12.99,
+      "salePrice": null,
+      "category": "Spare Parts",
+      "material": "Rubber",
+      "stock": 60,
+      "images": ["https://images.unsplash.com/photo-1561484930-974554019ade?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"]
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  ],
+  "homeProducts": [
+    {
+      "name": "Premium Carbon Filter",
+      "description": "Advanced filtration for purest water quality",
+      "image": "https://images.unsplash.com/photo-1603569283847-aa6e0adb9af8?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+    },
+    {
+      "name": "Ceramic Filter Candle",
+      "description": "Durable ceramic for long-lasting performance",
+      "image": "https://images.unsplash.com/photo-1561484930-974554019ade?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+    },
+    {
+      "name": "Industrial Filter Media",
+      "description": "Heavy-duty solution for commercial needs",
+      "image": "https://images.unsplash.com/photo-1586771107445-d3ca888129ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+    },
+    {
+      "name": "Silica Sand Grade A",
+      "description": "Ultra-pure filtration medium",
+      "image": "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+    },
+    {
+      "name": "Multi-Stage Filter System",
+      "description": "Complete water purification solution",
+      "image": "https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+    },
+    {
+      "name": "Laboratory Grade Filter"
+    }
   ],
   "filters": {
     "categories": [

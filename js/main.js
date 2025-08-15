@@ -67,47 +67,47 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-});
-
-// Mobile navigation toggle - Update this in main.js
-const mobileMenuButton = document.querySelector('.mobile-menu');
-let mobileNav = document.querySelector('.mobile-nav');
-
-// Only create mobile nav if it doesn't exist and we're on mobile
-if (!mobileNav && window.innerWidth <= 768) {
-    mobileNav = document.createElement('div');
-    mobileNav.className = 'mobile-nav';
     
-    // Create mobile nav links based on desktop nav
-    const desktopNav = document.querySelector('.nav');
-    if (desktopNav) {
-        mobileNav.innerHTML = desktopNav.innerHTML;
-        document.body.appendChild(mobileNav);
+    // Mobile navigation toggle
+    const mobileMenuButton = document.querySelector('.mobile-menu');
+    let mobileNav = document.querySelector('.mobile-nav');
+    
+    // Only create mobile nav if it doesn't exist and we're on mobile
+    if (!mobileNav && window.innerWidth <= 768) {
+        mobileNav = document.createElement('div');
+        mobileNav.className = 'mobile-nav';
+        
+        // Create mobile nav links based on desktop nav
+        const desktopNav = document.querySelector('.nav');
+        if (desktopNav) {
+            mobileNav.innerHTML = desktopNav.innerHTML;
+            document.body.appendChild(mobileNav);
+        }
     }
-}
-
-// Toggle mobile nav if the elements exist
-if (mobileMenuButton && mobileNav) {
-    mobileMenuButton.addEventListener('click', () => {
-        mobileNav.classList.toggle('active');
-        document.body.classList.toggle('no-scroll');
-    });
-
-    // Close mobile nav when clicking a link
-    mobileNav.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
+    
+    // Toggle mobile nav if the elements exist
+    if (mobileMenuButton && mobileNav) {
+        mobileMenuButton.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+            document.body.classList.toggle('no-scroll');
+        });
+    
+        // Close mobile nav when clicking a link
+        mobileNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileNav.classList.remove('active');
+                document.body.classList.remove('no-scroll');
+            });
+        });
+    }
+    
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        const mobileNav = document.querySelector('.mobile-nav');
+        if (window.innerWidth > 768 && mobileNav) {
+            // Remove mobile nav when resizing to desktop
             mobileNav.classList.remove('active');
             document.body.classList.remove('no-scroll');
-        });
+        }
     });
-}
-
-// Handle window resize
-window.addEventListener('resize', () => {
-    const mobileNav = document.querySelector('.mobile-nav');
-    if (window.innerWidth > 768 && mobileNav) {
-        // Remove mobile nav when resizing to desktop
-        mobileNav.classList.remove('active');
-        document.body.classList.remove('no-scroll');
-    }
 });

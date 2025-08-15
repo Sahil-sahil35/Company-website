@@ -1,16 +1,17 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Fetch data from data.json
-    fetch('../data/data.json')
-        .then(response => response.json())
-        .then(data => {
-            // Initialize all components with the loaded data
-            initTestimonials(data.testimonials);
-            initProducts(data.products);
-            initCategories(data.categories);
-            initFeatures(data.features);
-            initFooter(data.footer, data.site.contact);
-        })
-        .catch(error => console.error('Error loading data:', error));
+    // Fetch data from data.json and products.json
+    Promise.all([
+        fetch('../data/data.json').then(res => res.json()),
+        fetch('../data/products.json').then(res => res.json())
+    ])
+    .then(([data, productsData]) => {
+        initTestimonials(data.testimonials);
+        initProducts(productsData.products); // Use homeProducts
+        initCategories(data.categories);
+        initFeatures(data.features);
+        initFooter(data.footer, data.site.contact);
+    })
+    .catch(error => console.error('Error loading data:', error));
 
     // Initialize testimonials carousel
     function initTestimonials(testimonials) {
@@ -85,9 +86,11 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Clear existing products
         productsScroll.innerHTML = '';
+
+        const firstFiveProducts = products.slice(0, 7);
         
         // Add products from data
-        products.forEach(product => {
+        firstFiveProducts.forEach(product => {
             const productCard = document.createElement('div');
             productCard.className = 'product-card';
             productCard.innerHTML = `
@@ -199,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Clear existing footer sections (keep the first 3 sections)
         const sections = footerContent.querySelectorAll('.footer-section');
-        for (let i = 3; i < sections.length; i++) {
+        for (let i = 4; i < sections.length; i++) {
             sections[i].remove();
         }
         
