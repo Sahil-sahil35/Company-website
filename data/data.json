@@ -1,0 +1,153 @@
+{
+  "site": {
+    "title": "AquaVision",
+    "tagline": "Pure Water. Pure Innovation.",
+    "description": "Premium filtration solutions for home, commercial, and industrial needs. Experience the future of clean water technology.",
+    "contact": {
+      "email": "support@aquavision.com",
+      "phone": "+1 (555) 123-4567",
+      "address": "123 Water Street, Innovation City",
+      "hours": "Mon-Fri 9AM-6PM EST"
+    },
+    "social": {
+      "facebook": "#",
+      "twitter": "#",
+      "instagram": "#",
+      "linkedin": "#"
+    }
+  },
+  "navigation": [
+    {"name": "Home", "link": "#home"},
+    {"name": "Shop", "link": "#shop"},
+    {"name": "Categories", "link": "#categories"},
+    {"name": "About", "link": "#about"},
+    {"name": "Contact", "link": "#contact"}
+  ],
+  "hero": {
+    "stats": [
+      {"value": "99.9%", "label": "Purity Rate"},
+      {"value": "50+", "label": "Countries"},
+      {"value": "1M+", "label": "Liters Filtered"}
+    ]
+  },
+  "categories": [
+    {
+      "name": "Filter Media",
+      "description": "High-performance filtration media for all industrial applications",
+      "image": "https://images.unsplash.com/photo-1603569283847-aa6e0adb9af8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "name": "Filter Candles",
+      "description": "Precision-engineered ceramic candles for superior filtration",
+      "image": "https://images.unsplash.com/photo-1561484930-974554019ade?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "name": "Activated Carbon",
+      "description": "Premium activated carbon for maximum adsorption capacity",
+      "image": "https://images.unsplash.com/photo-1586771107445-d3ca888129ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "name": "Silica Sand",
+      "description": "Ultra-pure silica sand for water treatment systems",
+      "image": "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "name": "Accessories",
+      "description": "Complete range of filtration accessories and components",
+      "image": "https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    },
+    {
+      "name": "Spare Parts",
+      "description": "Genuine replacement parts for all filtration systems",
+      "image": "https://images.unsplash.com/photo-1603569283847-aa6e0adb9af8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    }
+  ],
+  "products": [
+    {
+      "name": "Premium Carbon Filter",
+      "description": "Advanced filtration for purest water quality",
+      "image": "https://images.unsplash.com/photo-1603569283847-aa6e0adb9af8?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+    },
+    {
+      "name": "Ceramic Filter Candle",
+      "description": "Durable ceramic for long-lasting performance",
+      "image": "https://images.unsplash.com/photo-1561484930-974554019ade?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+    },
+    {
+      "name": "Industrial Filter Media",
+      "description": "Heavy-duty solution for commercial needs",
+      "image": "https://images.unsplash.com/photo-1586771107445-d3ca888129ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+    },
+    {
+      "name": "Silica Sand Grade A",
+      "description": "Ultra-pure filtration medium",
+      "image": "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+    },
+    {
+      "name": "Multi-Stage Filter System",
+      "description": "Complete water purification solution",
+      "image": "https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+    },
+    {
+      "name": "Laboratory Grade Filter",
+      "description": "Precision filtration for sensitive applications",
+      "image": "https://images.unsplash.com/photo-1603569283847-aa6e0adb9af8?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
+    }
+  ],
+  "features": [
+    {
+      "title": "Certified Quality",
+      "description": "All our products meet international quality standards and certifications for optimal performance and safety in every application.",
+      "icon": "✓"
+    },
+    {
+      "title": "Fast & Secure Shipping",
+      "description": "Quick delivery with secure packaging to ensure your products arrive in perfect condition, anywhere in the world.",
+      "icon": "🚚"
+    },
+    {
+      "title": "Expert Support",
+      "description": "Our technical team provides professional guidance and 24/7 support for all your filtration needs and challenges.",
+      "icon": "💬"
+    }
+  ],
+  "testimonials": [
+    {
+      "text": "\"AquaVision's filtration systems have completely transformed our water quality. The difference is remarkable, and their customer service is absolutely exceptional.\"",
+      "author": "Sarah Johnson, Industrial Operations Manager"
+    },
+    {
+      "text": "\"We've been using AquaVision products for over 3 years now. The reliability and performance are unmatched in the industry. Highly recommended!\"",
+      "author": "Michael Chen, Water Treatment Specialist"
+    },
+    {
+      "text": "\"The technical support team at AquaVision is incredible. They helped us design a custom solution that exceeded our expectations.\"",
+      "author": "Emily Rodriguez, Plant Manager"
+    },
+    {
+      "text": "\"Outstanding product quality and fast delivery. AquaVision has become our go-to supplier for all filtration needs.\"",
+      "author": "David Thompson, Procurement Director"
+    },
+    {
+      "text": "\"The cost savings we've achieved with AquaVision's efficient filtration systems have been substantial. Great investment!\"",
+      "author": "Lisa Park, Operations Manager"
+    }
+  ],
+  "footer": {
+    "shopLinks": [
+      {"name": "Filter Media", "link": "#"},
+      {"name": "Filter Candles", "link": "#"},
+      {"name": "Activated Carbon", "link": "#"},
+      {"name": "Silica Sand", "link": "#"},
+      {"name": "Accessories", "link": "#"},
+      {"name": "Spare Parts", "link": "#"}
+    ],
+    "categories": [
+      {"name": "Home Filtration", "link": "#"},
+      {"name": "Commercial Systems", "link": "#"},
+      {"name": "Industrial Solutions", "link": "#"},
+      {"name": "Replacement Parts", "link": "#"},
+      {"name": "Maintenance Kits", "link": "#"}
+    ]
+  }
+}

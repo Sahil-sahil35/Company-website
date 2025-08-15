@@ -1,0 +1,136 @@
+{
+  "products": [
+    {
+      "id": "prod-001",
+      "name": "Premium Carbon Filter",
+      "slug": "premium-carbon-filter",
+      "description": "Advanced filtration for purest water quality",
+      "detailedDescription": "Our premium carbon filter uses activated coconut shell carbon for superior chlorine and organic compound removal. Ideal for both residential and light commercial applications.",
+      "price": 89.99,
+      "salePrice": null,
+      "sku": "ACF-3000",
+      "category": "Filter Media",
+      "subCategory": "Activated Carbon",
+      "material": "Coconut Shell Carbon",
+      "rating": 4.8,
+      "reviewCount": 142,
+      "stock": 25,
+      "images": [
+        "https://images.unsplash.com/photo-1603569283847-aa6e0adb9af8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1561484930-974554019ade?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1586771107445-d3ca888129ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "specs": {
+        "meshSize": "8×30",
+        "iodineNumber": "≥1000 mg/g",
+        "bulkDensity": "0.45-0.55 g/cm³",
+        "moisture": "≤5%",
+        "applications": ["RO Systems", "Industrial Filtration", "Drinking Water"]
+      },
+      "documents": [
+        {"name": "Product Sheet", "url": "#"},
+        {"name": "MSDS", "url": "#"},
+        {"name": "Installation Guide", "url": "#"}
+      ],
+      "reviews": [
+        {
+          "author": "John D.",
+          "rating": 5,
+          "date": "2023-10-15",
+          "comment": "Excellent filtration performance. Noticeable difference in water taste."
+        }
+      ],
+      "tags": ["best-seller", "eco-friendly", "high-capacity"]
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    {
+      "id": "prod-002",
+      "name": "Ceramic Filter Candle",
+      "slug": "ceramic-filter-candle",
+      "description": "Durable ceramic for long-lasting performance",
+      "detailedDescription": "High-purity ceramic filter candles with silver impregnation for bacterial protection. Effective down to 0.2 micron filtration.",
+      "price": 45.99,
+      "salePrice": 39.99,
+      "sku": "CFC-2000",
+      "category": "Filter Candles",
+      "subCategory": "Ceramic",
+      "material": "Ceramic with Silver",
+      "rating": 4.6,
+      "reviewCount": 89,
+      "stock": 0,
+      "images": [
+        "https://images.unsplash.com/photo-1561484930-974554019ade?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1603569283847-aa6e0adb9af8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      ],
+      "specs": {
+        "poreSize": "0.2 micron",
+        "flowRate": "2-3 L/min",
+        "diameter": "63 mm",
+        "length": "250 mm",
+        "applications": ["Drinking Water", "Emergency Filtration", "Off-grid"]
+      },
+      "documents": [
+        {"name": "Product Sheet", "url": "#"},
+        {"name": "Cleaning Guide", "url": "#"}
+      ],
+      "reviews": [],
+      "tags": ["back-to-school", "eco-friendly"]
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  ],
+  "filters": {
+    "categories": [
+      "Filter Media",
+      "Filter Candles",
+      "Activated Carbon",
+      "Silica Sand",
+      "Accessories",
+      "Spare Parts"
+    ],
+    "materials": [
+      "Ceramic",
+      "Carbon",
+      "Stainless Steel",
+      "Plastic",
+      "Glass"
+    ],
+    "priceRanges": [
+      {"label": "Under $25", "min": 0, "max": 25},
+      {"label": "$25 - $50", "min": 25, "max": 50},
+      {"label": "$50 - $100", "min": 50, "max": 100},
+      {"label": "Over $100", "min": 100, "max": 1000}
+    ]
+  }
+}

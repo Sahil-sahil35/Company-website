@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaVision - Shop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
+    <link href="/css/listing.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">AquaVision</a>
+            
+            <nav class="nav">
+                <a href="index.html">Home</a>
+                <a href="listing.html">Shop</a>
+                <a href="#categories">Categories</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            
+            <div class="header-icons">
+                <button class="icon-btn">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                </button>
+                <button class="icon-btn">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+                    </svg>
+                    <span class="cart-count">0</span>
+                </button>
+                <button class="icon-btn">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                    </svg>
+                </button>
+                <button class="icon-btn mobile-menu">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="shop-hero">
+        <div class="shop-hero-bg"></div>
+        <div class="shop-hero-overlay"></div>
+        <div class="shop-hero-content">
+            <h1>Shop All Products</h1>
+            <p class="shop-hero-subtitle">Premium filtration solutions for every application</p>
+            <div class="breadcrumbs">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Filters & Sorting -->
+        <div class="shop-controls">
+            <div class="results-count">Loading products...</div>
+            <div class="sort-by">
+                <label for="sort">Sort by:</label>
+                <select id="sort">
+                    <option value="relevance">Relevance</option>
+                    <option value="price-low">Price Low-High</option>
+                    <option value="price-high">Price High-Low</option>
+                    <option value="newest">Newest</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="shop-container">
+            <!-- Filter Sidebar -->
+            <button class="filter-toggle" id="filterToggle">Filters</button>
+            <div class="filter-sidebar" id="filterSidebar">
+                <div class="filter-search">
+                    <input type="text" placeholder="Search products...">
+                </div>
+
+                <div class="filter-group">
+                    <h3>Categories</h3>
+                    <div class="filter-options" id="category-filters">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h3>Material</h3>
+                    <div class="filter-chips" id="material-chips">
+                        <!-- Will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h3>Price Range</h3>
+                    <input type="range" class="price-range" min="0" max="500" value="500">
+                    <div class="price-range-values">
+                        <span>$0</span>
+                        <span>$500</span>
+                    </div>
+                </div>
+
+                <button class="clear-filters">Clear All Filters</button>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="products-grid">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <ul class="pagination">
+            <li class="page-item">
+                <a href="#" class="page-link">Previous</a>
+            </li>
+            <li class="page-item">
+                <a href="#" class="page-link">1</a>
+            </li>
+            <li class="page-item active">
+                <a href="#" class="page-link">2</a>
+            </li>
+            <li class="page-item">
+                <a href="#" class="page-link">3</a>
+            </li>
+            <li class="page-item">
+                <a href="#" class="page-link">4</a>
+            </li>
+            <li class="page-item">
+                <a href="#" class="page-link">Next</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        Added to temporary cart — clears when you leave
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Shop Links</h3>
+                    <!-- Shop links will be populated by JavaScript -->
+                </div>
+                <div class="footer-section">
+                    <h3>Categories</h3>
+                    <!-- Categories will be populated by JavaScript -->
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <!-- Contact info will be populated by JavaScript -->
+                </div>
+                <div class="footer-section">
+                    <h3>Stay Connected</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 20px;">Subscribe to our newsletter for the latest products and offers.</p>
+                    <div class="newsletter">
+                        <input type="email" placeholder="Enter your email">
+                        <button class="btn-primary">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <!-- Footer text will be populated by JavaScript -->
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/listing.js"></script>
+</body>
+</html>
