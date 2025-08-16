@@ -80,6 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Initialize products
+    // Initialize products
     function initProducts(products) {
         const productsScroll = document.getElementById('productsScroll');
         if (!productsScroll) return;
@@ -95,18 +96,25 @@ document.addEventListener('DOMContentLoaded', function() {
             productCard.className = 'product-card';
             productCard.innerHTML = `
                 <div class="product-image">
-                    <img src="${product.image}" alt="${product.name}">
+                    <img src="${product.images[0]}" alt="${product.name}">
                 </div>
                 <div class="product-content">
                     <h3 class="product-name">${product.name}</h3>
                     <p class="product-desc">${product.description}</p>
                     <div class="product-buttons">
-                        <button class="btn-secondary btn-small">View Details</button>
-                        <button class="btn-primary btn-small">Add to Cart</button>
+                        <a href="html/product.html?id=${product.id}" class="btn-secondary btn-small">View Details</a>
+                        <button class="btn-solid add-to-cart" ${product.stock <= 0 ? 'disabled' : ''}>
+                            ${product.stock > 0 ? 'Add to Cart' : 'Out of Stock'}
+                        </button>
                     </div>
                 </div>
             `;
             productsScroll.appendChild(productCard);
+        });
+
+        // Add event listeners to new add-to-cart buttons
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', addToCart);
         });
         
         // Smooth horizontal scroll for products
@@ -149,6 +157,38 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }, 3000);
         });
+    }
+
+
+    function addToCart() {
+        const toast = document.getElementById('toast');
+        const cartCount = document.querySelector('.cart-count');
+        
+        // Update cart count
+        let currentCount = parseInt(cartCount.textContent);
+        cartCount.textContent = currentCount + 1;
+        
+        // Store in sessionStorage
+        sessionStorage.setItem('cartCount', cartCount.textContent);
+        
+        // Show toast
+        if (toast) {
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Button feedback
+        const button = this;
+        const originalText = button.textContent;
+        button.textContent = 'Added!';
+        button.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
+        
+        setTimeout(() => {
+            button.textContent = originalText;
+            button.style.background = 'linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))';
+        }, 2000);
     }
     
     // Initialize categories

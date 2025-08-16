@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         ${product.stock > 0 ? 'In Stock' : 'Out of Stock'}
                     </div>
                     <div class="product-buttons">
-                        <a href="product.html?id=${product.id}" class="btn-outline">View Details</a>
+                        <a href="../html/product.html?id=${product.id}" class="btn-outline">View Details</a>
                         <button class="btn-solid add-to-cart" ${product.stock <= 0 ? 'disabled' : ''}>
                             ${product.stock > 0 ? 'Add to Cart' : 'Out of Stock'}
                         </button>

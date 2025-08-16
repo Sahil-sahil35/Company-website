@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaVision - Product Details</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="../css/main.css" rel="stylesheet">
+    <link href="../css/listing.css" rel="stylesheet">
+    <link href="../css/product_details.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-content">
+            <a href="../index.html" class="logo">AquaVision</a>
+            
+            <nav class="nav">
+                <a href="../index.html">Home</a>
+                <a href="listing.html">Shop</a>
+                <a href="#categories">Categories</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            
+            <div class="header-icons">
+                <button class="icon-btn">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                </button>
+                <button class="icon-btn">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+                    </svg>
+                    <span class="cart-count">0</span>
+                </button>
+                <button class="icon-btn">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                    </svg>
+                </button>
+                <button class="icon-btn mobile-menu">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <a href="../index.html">Home</a>
+        <a href="listing.html">Shop</a>
+        <a href="#categories">Categories</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <section class="product-hero">
+        <div class="product-hero-bg"></div>
+        <div class="product-hero-overlay"></div>
+        <div class="product-hero-content">
+            <h1 id="heroProductTitle">Shop All Products</h1>
+            <p class="product-hero-subtitle" id="heroProductDesc">Premium filtration solutions for every application</p>
+            <div class="breadcrumbs">
+                <a href="../index.html">Home</a>
+                <span class="separator">/</span>
+                <a href="listing.html">Shop</a>
+                <span class="separator">/</span>
+                <span id="productNameBreadcrumb">Product</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Detail Section -->
+    <div class="container">
+        <div class="product-detail">
+            <div class="product-gallery">
+                <div class="thumbnail-container" id="thumbnails">
+                    <!-- Thumbnails will be populated by JavaScript -->
+                </div>
+                <div class="main-image-container">
+                    <img src="" alt="Main Product Image" class="main-image" id="mainImage">
+                </div>
+            </div>
+
+            <div class="product-info">
+                <h1 class="product-title" id="productTitle">Product Name</h1>
+                <div class="product-meta">
+                    <div class="product-rating">
+                        <span class="rating-stars">★★★★★</span>
+                        <span class="review-count" id="reviewCount">(0 reviews)</span>
+                    </div>
+                    <div class="stock-status in-stock" id="stockStatus">In Stock</div>
+                </div>
+                <div class="product-price" id="productPrice">
+                    $0.00
+                </div>
+                <p class="product-description" id="productDescription">
+                    Product description will be loaded here...
+                </p>
+                
+                <div class="product-actions">
+                    <button class="btn-outline" id="contactBtn">Contact Us</button>
+                    <button class="btn-solid add-to-cart" id="addToCartBtn">Add to Cart</button>
+                </div>
+
+                <div class="product-specs">
+                    <h3>Specifications</h3>
+                    <table class="specs-table" id="specsTable">
+                        <!-- Specifications will be populated by JavaScript -->
+                    </table>
+                </div>
+
+                <div class="product-documents">
+                    <h3>Documents</h3>
+                    <div class="documents-list" id="documentsList">
+                        <!-- Documents will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Similar Products Section -->
+        <section class="section products-section" id="similarProducts">
+            <h2 class="section-title">Similar Products</h2>
+            <div class="products-container">
+                <div class="products-scroll" id="productsScroll">
+                    <!-- Similar products will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">Added to temporary cart — clears when you leave</div>
+
+    <!-- Contact Modal -->
+    <div class="modal" id="contactModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Contact Us About <span id="modalProductName"></span></h2>
+            <form id="contactForm">
+                <input type="hidden" id="productId">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone">
+                </div>
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="category" required>
+                        <option value="">Select a category</option>
+                        <option value="inquiry">General Inquiry</option>
+                        <option value="order">Place an Order</option>
+                        <option value="support">Technical Support</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn-solid">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Shop Links</h3>
+                    <!-- Will be populated by JavaScript -->
+                </div>
+                <div class="footer-section">
+                    <h3>Categories</h3>
+                    <!-- Will be populated by JavaScript -->
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <!-- Will be populated by JavaScript -->
+                </div>
+                <div class="footer-section">
+                    <h3>Stay Connected</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 20px;">Subscribe to our newsletter for the latest products and offers.</p>
+                    <div class="newsletter">
+                        <input type="email" placeholder="Enter your email">
+                        <button class="btn-primary">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/product_details.js"></script>
+</body>
+</html>
