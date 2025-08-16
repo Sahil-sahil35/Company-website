@@ -29,13 +29,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Mobile navigation toggle
     const mobileMenuButton = document.querySelector('.mobile-menu');
     const mobileNav = document.querySelector('.mobile-nav');
-    
+
     if (mobileMenuButton && mobileNav) {
         mobileMenuButton.addEventListener('click', () => {
             mobileNav.classList.toggle('active');
             document.body.classList.toggle('no-scroll');
         });
-    
+        
         // Close mobile nav when clicking a link
         mobileNav.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {

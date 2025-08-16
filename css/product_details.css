@@ -1,32 +1,22 @@
 /* Product Hero Section */
 .product-hero {
-    height: 400px;
+    min-height: 400px;
+    padding-top: 80px; /* Account for fixed header */
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    margin-top: 80px;
+    box-sizing: border-box;
 }
 
-.product-hero-bg {
+.product-hero-bg, .product-hero-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
+    background: url("https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80");
     height: 100%;
-    background: url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;
-    z-index: -2;
-}
-
-.product-hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(10, 10, 10, 0.8) 0%, rgba(26, 26, 26, 0.6) 100%);
-    z-index: -1;
 }
 
 .product-hero-content {
@@ -379,9 +369,5 @@
     }
 
 
-@media (min-width: 769px) {
-    .mobile-nav {
-        display: none !important;
-    }
-}
+
 }

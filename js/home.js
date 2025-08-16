@@ -16,21 +16,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize hero stats
     function initHeroStats(stats) {
-        const heroStats = document.getElementById('heroStats');
-        if (!heroStats) return;
-        
-        heroStats.innerHTML = '';
-        
-        stats.forEach(stat => {
-            const statItem = document.createElement('div');
-            statItem.className = 'stat-item';
-            statItem.innerHTML = `
-                <span class="stat-number">${stat.value}</span>
-                <span class="stat-label">${stat.label}</span>
-            `;
-            heroStats.appendChild(statItem);
-        });
-    }
+    const heroStats = document.getElementById('heroStats');
+    if (!heroStats) return;
+    
+    heroStats.innerHTML = '';
+    
+    stats.forEach(stat => {
+        const statItem = document.createElement('div');
+        statItem.className = 'stat-item';
+        statItem.innerHTML = `
+            <span class="stat-number">${stat.value}</span>
+            <span class="stat-label">${stat.label}</span>
+        `;
+        heroStats.appendChild(statItem);
+    });
+    
+    // Adjust hero height after stats load
+    setTimeout(() => {
+        if (window.innerWidth <= 768) {
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                const contentHeight = hero.querySelector('.hero-content').offsetHeight;
+                hero.style.minHeight = `calc(${contentHeight}px + 20vh)`;
+            }
+        }
+    }, 100);
+}
     
     // Initialize testimonials carousel
     function initTestimonials(testimonials) {

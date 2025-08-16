@@ -233,6 +233,10 @@ body.no-scroll {
     transform: translateY(0);
 }
 
+.no-scroll {
+    overflow: hidden;
+}
+
 .mobile-nav a {
     display: block;
     color: var(--text-secondary);
@@ -294,34 +298,34 @@ body.no-scroll {
 
 /* Hero Section */
 .hero {
-    height: 100vh;
-    min-height: 600px;
+    min-height: 100vh;
+    padding-top: 80px; /* Account for fixed header */
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    box-sizing: border-box;
 }
 
-.hero-bg {
+.hero-bg, .hero-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+}
+
+.hero-bg {
     background: url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;
     z-index: -2;
 }
 
 .hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
     background: linear-gradient(135deg, rgba(10, 10, 10, 0.8) 0%, rgba(26, 26, 26, 0.6) 100%);
     z-index: -1;
 }
+
 
 .hero-content {
     text-align: center;
@@ -869,17 +873,22 @@ body.no-scroll {
 }
 
 /* Mobile Styles */
-@media (max-width: 768px) {
+@media (max-width: 920px) {
     .nav {
         display: none;
     }
 
-    .mobile-nav {
+    .mobile-menu {
         display: block;
     }
 
-    .mobile-menu {
+    .mobile-nav {
         display: block;
+        transform: translateY(-100%);
+    }
+
+    .mobile-nav.active {
+        transform: translateY(0);
     }
 
     .hero-buttons {
@@ -929,13 +938,42 @@ body.no-scroll {
     }
 }
 
-@media (max-width: 480px) {
+@media (min-width: 920px) {
+    .mobile-nav {
+        display: none !important;
+    }
+    .hero {
+        padding-top: 60px; /* Adjusted for smaller header */
+        min-height: auto;
+        height: auto;
+        padding-bottom: 40px;
+    }
+    .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--accent-primary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    }
+}
+
+@media (max-width: 508px) {
     .container {
         padding: 0 15px;
     }
 
     .hero-content {
         padding: 0 15px;
+    }
+    
+    .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--accent-primary);
+    text-decoration: none;
+    transition: all 0.3s ease;
     }
 
     .stat-item {
