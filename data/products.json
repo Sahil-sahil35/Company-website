@@ -2,28 +2,28 @@
   "products": [
     {
       "id": "prod-001",
-      "name": "Activated Carbon Powder",
+      "name": "Granular Activated Carbon Powder",
       "slug": "premium-Activated-Carbon-Powder",
-      "description": "Activated Carbon for purest water quality",
-      "detailedDescription": "Activated Carbon has been used as an adsorbent for centuries early uses of carbon were reported for water filtration and for sugar solution purification. Activated carbons ability to remove a large variety of compounds from contaminated waters has led to its increased use in the last thirty years. Recent changes in water discharge standards regarding toxic pollutants has placed additional emphasis on this technology. Granulated carbons are used for water treatment, deodorization and separation of components of flow system. We are offering a range of Granular Activated Carbon for Water Purification to our client depending upon mesh size, iodine content, etc.",
-      "price": 89.99,
-      "salePrice": null,
-      "sku": "ACF-3000", 
+      "description": "Premium Coconut Shell Based Granular Activated Carbon for superior water & air purification with high adsorption capacity and long-lasting performance.",
+      "detailedDescription": "Coconut Shell Based Granular Activated Carbon (GAC)Our Coconut Shell Based Granular Activated Carbon (GAC) is a premium-grade filtration media widely used in water treatment, air purification, food & beverage, and industrial applications. Manufactured from high-quality coconut shells, this activated carbon offers exceptional adsorption capacity, high surface area, and durability, making it the preferred choice for industries and households worldwide.Key Benefits of Coconut Shell Activated Carbon: 100% Natural & Sustainable – made from renewable coconut shells High Adsorption Capacity – effective removal of chlorine, VOCs, organic compounds, taste, odor, and color Superior Hardness & Low Dust – ensures long service life and better performance compared to coal or wood-based carbon Optimized Pore Structure – rich in micropores, ideal for removing small contaminants and improving water quality Versatile Applications – effective in both water and air purification    Why Choose Us as Your Activated Carbon Supplier?   We provide high-quality coconut shell activated carbon at competitive prices, ensuring consistent performance, bulk availability, and customized packaging options. Whether you need granular activated carbon (GAC), powdered activated carbon (PAC), or pelletized activated carbon, we deliver solutions tailored to your needs.",
+      "price": 125,
+      "salePrice": 110,
+      "sku": "GAC-1000", 
       "category": "Activated Carbon",
-      "subCategory": "Filter Media",
-      "material": "Coconut Shell Carbon",
+      "subCategory": "Granular Activated Carbon",
+      "material": "Coconut Shell",
       "rating": 4.8,
       "reviewCount": 142,
       "stock": 25,
       "images": [
-        "/Company-website/images/Carbon/Powder-Activated-Carbon.jpg"
+        "/Company-website/images/Carbon/Granular-Activated-Carbon.jpg"
       ],
       "specs": {
-        "meshSize": "8×30",
+        "meshSize": "4x8, 8x16, 16x32",
         "iodineNumber": "≥1000 mg/g",
         "bulkDensity": "0.45-0.55 g/cm³",
         "moisture": "≤5%",
-        "applications": ["RO Systems", "Industrial Filtration", "Drinking Water"]
+        "applications": ["Drinking Water Purification & Wastewater Treatment","Food & Beverage Processing (sugar, wine, soft drinks, edible oils)","Pharmaceutical & ChemicalIndustries","Air & Gas Purification Systems","Gold Recovery & Solvent Recovery","Aquarium & Aquaculture Filtration"]
       },
       "documents": [
         {"name": "Product Sheet", "url": "#"},
