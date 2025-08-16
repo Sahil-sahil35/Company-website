@@ -35,47 +35,61 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize cart count
     const cartCount = document.querySelector('.cart-count');
-    if (sessionStorage.getItem('cartCount')) {
+    if (cartCount && sessionStorage.getItem('cartCount')) {
         cartCount.textContent = sessionStorage.getItem('cartCount');
     }
     
     // Display product details
     function displayProductDetails(product) {
         // Set main product info
-        document.getElementById('productTitle').textContent = product.name;
-        document.getElementById('modalProductName').textContent = product.name;
-        document.getElementById('productDescription').textContent = 
-            product.detailedDescription || product.description;
-        document.getElementById('productId').value = product.id;
-        document.getElementById('heroProductTitle').textContent = product.name;
-        document.getElementById('heroProductDesc').textContent = product.description;
-        document.getElementById('productNameBreadcrumb').textContent = product.name;
+        const productTitle = document.getElementById('productTitle');
+        const modalProductName = document.getElementById('modalProductName');
+        const productDescription = document.getElementById('productDescription');
+        const productId = document.getElementById('productId');
+        const heroProductTitle = document.getElementById('heroProductTitle');
+        const heroProductDesc = document.getElementById('heroProductDesc');
+        const productNameBreadcrumb = document.getElementById('productNameBreadcrumb');
         
+        if (productTitle) productTitle.textContent = product.name;
+        if (modalProductName) modalProductName.textContent = product.name;
+        if (productDescription) productDescription.textContent = product.detailedDescription || product.description;
+        if (productId) productId.value = product.id;
+        if (heroProductTitle) heroProductTitle.textContent = product.name;
+        if (heroProductDesc) heroProductDesc.textContent = product.description;
+        if (productNameBreadcrumb) productNameBreadcrumb.textContent = product.name;
+
         // Set price
         const priceElement = document.getElementById('productPrice');
-        if (product.salePrice) {
-            priceElement.innerHTML = `
-                <span class="original">$${product.price.toFixed(2)}</span>
-                <span class="sale">$${product.salePrice.toFixed(2)}</span>
-            `;
-        } else {
-            priceElement.textContent = `$${product.price.toFixed(2)}`;
+        if (priceElement) {
+            if (product.salePrice) {
+                priceElement.innerHTML = `
+                    <span class="original">$${product.price.toFixed(2)}</span>
+                    <span class="sale">$${product.salePrice.toFixed(2)}</span>
+                `;
+            } else {
+                priceElement.textContent = `$${product.price.toFixed(2)}`;
+            }
         }
         
         // Set stock status
         const stockElement = document.getElementById('stockStatus');
-        stockElement.textContent = product.stock > 0 ? 'In Stock' : 'Out of Stock';
-        stockElement.className = 'stock-status ' + (product.stock > 0 ? 'in-stock' : 'out-of-stock');
+        if (stockElement) {
+            stockElement.textContent = product.stock > 0 ? 'In Stock' : 'Out of Stock';
+            stockElement.className = 'stock-status ' + (product.stock > 0 ? 'in-stock' : 'out-of-stock');
+        }
         
         // Set rating
         const reviewCount = product.reviewCount || 0;
-        document.getElementById('reviewCount').textContent = `(${reviewCount} reviews)`;
+        const reviewCountElement = document.getElementById('reviewCount');
+        if (reviewCountElement) {
+            reviewCountElement.textContent = `(${reviewCount} reviews)`;
+        }
         
         // Set images
         const mainImage = document.getElementById('mainImage');
         const thumbnailsContainer = document.getElementById('thumbnails');
         
-        if (product.images && product.images.length > 0) {
+        if (product.images && product.images.length > 0 && mainImage && thumbnailsContainer) {
             mainImage.src = product.images[0];
             mainImage.alt = product.name;
             
@@ -98,65 +112,82 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Set specifications
         const specsTable = document.getElementById('specsTable');
-        specsTable.innerHTML = '';
-        if (product.specs) {
-            for (const [key, value] of Object.entries(product.specs)) {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <th>${key}</th>
-                    <td>${Array.isArray(value) ? value.join(', ') : value}</td>
-                `;
-                specsTable.appendChild(row);
+        if (specsTable) {
+            specsTable.innerHTML = '';
+            if (product.specs && Object.keys(product.specs).length > 0) {
+                for (const [key, value] of Object.entries(product.specs)) {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <th>${key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</th>
+                        <td>${Array.isArray(value) ? value.join(', ') : value}</td>
+                    `;
+                    specsTable.appendChild(row);
+                }
+            } else {
+                specsTable.innerHTML = '<tr><td colspan="2">No specifications available</td></tr>';
             }
         }
         
         // Set documents
         const documentsList = document.getElementById('documentsList');
-        documentsList.innerHTML = '';
-        if (product.documents && product.documents.length > 0) {
-            product.documents.forEach(doc => {
-                const link = document.createElement('a');
-                link.href = doc.url;
-                link.textContent = doc.name;
-                link.target = '_blank';
-                documentsList.appendChild(link);
-            });
+        if (documentsList) {
+            documentsList.innerHTML = '';
+            if (product.documents && product.documents.length > 0) {
+                product.documents.forEach(doc => {
+                    const link = document.createElement('a');
+                    link.href = doc.url;
+                    link.textContent = doc.name;
+                    link.target = '_blank';
+                    documentsList.appendChild(link);
+                });
+            } else {
+                documentsList.innerHTML = '<p>No documents available</p>';
+            }
         }
         
         // Add to cart button event
-        document.getElementById('addToCartBtn').addEventListener('click', function() {
-            if (product.stock > 0) {
-                addToCart(product.id);
-            } else {
-                alert('This product is out of stock');
+        const addToCartBtn = document.getElementById('addToCartBtn');
+        if (addToCartBtn) {
+            addToCartBtn.addEventListener('click', function() {
+                if (product.stock > 0) {
+                    addToCart.call(this);
+                } else {
+                    alert('This product is out of stock');
+                }
+            });
+            
+            // Update button state based on stock
+            if (product.stock <= 0) {
+                addToCartBtn.textContent = 'Out of Stock';
+                addToCartBtn.disabled = true;
+                addToCartBtn.classList.add('disabled');
             }
-        });
+        }
     }
     
     // Initialize similar products section
     function initSimilarProducts(products, currentProduct) {
         // Find products with matching category
-        const similarProducts = products.filter(product => {
+        let similarProducts = products.filter(product => {
             return product.id !== currentProduct.id && 
                    product.category === currentProduct.category;
         }).slice(0, 6); // Limit to 6 similar products
         
-        const productsScroll = document.getElementById('productsScroll');
-        
+        // If no similar products, show random products
         if (similarProducts.length === 0) {
-            // If no similar products, show random products
-            const randomProducts = products
+            similarProducts = products
                 .filter(p => p.id !== currentProduct.id)
                 .sort(() => 0.5 - Math.random())
                 .slice(0, 6);
-            
-            displayProducts(randomProducts, productsScroll);
-        } else {
-            displayProducts(similarProducts, productsScroll);
         }
+        
+        const productsScroll = document.getElementById('productsScroll');
+        displayProducts(similarProducts, productsScroll);
     }
     
     function displayProducts(products, container) {
+        if (!container) return;
+        
         container.innerHTML = '';
         
         products.forEach(product => {
@@ -171,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p class="product-desc">${product.description}</p>
                     <div class="product-buttons">
                         <a href="product.html?id=${product.id}" class="btn-secondary btn-small">View Details</a>
-                        <button class="btn-solid add-to-cart" ${product.stock <= 0 ? 'disabled' : ''}>
+                        <button class="btn-solid add-to-cart btn-small" ${product.stock <= 0 ? 'disabled' : ''} data-id="${product.id}">
                             ${product.stock > 0 ? 'Add to Cart' : 'Out of Stock'}
                         </button>
                     </div>
@@ -184,14 +215,6 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.add-to-cart').forEach(button => {
             button.addEventListener('click', addToCart);
         });
-        
-        // Add event listeners to new add-to-cart buttons
-        document.querySelectorAll('.add-to-cart').forEach(button => {
-            button.addEventListener('click', function() {
-                const productId = this.getAttribute('data-id');
-                addToCart(productId);
-            });
-        });
     }
     
     // Initialize footer
@@ -199,16 +222,17 @@ document.addEventListener('DOMContentLoaded', function() {
         const footerContent = document.querySelector('.footer-content');
         if (!footerContent) return;
         
-        // Clear existing footer sections (keep the first 3 sections)
+        // Clear existing footer sections except newsletter
         const sections = footerContent.querySelectorAll('.footer-section');
-        for (let i = 3; i < sections.length; i++) {
-            sections[i].remove();
-        }
+        sections.forEach((section, index) => {
+            if (index < 3) { // Don't clear the newsletter section
+                section.innerHTML = '';
+            }
+        });
         
         // Update contact info
-        const contactSection = sections[2];
-        if (contactSection) {
-            contactSection.innerHTML = `
+        if (sections[2] && contact) {
+            sections[2].innerHTML = `
                 <h3>Contact Info</h3>
                 <a href="mailto:${contact.email}">${contact.email}</a>
                 <a href="tel:${contact.phone}">${contact.phone}</a>
@@ -218,20 +242,24 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Update shop links
-        const shopSection = sections[0];
-        if (shopSection) {
-            shopSection.innerHTML = '<h3>Shop Links</h3>';
+        if (sections[0] && footer && footer.shopLinks) {
+            sections[0].innerHTML = '<h3>Shop Links</h3>';
             footer.shopLinks.forEach(link => {
-                shopSection.innerHTML += `<a href="${link.link}">${link.name}</a>`;
+                const a = document.createElement('a');
+                a.href = link.url || link.link || '#';
+                a.textContent = link.name || link.text;
+                sections[0].appendChild(a);
             });
         }
         
         // Update categories
-        const categoriesSection = sections[1];
-        if (categoriesSection) {
-            categoriesSection.innerHTML = '<h3>Categories</h3>';
+        if (sections[1] && footer && footer.categories) {
+            sections[1].innerHTML = '<h3>Categories</h3>';
             footer.categories.forEach(category => {
-                categoriesSection.innerHTML += `<a href="${category.link}">${category.name}</a>`;
+                const a = document.createElement('a');
+                a.href = category.url || category.link || '#';
+                a.textContent = category.name;
+                sections[1].appendChild(a);
             });
         }
         
@@ -239,7 +267,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const footerBottom = document.querySelector('.footer-bottom');
         if (footerBottom) {
             footerBottom.innerHTML = `
-                <p>&copy; ${new Date().getFullYear()} AquaVision. All rights reserved. | Privacy Policy | Terms of Service</p>
+                <p>&copy; ${new Date().getFullYear()} RS Tranding Company. All rights reserved. | Privacy Policy | Terms of Service</p>
             `;
         }
     }
@@ -250,7 +278,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const cartCount = document.querySelector('.cart-count');
         
         // Update cart count
-        let currentCount = parseInt(cartCount.textContent);
+        let currentCount = parseInt(cartCount.textContent) || 0;
         cartCount.textContent = currentCount + 1;
         
         // Store in sessionStorage
@@ -267,12 +295,13 @@ document.addEventListener('DOMContentLoaded', function() {
         // Button feedback
         const button = this;
         const originalText = button.textContent;
+        const originalBg = button.style.background;
         button.textContent = 'Added!';
         button.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
         
         setTimeout(() => {
             button.textContent = originalText;
-            button.style.background = 'linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))';
+            button.style.background = originalBg || 'linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))';
         }, 2000);
     }
     
@@ -281,16 +310,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const contactBtn = document.getElementById('contactBtn');
     const closeModal = document.querySelector('.close-modal');
     
-    contactBtn.addEventListener('click', function() {
-        contactModal.style.display = 'block';
-        document.body.classList.add('no-scroll');
-    });
+    if (contactBtn && contactModal) {
+        contactBtn.addEventListener('click', function() {
+            contactModal.style.display = 'block';
+            document.body.classList.add('no-scroll');
+        });
+    }
     
-    closeModal.addEventListener('click', function() {
-        contactModal.style.display = 'none';
-        document.body.classList.remove('no-scroll');
-    });
+    if (closeModal && contactModal) {
+        closeModal.addEventListener('click', function() {
+            contactModal.style.display = 'none';
+            document.body.classList.remove('no-scroll');
+        });
+    }
     
+    // Close modal when clicking outside
     window.addEventListener('click', function(event) {
         if (event.target === contactModal) {
             contactModal.style.display = 'none';
@@ -299,14 +333,20 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Contact form submission
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // In a real implementation, this would send the form data to your server
-        // For now, we'll just show a confirmation and close the modal
-        alert('Thank you for your message! We will contact you soon.');
-        contactModal.style.display = 'none';
-        document.body.classList.remove('no-scroll');
-        this.reset();
-    });
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // In a real implementation, this would send the form data to your server
+            // For now, we'll just show a confirmation and close the modal
+            alert('Thank you for your message! We will contact you soon.');
+            if (contactModal) {
+                contactModal.style.display = 'none';
+                document.body.classList.remove('no-scroll');
+            }
+            this.reset();
+        });
+    }
 });
+

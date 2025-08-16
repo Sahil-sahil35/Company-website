@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentPage = 1;
     let itemsPerPage = 12;
     let currentProducts = [];
+    let allProducts = []; // Store original products for filter reset
     
     // Load products and filters
     Promise.all([
@@ -10,10 +11,10 @@ document.addEventListener('DOMContentLoaded', function() {
         fetch('../data/data.json').then(res => res.json())
     ])
     .then(([productsData, siteData]) => {
-        currentProducts = productsData.products;
+        allProducts = productsData.products;
+        currentProducts = [...allProducts]; // Copy for filtering
         initProducts(currentProducts, currentPage);
         initFilters(productsData.filters, siteData.site);
-        initCart();
         initFooter(siteData.footer, siteData.site.contact);
     })
     .catch(error => console.error('Error loading data:', error));
@@ -21,7 +22,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize products grid with pagination
     function initProducts(products, page) {
         const productsGrid = document.querySelector('.products-grid');
-        if (!productsGrid) return;
+        const resultsCount = document.querySelector('.results-count');
+        const pagination = document.querySelector('.pagination');
+        
+        if (!productsGrid || !resultsCount || !pagination) return;
 
         // Clear existing products
         productsGrid.innerHTML = '';
@@ -39,7 +43,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     <button class="btn-solid" id="resetFilters">Reset Filters</button>
                 </div>
             `;
-            document.getElementById('resetFilters').addEventListener('click', resetAllFilters);
+            const resetBtn = document.getElementById('resetFilters');
+            if (resetBtn) {
+                resetBtn.addEventListener('click', resetAllFilters);
+            }
             updatePagination(totalPages, page, products.length);
             return;
         }
@@ -67,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                     <div class="product-buttons">
                         <a href="../html/product.html?id=${product.id}" class="btn-outline">View Details</a>
-                        <button class="btn-solid add-to-cart" ${product.stock <= 0 ? 'disabled' : ''}>
+                        <button class="btn-solid add-to-cart" ${product.stock <= 0 ? 'disabled' : ''} data-id="${product.id}">
                             ${product.stock > 0 ? 'Add to Cart' : 'Out of Stock'}
                         </button>
                     </div>
@@ -83,34 +90,50 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Update pagination
         updatePagination(totalPages, page, products.length);
+        
+        // Update current page
+        currentPage = page;
     }
 
     // Update pagination controls
-    function updatePagination(totalPages, currentPage, totalProducts) {
+    function updatePagination(totalPages, currentPageNum, totalProducts) {
         const pagination = document.querySelector('.pagination');
-        if (!pagination) return;
+        const resultsCount = document.querySelector('.results-count');
+        
+        if (!pagination || !resultsCount) return;
         
         pagination.innerHTML = '';
+        
+        if (totalPages <= 1) {
+            // Update results count
+            const startIndex = totalProducts > 0 ? 1 : 0;
+            const endIndex = totalProducts;
+            resultsCount.textContent = `Showing ${startIndex}–${endIndex} of ${totalProducts} products`;
+            return;
+        }
         
         // Previous button
         const prevItem = document.createElement('li');
         prevItem.className = 'page-item';
+        if (currentPageNum === 1) {
+            prevItem.classList.add('disabled');
+        }
         prevItem.innerHTML = `
-            <a class="page-link" href="#" ${currentPage === 1 ? 'disabled' : ''}>
+            <a class="page-link" href="#">
                 Previous
             </a>
         `;
-        if (currentPage > 1) {
+        if (currentPageNum > 1) {
             prevItem.addEventListener('click', (e) => {
                 e.preventDefault();
-                initProducts(currentProducts, currentPage - 1);
+                initProducts(currentProducts, currentPageNum - 1);
             });
         }
         pagination.appendChild(prevItem);
         
         // Page numbers
         const maxVisiblePages = 5;
-        let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+        let startPage = Math.max(1, currentPageNum - Math.floor(maxVisiblePages / 2));
         let endPage = startPage + maxVisiblePages - 1;
         
         if (endPage > totalPages) {
@@ -120,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         for (let i = startPage; i <= endPage; i++) {
             const pageItem = document.createElement('li');
-            pageItem.className = `page-item ${i === currentPage ? 'active' : ''}`;
+            pageItem.className = `page-item ${i === currentPageNum ? 'active' : ''}`;
             pageItem.innerHTML = `<a class="page-link" href="#">${i}</a>`;
             pageItem.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -132,26 +155,26 @@ document.addEventListener('DOMContentLoaded', function() {
         // Next button
         const nextItem = document.createElement('li');
         nextItem.className = 'page-item';
+        if (currentPageNum === totalPages) {
+            nextItem.classList.add('disabled');
+        }
         nextItem.innerHTML = `
-            <a class="page-link" href="#" ${currentPage === totalPages ? 'disabled' : ''}>
+            <a class="page-link" href="#">
                 Next
             </a>
         `;
-        if (currentPage < totalPages) {
+        if (currentPageNum < totalPages) {
             nextItem.addEventListener('click', (e) => {
                 e.preventDefault();
-                initProducts(currentProducts, currentPage + 1);
+                initProducts(currentProducts, currentPageNum + 1);
             });
         }
         pagination.appendChild(nextItem);
         
         // Update results count
-        const resultsCount = document.querySelector('.results-count');
-        if (resultsCount) {
-            const startIndex = (currentPage - 1) * itemsPerPage + 1;
-            const endIndex = Math.min(currentPage * itemsPerPage, totalProducts);
-            resultsCount.textContent = `Showing ${startIndex}–${endIndex} of ${totalProducts} products`;
-        }
+        const startIndex = (currentPageNum - 1) * itemsPerPage + 1;
+        const endIndex = Math.min(currentPageNum * itemsPerPage, totalProducts);
+        resultsCount.textContent = `Showing ${startIndex}–${endIndex} of ${totalProducts} products`;
     }
 
     // Initialize filters
@@ -160,25 +183,28 @@ document.addEventListener('DOMContentLoaded', function() {
         const breadcrumbs = document.querySelector('.breadcrumbs');
         if (breadcrumbs) {
             breadcrumbs.innerHTML = `
-                <a href="index.html">Home</a>
-                <span class="separator">></span>
+                <a href="../index.html">Home</a>
+                <span class="separator">/</span>
                 <a href="#" class="active">Shop</a>
             `;
         }
 
         // Set shop hero title
-        document.querySelector('.shop-hero h1').textContent = siteData.title + ' Products';
-        document.querySelector('.shop-hero-subtitle').textContent = siteData.description;
+        const heroTitle = document.querySelector('.shop-hero h1');
+        const heroSubtitle = document.querySelector('.shop-hero-subtitle');
+        if (heroTitle) heroTitle.textContent = siteData.title + ' Products';
+        if (heroSubtitle) heroSubtitle.textContent = siteData.description;
 
         // Initialize category filters
         const categoryFilters = document.querySelector('#category-filters');
-        if (categoryFilters) {
+        if (categoryFilters && filters.categories) {
+            categoryFilters.innerHTML = '';
             filters.categories.forEach(category => {
                 const option = document.createElement('div');
                 option.className = 'filter-option';
                 option.innerHTML = `
-                    <input type="checkbox" id="filter-${category.toLowerCase().replace(' ', '-')}">
-                    <label for="filter-${category.toLowerCase().replace(' ', '-')}">${category}</label>
+                    <input type="checkbox" id="filter-${category.toLowerCase().replace(/\s+/g, '-')}" value="${category}">
+                    <label for="filter-${category.toLowerCase().replace(/\s+/g, '-')}">${category}</label>
                 `;
                 categoryFilters.appendChild(option);
             });
@@ -186,7 +212,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Initialize material chips
         const materialChips = document.querySelector('#material-chips');
-        if (materialChips) {
+        if (materialChips && filters.materials) {
             materialChips.innerHTML = '';
             filters.materials.forEach(material => {
                 const chip = document.createElement('div');
@@ -199,11 +225,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Initialize price range
         const priceRange = document.querySelector('.price-range');
+        const priceValues = document.querySelector('.price-range-values');
         if (priceRange) {
             priceRange.min = 0;
             priceRange.max = 500;
             priceRange.value = 500;
-            priceRange.addEventListener('input', filterProducts);
+            
+            // Update price display
+            const updatePriceDisplay = () => {
+                if (priceValues) {
+                    const spans = priceValues.querySelectorAll('span');
+                    if (spans.length >= 2) {
+                        spans[1].textContent = `$${priceRange.value}`;
+                    }
+                }
+            };
+            
+            priceRange.addEventListener('input', () => {
+                updatePriceDisplay();
+                filterProducts();
+            });
+            
+            updatePriceDisplay();
         }
 
         // Initialize sort dropdown
@@ -219,6 +262,19 @@ document.addEventListener('DOMContentLoaded', function() {
             filterToggle.addEventListener('click', () => {
                 filterSidebar.classList.toggle('active');
                 filterToggle.classList.toggle('active');
+                document.body.classList.toggle('no-scroll');
+            });
+            
+            // Close sidebar when clicking outside on mobile
+            document.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768 && 
+                    !filterSidebar.contains(e.target) && 
+                    !filterToggle.contains(e.target) &&
+                    filterSidebar.classList.contains('active')) {
+                    filterSidebar.classList.remove('active');
+                    filterToggle.classList.remove('active');
+                    document.body.classList.remove('no-scroll');
+                }
             });
         }
 
@@ -228,60 +284,72 @@ document.addEventListener('DOMContentLoaded', function() {
             clearFilters.addEventListener('click', resetAllFilters);
         }
 
-        // Add event listeners to filter checkboxes and chips
-        document.querySelectorAll('.filter-option input').forEach(input => {
-            input.addEventListener('change', filterProducts);
-        });
-
-        document.querySelectorAll('.filter-chip').forEach(chip => {
-            chip.addEventListener('click', function() {
-                this.classList.toggle('active');
-                filterProducts();
+        // Add event listeners to filter checkboxes and chips after they're created
+        setTimeout(() => {
+            document.querySelectorAll('.filter-option input').forEach(input => {
+                input.addEventListener('change', filterProducts);
             });
-        });
+
+            document.querySelectorAll('.filter-chip').forEach(chip => {
+                chip.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    filterProducts();
+                });
+            });
+        }, 100);
+        
+        // Search input event listener
+        const searchInput = document.querySelector('.filter-search input');
+        if (searchInput) {
+            searchInput.addEventListener('input', filterProducts);
+        }
     }
 
     // Filter products based on selected filters
     function filterProducts() {
-        // In a real implementation, this would fetch filtered products from the server
-        console.log('Filtering products...');
-        // For now, we'll just simulate filtering
-        fetch('../data/products.json')
-            .then(res => res.json())
-            .then(data => {
-                // Get filter values
-                const priceRange = document.querySelector('.price-range');
-                const maxPrice = priceRange ? priceRange.value : 500;
-                
-                const selectedCategories = Array.from(document.querySelectorAll('.filter-option input:checked'))
-                    .map(input => input.nextElementSibling.textContent);
-                
-                const selectedMaterials = Array.from(document.querySelectorAll('.filter-chip.active'))
-                    .map(chip => chip.textContent);
-                
-                // Filter products
-                const filteredProducts = data.products.filter(product => {
-                    // Price filter
-                    const price = product.salePrice || product.price;
-                    if (price > maxPrice) return false;
-                    
-                    // Category filter
-                    if (selectedCategories.length > 0 && !selectedCategories.includes(product.category)) {
-                        return false;
-                    }
-                    
-                    // Material filter
-                    if (selectedMaterials.length > 0 && !selectedMaterials.includes(product.material)) {
-                        return false;
-                    }
-                    
-                    return true;
-                });
-                
-                // Update current products and reset to page 1
-                currentProducts = filteredProducts;
-                initProducts(currentProducts, 1);
-            });
+        // Get filter values
+        const priceRange = document.querySelector('.price-range');
+        const maxPrice = priceRange ? parseFloat(priceRange.value) : 500;
+        const searchInput = document.querySelector('.filter-search input');
+        const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
+        
+        const selectedCategories = Array.from(document.querySelectorAll('.filter-option input:checked'))
+            .map(input => input.value);
+        
+        const selectedMaterials = Array.from(document.querySelectorAll('.filter-chip.active'))
+            .map(chip => chip.textContent.trim());
+        
+        // Filter products from original list
+        const filteredProducts = allProducts.filter(product => {
+            // Search term filter
+            if (searchTerm && !(
+                product.name.toLowerCase().includes(searchTerm) || 
+                (product.description && product.description.toLowerCase().includes(searchTerm)) ||
+                (product.category && product.category.toLowerCase().includes(searchTerm))
+            )) {
+                return false;
+            }
+            
+            // Price filter
+            const price = product.salePrice || product.price;
+            if (price > maxPrice) return false;
+            
+            // Category filter
+            if (selectedCategories.length > 0 && !selectedCategories.includes(product.category)) {
+                return false;
+            }
+            
+            // Material filter
+            if (selectedMaterials.length > 0 && !selectedMaterials.includes(product.material)) {
+                return false;
+            }
+            
+            return true;
+        });
+        
+        // Update current products and reset to page 1
+        currentProducts = filteredProducts;
+        initProducts(currentProducts, 1);
     }
 
     // Sort products
@@ -289,31 +357,31 @@ document.addEventListener('DOMContentLoaded', function() {
         const sortSelect = document.getElementById('sort');
         const sortValue = sortSelect ? sortSelect.value : 'relevance';
         
-        fetch('../data/products.json')
-            .then(res => res.json())
-            .then(data => {
-                let sortedProducts = [...data.products];
-                
-                switch(sortValue) {
-                    case 'price-low':
-                        sortedProducts.sort((a, b) => (a.salePrice || a.price) - (b.salePrice || b.price));
-                        break;
-                    case 'price-high':
-                        sortedProducts.sort((a, b) => (b.salePrice || b.price) - (a.salePrice || a.price));
-                        break;
-                    case 'newest':
-                        // Assuming newer products have higher IDs
-                        sortedProducts.sort((a, b) => parseInt(b.id.split('-')[1]) - parseInt(a.id.split('-')[1]));
-                        break;
-                    default:
-                        // Default is relevance (no sorting)
-                        break;
-                }
-                
-                // Update current products and reset to page 1
-                currentProducts = sortedProducts;
-                initProducts(currentProducts, 1);
-            });
+        let sortedProducts = [...currentProducts];
+        
+        switch(sortValue) {
+            case 'price-low':
+                sortedProducts.sort((a, b) => (a.salePrice || a.price) - (b.salePrice || b.price));
+                break;
+            case 'price-high':
+                sortedProducts.sort((a, b) => (b.salePrice || b.price) - (a.salePrice || a.price));
+                break;
+            case 'newest':
+                // Assuming newer products have higher IDs
+                sortedProducts.sort((a, b) => {
+                    const aId = parseInt(a.id.split('-')[1]) || 0;
+                    const bId = parseInt(b.id.split('-')[1]) || 0;
+                    return bId - aId;
+                });
+                break;
+            default:
+                // Default is relevance (no sorting)
+                break;
+        }
+        
+        // Update current products and reset to page 1
+        currentProducts = sortedProducts;
+        initProducts(currentProducts, 1);
     }
 
     // Reset all filters
@@ -332,6 +400,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const priceRange = document.querySelector('.price-range');
         if (priceRange) {
             priceRange.value = priceRange.max;
+            // Update price display
+            const priceValues = document.querySelector('.price-range-values');
+            if (priceValues) {
+                const spans = priceValues.querySelectorAll('span');
+                if (spans.length >= 2) {
+                    spans[1].textContent = `$${priceRange.value}`;
+                }
+            }
         }
         
         // Reset sort dropdown
@@ -340,18 +416,15 @@ document.addEventListener('DOMContentLoaded', function() {
             sortSelect.value = 'relevance';
         }
         
-        // Reset to all products
-        currentProducts = [...currentProducts];
-        initProducts(currentProducts, 1);
-    }
-
-    // Cart functionality
-    function initCart() {
-        // Load cart count from sessionStorage
-        const cartCount = document.querySelector('.cart-count');
-        if (cartCount && sessionStorage.getItem('cartCount')) {
-            cartCount.textContent = sessionStorage.getItem('cartCount');
+        // Reset search input
+        const searchInput = document.querySelector('.filter-search input');
+        if (searchInput) {
+            searchInput.value = '';
         }
+        
+        // Reset to all products
+        currentProducts = [...allProducts];
+        initProducts(currentProducts, 1);
     }
 
     // Add to cart function
@@ -360,7 +433,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const cartCount = document.querySelector('.cart-count');
         
         // Update cart count
-        let currentCount = parseInt(cartCount.textContent);
+        let currentCount = parseInt(cartCount.textContent) || 0;
         cartCount.textContent = currentCount + 1;
         
         // Store in sessionStorage
@@ -391,16 +464,17 @@ document.addEventListener('DOMContentLoaded', function() {
         const footerContent = document.querySelector('.footer-content');
         if (!footerContent) return;
         
-        // Clear existing footer sections (keep the first 3 sections)
+        // Clear existing footer sections
         const sections = footerContent.querySelectorAll('.footer-section');
-        for (let i = 3; i < sections.length; i++) {
-            sections[i].remove();
-        }
+        sections.forEach(section => {
+            if (!section.querySelector('.newsletter')) {
+                section.innerHTML = '';
+            }
+        });
         
         // Update contact info
-        const contactSection = sections[2];
-        if (contactSection) {
-            contactSection.innerHTML = `
+        if (sections[2] && contact) {
+            sections[2].innerHTML = `
                 <h3>Contact Info</h3>
                 <a href="mailto:${contact.email}">${contact.email}</a>
                 <a href="tel:${contact.phone}">${contact.phone}</a>
@@ -410,29 +484,32 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Update shop links
-        const shopSection = sections[0];
-        if (shopSection) {
-            shopSection.innerHTML = '<h3>Shop Links</h3>';
+        if (sections[0] && footer && footer.shopLinks) {
+            sections[0].innerHTML = '<h3>Shop Links</h3>';
             footer.shopLinks.forEach(link => {
-                shopSection.innerHTML += `<a href="${link.link}">${link.name}</a>`;
+                const a = document.createElement('a');
+                a.href = link.url;
+                a.textContent = link.text;
+                sections[0].appendChild(a);
             });
         }
         
         // Update categories
-        const categoriesSection = sections[1];
-        if (categoriesSection) {
-            categoriesSection.innerHTML = '<h3>Categories</h3>';
+        if (sections[1] && footer && footer.categories) {
+            sections[1].innerHTML = '<h3>Categories</h3>';
             footer.categories.forEach(category => {
-                categoriesSection.innerHTML += `<a href="${category.link}">${category.name}</a>`;
+                const a = document.createElement('a');
+                a.href = category.url;
+                a.textContent = category.name;
+                sections[1].appendChild(a);
             });
         }
         
-        // Update footer bottom text
+        // Update footer bottom
         const footerBottom = document.querySelector('.footer-bottom');
-        if (footerBottom) {
-            footerBottom.innerHTML = `
-                <p>&copy; ${new Date().getFullYear()} AquaVision. All rights reserved. | Privacy Policy | Terms of Service</p>
-            `;
+        if (footerBottom && footer && footer.copyright) {
+            footerBottom.innerHTML = `<p>${footer.copyright}</p>`;
         }
     }
 });
+

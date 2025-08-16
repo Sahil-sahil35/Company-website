@@ -5,20 +5,40 @@ document.addEventListener('DOMContentLoaded', function() {
         fetch('./data/products.json').then(res => res.json())
     ])
     .then(([data, productsData]) => {
+        initHeroStats(data.hero.stats);
         initTestimonials(data.testimonials);
-        initProducts(productsData.products); // Use homeProducts
+        initProducts(productsData.products);
         initCategories(data.categories);
         initFeatures(data.features);
         initFooter(data.footer, data.site.contact);
     })
     .catch(error => console.error('Error loading data:', error));
 
+    // Initialize hero stats
+    function initHeroStats(stats) {
+        const heroStats = document.getElementById('heroStats');
+        if (!heroStats) return;
+        
+        heroStats.innerHTML = '';
+        
+        stats.forEach(stat => {
+            const statItem = document.createElement('div');
+            statItem.className = 'stat-item';
+            statItem.innerHTML = `
+                <span class="stat-number">${stat.value}</span>
+                <span class="stat-label">${stat.label}</span>
+            `;
+            heroStats.appendChild(statItem);
+        });
+    }
+    
     // Initialize testimonials carousel
     function initTestimonials(testimonials) {
         const container = document.querySelector('.testimonials-container');
         const dotsContainer = document.querySelector('.testimonial-dots');
         
-        // Clear existing content
+        if (!container || !dotsContainer) return;
+        
         container.innerHTML = '';
         dotsContainer.innerHTML = '';
         
@@ -80,7 +100,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Initialize products
-    // Initialize products
     function initProducts(products) {
         const productsScroll = document.getElementById('productsScroll');
         if (!productsScroll) return;
@@ -88,10 +107,10 @@ document.addEventListener('DOMContentLoaded', function() {
         // Clear existing products
         productsScroll.innerHTML = '';
 
-        const firstFiveProducts = products.slice(0, 7);
+        const firstSevenProducts = products.slice(0, 7);
         
         // Add products from data
-        firstFiveProducts.forEach(product => {
+        firstSevenProducts.forEach(product => {
             const productCard = document.createElement('div');
             productCard.className = 'product-card';
             productCard.innerHTML = `
@@ -102,8 +121,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     <h3 class="product-name">${product.name}</h3>
                     <p class="product-desc">${product.description}</p>
                     <div class="product-buttons">
-                        <a href="html/product.html?id=${product.id}" class="btn-secondary btn-small">View Details</a>
-                        <button class="btn-solid add-to-cart" ${product.stock <= 0 ? 'disabled' : ''}>
+                        <a href="html/product.html?id=${product.id}" class="btn-outline">View Details</a>
+                        <button class="btn-solid add-to-cart" ${product.stock <= 0 ? 'disabled' : ''} data-id="${product.id}">
                             ${product.stock > 0 ? 'Add to Cart' : 'Out of Stock'}
                         </button>
                     </div>
@@ -118,22 +137,27 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         // Smooth horizontal scroll for products
-        let autoScrollInterval = setInterval(() => {
-            productsScroll.scrollBy({
-                left: 300,
-                behavior: 'smooth'
-            });
-            
-            // Reset to start if near end
-            if (productsScroll.scrollLeft > (productsScroll.scrollWidth - productsScroll.clientWidth - 100)) {
-                setTimeout(() => {
-                    productsScroll.scrollTo({
-                        left: 0,
-                        behavior: 'smooth'
-                    });
-                }, 1000);
-            }
-        }, 3000);
+        let autoScrollInterval;
+        let scrollDirection = 1;
+        
+        function startAutoScroll() {
+            autoScrollInterval = setInterval(() => {
+                const scrollAmount = 300 * scrollDirection;
+                productsScroll.scrollBy({
+                    left: scrollAmount,
+                    behavior: 'smooth'
+                });
+                
+                // Check if we need to reverse direction
+                if (productsScroll.scrollLeft + productsScroll.clientWidth >= productsScroll.scrollWidth - 10) {
+                    scrollDirection = -1;
+                } else if (productsScroll.scrollLeft <= 10) {
+                    scrollDirection = 1;
+                }
+            }, 3000);
+        }
+        
+        startAutoScroll();
         
         // Pause auto-scroll on hover
         productsScroll.addEventListener('mouseenter', () => {
@@ -141,31 +165,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         productsScroll.addEventListener('mouseleave', () => {
-            autoScrollInterval = setInterval(() => {
-                productsScroll.scrollBy({
-                    left: 300,
-                    behavior: 'smooth'
-                });
-                
-                if (productsScroll.scrollLeft > (productsScroll.scrollWidth - productsScroll.clientWidth - 100)) {
-                    setTimeout(() => {
-                        productsScroll.scrollTo({
-                            left: 0,
-                            behavior: 'smooth'
-                        });
-                    }, 1000);
-                }
-            }, 3000);
+            startAutoScroll();
         });
     }
-
 
     function addToCart() {
         const toast = document.getElementById('toast');
         const cartCount = document.querySelector('.cart-count');
         
         // Update cart count
-        let currentCount = parseInt(cartCount.textContent);
+        let currentCount = parseInt(cartCount.textContent) || 0;
         cartCount.textContent = currentCount + 1;
         
         // Store in sessionStorage
@@ -240,23 +249,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const footerContent = document.querySelector('.footer-content');
         if (!footerContent) return;
         
-        // Clear existing footer sections (keep the first 3 sections)
+        // Clear existing footer sections
         const sections = footerContent.querySelectorAll('.footer-section');
-        for (let i = 4; i < sections.length; i++) {
-            sections[i].remove();
-        }
-        
-        // Update contact info
-        const contactSection = sections[2];
-        if (contactSection) {
-            contactSection.innerHTML = `
-                <h3>Contact Info</h3>
-                <a href="mailto:${contact.email}">${contact.email}</a>
-                <a href="tel:${contact.phone}">${contact.phone}</a>
-                <a href="#">${contact.address}</a>
-                <a href="#">${contact.hours}</a>
-            `;
-        }
+        sections.forEach(section => section.innerHTML = '');
         
         // Update shop links
         const shopSection = sections[0];
@@ -276,12 +271,30 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
         
+        // Update contact info
+        const contactSection = sections[2];
+        if (contactSection) {
+            contactSection.innerHTML = `
+                <h3>Contact Info</h3>
+                <a href="mailto:${contact.email}">${contact.email}</a>
+                <a href="tel:${contact.phone}">${contact.phone}</a>
+                <a href="#">${contact.address}</a>
+                <a href="#">${contact.hours}</a>
+            `;
+        }
+        
         // Update footer bottom text
         const footerBottom = document.querySelector('.footer-bottom');
         if (footerBottom) {
             footerBottom.innerHTML = `
-                <p>&copy; ${new Date().getFullYear()} AquaVision. All rights reserved. | Privacy Policy | Terms of Service</p>
+                <p>&copy; ${new Date().getFullYear()} RS Tranding Company. All rights reserved. | Privacy Policy | Terms of Service</p>
             `;
         }
+    }
+    
+    // Load cart count from sessionStorage
+    const cartCount = document.querySelector('.cart-count');
+    if (cartCount && sessionStorage.getItem('cartCount')) {
+        cartCount.textContent = sessionStorage.getItem('cartCount');
     }
 });

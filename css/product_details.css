@@ -377,4 +377,11 @@
         margin: 20px auto;
         padding: 20px;
     }
+
+
+@media (min-width: 769px) {
+    .mobile-nav {
+        display: none !important;
+    }
+}
 }

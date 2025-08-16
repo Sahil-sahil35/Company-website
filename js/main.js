@@ -26,66 +26,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Add to cart functionality
-    document.querySelectorAll('.btn-primary').forEach(button => {
-        if (button.textContent.includes('Add to Cart')) {
-            button.addEventListener('click', () => {
-                const originalText = button.textContent;
-                button.textContent = 'Added!';
-                button.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
-                
-                // Update cart count
-                const cartCount = document.querySelector('.cart-count');
-                cartCount.textContent = parseInt(cartCount.textContent) + 1;
-                
-                setTimeout(() => {
-                    button.textContent = originalText;
-                    button.style.background = 'linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))';
-                }, 2000);
-            });
-        }
-    });
-
-    // Newsletter subscription
-    const newsletterBtn = document.querySelector('.newsletter button');
-    if (newsletterBtn) {
-        newsletterBtn.addEventListener('click', () => {
-            const input = document.querySelector('.newsletter input');
-            if (input.value && input.value.includes('@')) {
-                const button = document.querySelector('.newsletter button');
-                const originalText = button.textContent;
-                button.textContent = 'Subscribed!';
-                button.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
-                input.value = '';
-                
-                setTimeout(() => {
-                    button.textContent = originalText;
-                    button.style.background = 'linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))';
-                }, 3000);
-            } else {
-                alert('Please enter a valid email address');
-            }
-        });
-    }
-    
     // Mobile navigation toggle
     const mobileMenuButton = document.querySelector('.mobile-menu');
-    let mobileNav = document.querySelector('.mobile-nav');
+    const mobileNav = document.querySelector('.mobile-nav');
     
-    // Only create mobile nav if it doesn't exist and we're on mobile
-    if (!mobileNav && window.innerWidth <= 768) {
-        mobileNav = document.createElement('div');
-        mobileNav.className = 'mobile-nav';
-        
-        // Create mobile nav links based on desktop nav
-        const desktopNav = document.querySelector('.nav');
-        if (desktopNav) {
-            mobileNav.innerHTML = desktopNav.innerHTML;
-            document.body.appendChild(mobileNav);
-        }
-    }
-    
-    // Toggle mobile nav if the elements exist
     if (mobileMenuButton && mobileNav) {
         mobileMenuButton.addEventListener('click', () => {
             mobileNav.classList.toggle('active');
@@ -103,11 +47,122 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Handle window resize
     window.addEventListener('resize', () => {
-        const mobileNav = document.querySelector('.mobile-nav');
         if (window.innerWidth > 768 && mobileNav) {
-            // Remove mobile nav when resizing to desktop
             mobileNav.classList.remove('active');
             document.body.classList.remove('no-scroll');
         }
     });
+
+    // Newsletter subscription
+    const newsletterBtn = document.querySelector('.newsletter button');
+    if (newsletterBtn) {
+        newsletterBtn.addEventListener('click', () => {
+            const input = newsletterBtn.parentElement.querySelector('input');
+            if (input.value && input.value.includes('@')) {
+                const button = newsletterBtn;
+                const originalText = button.textContent;
+                button.textContent = 'Subscribed!';
+                button.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
+                input.value = '';
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = 'linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))';
+                }, 3000);
+            } else {
+                alert('Please enter a valid email address');
+            }
+        });
+    }
+
+    // Search Modal Functionality
+    const searchModal = document.getElementById('searchModal');
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+    let allProducts = [];
+
+    // Open search modal
+    document.querySelectorAll('.search-btn').forEach(btn => {
+        btn.addEventListener('click', openSearchModal);
+    });
+
+    // Close search modal
+    document.querySelector('.close-search')?.addEventListener('click', closeSearchModal);
+
+    // Fetch products for search
+    fetch('./data/products.json')
+        .then(res => res.json())
+        .then(data => {
+            allProducts = data.products;
+        });
+
+    function openSearchModal() {
+        if (searchModal) {
+            searchModal.style.display = 'block';
+            searchInput.focus();
+            document.body.classList.add('no-scroll');
+        }
+    }
+
+    function closeSearchModal() {
+        if (searchModal) {
+            searchModal.style.display = 'none';
+            searchInput.value = '';
+            searchResults.innerHTML = '';
+            document.body.classList.remove('no-scroll');
+        }
+    }
+
+    // Real-time search
+    if (searchInput) {
+        searchInput.addEventListener('input', function() {
+            const term = this.value.toLowerCase().trim();
+            searchResults.innerHTML = '';
+            
+            if (term.length < 2) return;
+            
+            const filtered = allProducts.filter(product => 
+                product.name.toLowerCase().includes(term) || 
+                (product.description && product.description.toLowerCase().includes(term)) ||
+                (product.category && product.category.toLowerCase().includes(term))
+            ).slice(0, 10);
+            
+            if (filtered.length === 0) {
+                searchResults.innerHTML = '<div class="search-result-item">No products found</div>';
+                return;
+            }
+            
+            filtered.forEach(product => {
+                const item = document.createElement('div');
+                item.className = 'search-result-item';
+                item.innerHTML = `
+                    <div style="display: flex; align-items: center;">
+                        <img src="${product.images[0]}" alt="${product.name}">
+                        <div class="search-result-info">
+                            <div class="search-result-name">${product.name}</div>
+                            <div class="search-result-price">$${(product.salePrice || product.price).toFixed(2)}</div>
+                        </div>
+                    </div>
+                `;
+                item.addEventListener('click', () => {
+                    window.location.href = `./html/product.html?id=${product.id}`;
+                    closeSearchModal();
+                });
+                searchResults.appendChild(item);
+            });
+        });
+    }
+
+    // Close modal when clicking outside
+    window.addEventListener('click', function(event) {
+        if (event.target === searchModal) {
+            closeSearchModal();
+        }
+    });
+    
+    // Load cart count from sessionStorage
+    const cartCount = document.querySelector('.cart-count');
+    if (cartCount && sessionStorage.getItem('cartCount')) {
+        cartCount.textContent = sessionStorage.getItem('cartCount');
+    }
 });
