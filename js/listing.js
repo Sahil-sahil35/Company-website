@@ -188,6 +188,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 <a href="#" class="active">Shop</a>
             `;
         }
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlCategory = urlParams.get('category');
+        
+        // Check matching category checkbox
+        if (urlCategory) {
+            document.querySelectorAll('.filter-option input').forEach(input => {
+                input.addEventListener('change', filterProducts);
+            });
+
+            document.querySelectorAll('.filter-chip').forEach(chip => {
+                chip.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    filterProducts();
+                });
+            });
+        }
 
         // Set shop hero title
         const heroTitle = document.querySelector('.shop-hero h1');
@@ -207,7 +223,17 @@ document.addEventListener('DOMContentLoaded', function() {
                     <label for="filter-${category.toLowerCase().replace(/\s+/g, '-')}">${category}</label>
                 `;
                 categoryFilters.appendChild(option);
+                
+                // Pre-select category from URL
+                if (urlCategory && category === urlCategory) {
+                    option.querySelector('input').checked = true;
+                }
             });
+            
+            // Filter immediately if URL category exists
+            if (urlCategory) {
+                filterProducts();
+            }
         }
 
         // Initialize material chips
@@ -262,20 +288,8 @@ document.addEventListener('DOMContentLoaded', function() {
             filterToggle.addEventListener('click', () => {
                 filterSidebar.classList.toggle('active');
                 filterToggle.classList.toggle('active');
-                document.body.classList.toggle('no-scroll');
             });
-            
-            // Close sidebar when clicking outside on mobile
-            document.addEventListener('click', (e) => {
-                if (window.innerWidth <= 768 && 
-                    !filterSidebar.contains(e.target) && 
-                    !filterToggle.contains(e.target) &&
-                    filterSidebar.classList.contains('active')) {
-                    filterSidebar.classList.remove('active');
-                    filterToggle.classList.remove('active');
-                    document.body.classList.remove('no-scroll');
-                }
-            });
+
         }
 
         // Initialize clear filters button
@@ -307,50 +321,60 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Filter products based on selected filters
     function filterProducts() {
-        // Get filter values
-        const priceRange = document.querySelector('.price-range');
-        const maxPrice = priceRange ? parseFloat(priceRange.value) : 500;
-        const searchInput = document.querySelector('.filter-search input');
-        const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
+    // Get filter values
+    const priceRange = document.querySelector('.price-range');
+    const maxPrice = priceRange ? parseFloat(priceRange.value) : 500;
+    const searchInput = document.querySelector('.filter-search input');
+    const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlCategory = urlParams.get('category');
+
+    // Move these declarations to the top
+    const selectedCategories = Array.from(document.querySelectorAll('.filter-option input:checked'))
+        .map(input => input.value);
+    
+    const selectedMaterials = Array.from(document.querySelectorAll('.filter-chip.active'))
+        .map(chip => chip.textContent.trim());
+    
+    // Filter products from original list
+    const filteredProducts = allProducts.filter(product => {
+        // Search term filter
+        if (searchTerm && !(
+            product.name.toLowerCase().includes(searchTerm) || 
+            (product.description && product.description.toLowerCase().includes(searchTerm)) ||
+            (product.category && product.category.toLowerCase().includes(searchTerm))
+        )) {
+            return false;
+        }
         
-        const selectedCategories = Array.from(document.querySelectorAll('.filter-option input:checked'))
-            .map(input => input.value);
+        // Price filter
+        const price = product.salePrice || product.price;
+        if (price > maxPrice) return false;
         
-        const selectedMaterials = Array.from(document.querySelectorAll('.filter-chip.active'))
-            .map(chip => chip.textContent.trim());
-        
-        // Filter products from original list
-        const filteredProducts = allProducts.filter(product => {
-            // Search term filter
-            if (searchTerm && !(
-                product.name.toLowerCase().includes(searchTerm) || 
-                (product.description && product.description.toLowerCase().includes(searchTerm)) ||
-                (product.category && product.category.toLowerCase().includes(searchTerm))
-            )) {
+        // Category filter
+        if (selectedCategories.length > 0) {
+            if (!selectedCategories.includes(product.category)) {
                 return false;
             }
-            
-            // Price filter
-            const price = product.salePrice || product.price;
-            if (price > maxPrice) return false;
-            
-            // Category filter
-            if (selectedCategories.length > 0 && !selectedCategories.includes(product.category)) {
+        } else if (urlCategory) {
+            // If no categories are selected but there's a URL category, use that
+            if (product.category !== urlCategory) {
                 return false;
             }
-            
-            // Material filter
-            if (selectedMaterials.length > 0 && !selectedMaterials.includes(product.material)) {
-                return false;
-            }
-            
-            return true;
-        });
+        }
         
-        // Update current products and reset to page 1
-        currentProducts = filteredProducts;
-        initProducts(currentProducts, 1);
-    }
+        // Material filter
+        if (selectedMaterials.length > 0 && !selectedMaterials.includes(product.material)) {
+            return false;
+        }
+        
+        return true;
+    });
+    
+    // Update current products and reset to page 1
+    currentProducts = filteredProducts;
+    initProducts(currentProducts, 1);
+}
 
     // Sort products
     function sortProducts() {
@@ -484,13 +508,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Update shop links
-        if (sections[0] && footer && footer.shopLinks) {
-            sections[0].innerHTML = '<h3>Shop Links</h3>';
+        const shopSection = sections[0];
+        if (shopSection) {
+            shopSection.innerHTML = '<h3>Shop Links</h3>';
             footer.shopLinks.forEach(link => {
-                const a = document.createElement('a');
-                a.href = link.url;
-                a.textContent = link.text;
-                sections[0].appendChild(a);
+                shopSection.innerHTML += `<a href="${link.link}">${link.name}</a>`;
             });
         }
         
@@ -507,8 +529,10 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Update footer bottom
         const footerBottom = document.querySelector('.footer-bottom');
-        if (footerBottom && footer && footer.copyright) {
-            footerBottom.innerHTML = `<p>${footer.copyright}</p>`;
+        if (footerBottom) {
+            footerBottom.innerHTML = `
+                <p>&copy; ${new Date().getFullYear()} RS Tranding Company. All rights reserved. | Privacy Policy | Terms of Service</p>
+            `;
         }
     }
 });

@@ -1,4 +1,57 @@
 // Shared functionality across all pages
+function initCategoryDropdown() {
+    // Determine correct path based on current page location
+    const isProductPage = window.location.pathname.includes('product.html');
+    const isListingPage = window.location.pathname.includes('listing.html');
+    const basePath = isProductPage || isListingPage ? '../' : './';
+    const path = `${basePath}data/products.json`;
+
+    fetch(path)
+        .then(response => response.json())
+        .then(data => {
+            const categories = data.filters.categories;
+            createCategoryDropdown(categories);
+        })
+        .catch(error => console.error('Error loading categories:', error));
+}
+// Create category dropdown menu
+function createCategoryDropdown(categories) {
+    // Desktop dropdown
+    const desktopDropdown = document.querySelector('.desktop-categories-dropdown');
+    if (desktopDropdown) {
+        desktopDropdown.innerHTML = '';
+        categories.forEach(category => {
+            const categoryLink = document.createElement('a');
+            categoryLink.href = `../html/listing.html?category=${encodeURIComponent(category)}`;
+            categoryLink.textContent = category;
+            desktopDropdown.appendChild(categoryLink);
+        });
+    }
+
+    // Mobile dropdown
+    const mobileDropdown = document.querySelector('.mobile-categories-dropdown');
+    if (mobileDropdown) {
+        mobileDropdown.innerHTML = '';
+        categories.forEach(category => {
+            const categoryLink = document.createElement('a');
+            categoryLink.href = `./html/listing.html?category=${encodeURIComponent(category)}`;
+            categoryLink.textContent = category;
+            mobileDropdown.appendChild(categoryLink);
+        });
+    }
+    
+    // Mobile dropdown toggle
+    const mobileCategoryToggle = document.querySelector('.mobile-category-toggle');
+    if (mobileCategoryToggle) {
+        mobileCategoryToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            const dropdown = this.nextElementSibling;
+            dropdown.classList.toggle('active');
+            this.classList.toggle('open');
+        });
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Header scroll effect
     window.addEventListener('scroll', () => {
@@ -9,6 +62,8 @@ document.addEventListener('DOMContentLoaded', function() {
             header.classList.remove('scrolled');
         }
     });
+
+    initCategoryDropdown();
 
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -38,10 +93,12 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Close mobile nav when clicking a link
         mobileNav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileNav.classList.remove('active');
-                document.body.classList.remove('no-scroll');
-            });
+            if (!link.classList.contains('mobile-category-toggle')) {
+                link.addEventListener('click', () => {
+                    mobileNav.classList.remove('active');
+                    document.body.classList.remove('no-scroll');
+                });
+            }
         });
     }
     

@@ -25,9 +25,9 @@
   ],
   "hero": {
     "stats": [
-      {"value": "99.9%", "label": "Purity Rate"},
-      {"value": "50+", "label": "Countries"},
-      {"value": "1M+", "label": "Liters Filtered"}
+      {"value": "99.9%", "label": "Satisfactory Rate"},
+      {"value": "10+", "label": "Countries"},
+      {"value": "10K+", "label": "Liters Filtered"}
     ]
   },
   "categories": [

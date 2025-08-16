@@ -262,7 +262,11 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Clear existing footer sections
         const sections = footerContent.querySelectorAll('.footer-section');
-        sections.forEach(section => section.innerHTML = '');
+        sections.forEach(section => {
+            if (!section.querySelector('.newsletter')) {
+                section.innerHTML = '';
+            }
+        });
         
         // Update shop links
         const shopSection = sections[0];

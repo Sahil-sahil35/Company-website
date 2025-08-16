@@ -15,7 +15,6 @@
 }
 
 * {
-    margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
@@ -32,9 +31,9 @@ body {
     overflow-x: hidden;
 }
 
-body.no-scroll {
+/* body.no-scroll {
     overflow: hidden;
-}
+} */
 
 /* Search Modal */
 .search-modal {
@@ -164,6 +163,14 @@ body.no-scroll {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+    position: relative; /* Added for proper dropdown positioning */
+}
+.header-icons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    position: relative;
+    z-index: 10;
 }
 
 .logo {
@@ -173,6 +180,8 @@ body.no-scroll {
     color: var(--accent-primary);
     text-decoration: none;
     transition: all 0.3s ease;
+    position: relative;
+    z-index: 10;
 }
 
 .logo:hover {
@@ -182,16 +191,22 @@ body.no-scroll {
 
 .nav {
     display: flex;
-    gap: 40px;
+    gap: 25px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    align-items: center; /* Add this line to center vertically */
 }
 
-.nav a {
+
+.nav a, .nav-dropdown > a {
     color: var(--text-secondary);
     text-decoration: none;
     font-weight: 500;
     position: relative;
     transition: all 0.3s ease;
     padding: 10px 0;
+    white-space: nowrap;
 }
 
 .nav a:hover {
@@ -241,7 +256,7 @@ body.no-scroll {
     display: block;
     color: var(--text-secondary);
     text-decoration: none;
-    padding: 15px 0;
+    padding: 12px 0;
     border-bottom: 1px solid var(--glass-border);
     transition: color 0.3s ease;
 }
@@ -336,7 +351,7 @@ body.no-scroll {
 
 .hero h1 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-size: clamp(2.5rem, 4.5vw, 4.5rem);
     font-weight: 700;
     color: var(--text-primary);
     margin-bottom: 20px;
@@ -511,6 +526,108 @@ body.no-scroll {
 .category-card:hover .category-desc {
     opacity: 1;
     transform: translateY(0);
+}
+
+
+/* Category Dropdown */
+.nav-dropdown {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.desktop-categories-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 200px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    padding: 15px;
+    display: none;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 100;
+    margin-top: 10px;
+    box-shadow: 0 10px 30px var(--shadow-dark);
+}
+
+.nav-dropdown:hover .desktop-categories-dropdown {
+    display: flex;
+}
+
+/* Create invisible hover area */
+.nav-dropdown::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: transparent;
+}
+
+.desktop-categories-dropdown a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    padding: 5px 0;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.desktop-categories-dropdown a:last-child {
+    border-bottom: none;
+}
+
+.desktop-categories-dropdown a:hover {
+    color: var(--accent-primary);
+}
+
+/* Mobile Category Dropdown */
+.mobile-dropdown {
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.mobile-category-toggle {
+    display: block;
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 12px 0;
+    position: relative;
+}
+
+.mobile-category-toggle::after {
+    content: '›';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%) rotate(0deg);
+    transition: transform 0.3s ease;
+    font-size: 20px;
+}
+
+.mobile-category-toggle.open::after {
+    transform: translateY(-50%) rotate(90deg);
+}
+
+.mobile-categories-dropdown {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px 0 10px 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+.mobile-categories-dropdown a {
+    padding: 8px 0;
+    border-bottom: none;
+    font-size: 14px;
+}
+
+.mobile-categories-dropdown.active {
+    max-height: 500px;
 }
 
 /* Updated Products Section */
@@ -986,4 +1103,51 @@ body.no-scroll {
         margin: 0 10px;
     }
 }
+/* Mobile Styles */
+@media (max-width: 768px) {
+    .nav-dropdown:hover .desktop-categories-dropdown {
+        display: none;
+    }
+}
 
+
+/* Responsive adjustments */
+@media (max-width: 1100px) {
+    .nav {
+        gap: 15px;
+    }
+}
+
+@media (max-width: 992px) {
+    .nav {
+        display: none;
+    }
+    
+    .mobile-menu {
+        display: block;
+    }
+}
+
+@media (max-width: 768px) {
+    .logo {
+        font-size: 24px;
+    }
+    
+    .header-icons {
+        gap: 10px;
+    }
+    
+    .icon-btn {
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 20px;
+    }
+    
+    .header-content {
+        padding: 0 15px;
+    }
+}

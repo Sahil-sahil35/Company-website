@@ -576,19 +576,25 @@
 
     .filter-sidebar {
         width: 100%;
-        display: none;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        padding: 0;
     }
 
     .filter-sidebar.active {
-        display: block;
+        max-height: 2000px; /* Large enough to contain all filters */
+        padding: 20px;
+        overflow: visible;
     }
 
     .filter-toggle {
         display: block;
+        margin-bottom: 20px;
     }
 
     .products-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
     }
 }
 
@@ -614,4 +620,13 @@
     .sort-by select {
         width: 100%;
     }
+
+@media (max-width: 1085px) {
+  .filter-sidebar.active {
+    display: block;
+    height: 80vh; /* Set a fixed height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding-bottom: 20px; /* Add space at the bottom */
+  }
+}
 }
