@@ -16,7 +16,7 @@
       "reviewCount": 142,
       "stock": 25,
       "images": [
-        "../images/Carbon/Activated Carbon Powder.jpg"
+        "./images/Carbon/Activated Carbon Powder.jpg"
       ],
       "specs": {
         "meshSize": "8×30",
