@@ -32,14 +32,6 @@
         {"name": "MSDS", "url": "#"},
         {"name": "Installation Guide", "url": "#"}
       ],
-      "reviews": [
-        {
-          "author": "John D.",
-          "rating": 5,
-          "date": "2023-10-15",
-          "comment": "Excellent filtration performance. Noticeable difference in water taste."
-        }
-      ],
       "tags": ["best-seller", "eco-friendly", "high-capacity"]
     },
     {
@@ -297,36 +289,10 @@
       "images": ["https://images.unsplash.com/photo-1561484930-974554019ade?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"]
     }
   ],
-  "homeProducts": [
-    {
-      "name": "Premium Carbon Filter",
-      "description": "Advanced filtration for purest water quality",
-      "image": "https://images.unsplash.com/photo-1603569283847-aa6e0adb9af8?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
-    },
-    {
-      "name": "Ceramic Filter Candle",
-      "description": "Durable ceramic for long-lasting performance",
-      "image": "https://images.unsplash.com/photo-1561484930-974554019ade?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
-    },
-    {
-      "name": "Industrial Filter Media",
-      "description": "Heavy-duty solution for commercial needs",
-      "image": "https://images.unsplash.com/photo-1586771107445-d3ca888129ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
-    },
-    {
-      "name": "Silica Sand Grade A",
-      "description": "Ultra-pure filtration medium",
-      "image": "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
-    },
-    {
-      "name": "Multi-Stage Filter System",
-      "description": "Complete water purification solution",
-      "image": "https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80"
-    },
-    {
-      "name": "Laboratory Grade Filter"
-    }
-  ],
+
+
+
+  
   "filters": {
     "categories": [
       "Filter Media",
