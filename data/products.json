@@ -16,7 +16,7 @@
       "reviewCount": 142,
       "stock": 25,
       "images": [
-        "../images/Carbon/Activated Carbon Powder.jpg"
+        "/images/Carbon/Powder-Activated-Carbon.jpg"
       ],
       "specs": {
         "meshSize": "8×30",
@@ -49,7 +49,7 @@
       "reviewCount": 142,
       "stock": 25,
       "images": [
-        "../images/Carbon/Anthracite Media.jpg"
+        "/images/Carbon/Anthracite-Media.jpg"
       ],
       "specs": {
         "meshSize": "8×30",
@@ -82,7 +82,7 @@
       "reviewCount": 142,
       "stock": 25,
       "images": [
-        "../images/Carbon/Granular Activated Carbon.jpg"
+        "/images/Carbon/Granular-Activated-Carbon.jpg"
       ],
       "specs": {
         "meshSize": "4×8 , 8x16, 8x30",
