@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Fetch data from data.json and products.json
     Promise.all([
-        fetch('../data/data.json').then(res => res.json()),
-        fetch('../data/products.json').then(res => res.json())
+        fetch('./data/data.json').then(res => res.json()),
+        fetch('./data/products.json').then(res => res.json())
     ])
     .then(([data, productsData]) => {
         initTestimonials(data.testimonials);

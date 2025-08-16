@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Load products and filters
     Promise.all([
-        fetch('../data/products.json').then(res => res.json()),
-        fetch('../data/data.json').then(res => res.json())
+        fetch('./data/products.json').then(res => res.json()),
+        fetch('./data/data.json').then(res => res.json())
     ])
     .then(([productsData, siteData]) => {
         currentProducts = productsData.products;
