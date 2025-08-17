@@ -34,7 +34,7 @@ function createCategoryDropdown(categories) {
         mobileDropdown.innerHTML = '';
         categories.forEach(category => {
             const categoryLink = document.createElement('a');
-            categoryLink.href = `./html/listing.html?category=${encodeURIComponent(category)}`;
+            categoryLink.href = `../html/listing.html?category=${encodeURIComponent(category)}`;
             categoryLink.textContent = category;
             mobileDropdown.appendChild(categoryLink);
         });
