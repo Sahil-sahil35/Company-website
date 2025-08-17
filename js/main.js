@@ -201,7 +201,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Full URL -> return as-is
     if (/^https?:\/\//i.test(p)) return p;
 
-
+    // Remove leading slashes and any "Company-website/" prefix that may have been included
+    p = p.replace(/^\/+/, '').replace(/^Company-website\//, '');
 
     // If we're inside /html/, image path should go up one folder
     if (isInnerHtmlPage()) {
