@@ -34,32 +34,37 @@
     {
       "name": "Filter Media",
       "description": "High-performance filtration media for all industrial applications",
-      "image": "https://images.unsplash.com/photo-1603569283847-aa6e0adb9af8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      "image": "/Company-website/images/Background-img/Media.png"
     },
     {
-      "name": "Filter Candles",
+      "name": "Cartridge Filter",
       "description": "Precision-engineered ceramic candles for superior filtration",
-      "image": "https://images.unsplash.com/photo-1561484930-974554019ade?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      "image": "/Company-website/images/Background-img/Filters.png"
     },
     {
       "name": "Activated Carbon",
       "description": "Premium activated carbon for maximum adsorption capacity",
-      "image": "https://images.unsplash.com/photo-1586771107445-d3ca888129ce?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      "image": "/Company-website/images/Background-img/Carbon.png"
+    },
+    {
+      "name": "Anthracite Media",
+      "description": "Premium Anthracite Media for maximum adsorption capacity",
+      "image": "/Company-website/images/Background-img/anthra.png"
     },
     {
       "name": "Silica Sand",
       "description": "Ultra-pure silica sand for water treatment systems",
-      "image": "https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      "image": "/Company-website/images/Background-img/silica.png"
     },
     {
-      "name": "Accessories",
+      "name": "plants and Machinery",
       "description": "Complete range of filtration accessories and components",
-      "image": "https://images.unsplash.com/photo-1556740738-b6a63e27c4df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      "image": "/Company-website/images/Background-img/Plant.png"
     },
     {
       "name": "Spare Parts",
       "description": "Genuine replacement parts for all filtration systems",
-      "image": "https://images.unsplash.com/photo-1603569283847-aa6e0adb9af8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+      "image": "/Company-website/images/Background-img/parts.png"
     }
   ],
   "features": [
@@ -104,7 +109,7 @@
   "footer": {
     "shopLinks": [
       {"name": "Filter Media", "link": "#"},
-      {"name": "Filter Candles", "link": "#"},
+      {"name": "Cartridge Filter", "link": "#"},
       {"name": "Activated Carbon", "link": "#"},
       {"name": "Silica Sand", "link": "#"},
       {"name": "Accessories", "link": "#"},
