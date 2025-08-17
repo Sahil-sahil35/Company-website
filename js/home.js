@@ -222,6 +222,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add categories from data
         categories.forEach(category => {
             const categoryCard = document.createElement('div');
+            categoryLink.card = `../html/listing.html?category=${encodeURIComponent(category)}`;
             categoryCard.className = 'category-card';
             categoryCard.innerHTML = `
                 <div class="category-bg" style="background-image: url('${category.image}')"></div>
