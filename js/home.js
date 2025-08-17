@@ -133,9 +133,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p class="product-desc">${product.description}</p>
                     <div class="product-buttons">
                         <a href="html/product.html?id=${product.id}" class="btn-outline">View Details</a>
-                        <button class="btn-solid add-to-cart" ${product.stock <= 0 ? 'disabled' : ''} data-id="${product.id}">
-                            ${product.stock > 0 ? 'Add to Cart' : 'Out of Stock'}
-                        </button>
                     </div>
                 </div>
             `;
