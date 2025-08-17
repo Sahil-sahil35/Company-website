@@ -141,6 +141,25 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+
+    // Navigate to cart page when clicking header cart icon
+    const cartBtn = document.querySelector('.cart-btn');
+    if (cartBtn) {
+    cartBtn.addEventListener('click', () => {
+        const isInner = window.location.pathname.includes('/html/');
+        const href = isInner ? './cart.html' : './html/cart.html';
+        window.location.href = href;
+    });
+    }
+
+    // Ensure cart count stays in sync with sessionStorage
+    const cartCountBadge = document.querySelector('.cart-count');
+    if (cartCountBadge) {
+    const count = sessionStorage.getItem('cartCount') || '0';
+    cartCountBadge.textContent = count;
+    }
+
+
     // Search Modal Functionality
     const searchModal = document.getElementById('searchModal');
     const searchInput = document.getElementById('searchInput');

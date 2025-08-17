@@ -435,35 +435,62 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add to cart function
     function addToCart() {
-        const toast = document.getElementById('toast');
-        const cartCount = document.querySelector('.cart-count');
-        
-        // Update cart count
-        let currentCount = parseInt(cartCount.textContent) || 0;
-        cartCount.textContent = currentCount + 1;
-        
-        // Store in sessionStorage
-        sessionStorage.setItem('cartCount', cartCount.textContent);
-        
-        // Show toast
-        if (toast) {
-            toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
+        const id = this.dataset.id; // from button
+        // Prefer the master list if available; fall back to currentProducts/allProducts variables
+        const source = (typeof allProducts !== 'undefined' && allProducts.length) ? allProducts
+                    : (typeof currentProducts !== 'undefined' && currentProducts.length) ? currentProducts
+                    : [];
+        const product = source.find(p => p.id === id);
+        if (!product) { console.warn('Product not found for cart:', id); return; }
+
+        // Build cart item
+        const item = {
+            id: product.id,
+            name: product.name,
+            price: (product.salePrice ?? product.price) || 0,
+            qty: 1,
+            thumbnail: (product.images && product.images[0]) || '',
+            specs: [
+            product.meshSize ? `Mesh: ${product.meshSize}` : null,
+            product.type ? `Type: ${product.type}` : null
+            ].filter(Boolean)
+        };
+
+        // Get and update session cart
+        let cart = [];
+        try { cart = JSON.parse(sessionStorage.getItem('cartItems') || '[]'); } catch { cart = []; }
+        const idx = cart.findIndex(it => it.id === item.id);
+        if (idx >= 0) {
+            cart[idx].qty += 1;
+        } else {
+            cart.push(item);
         }
-        
-        // Button feedback
-        const button = this;
-        const originalText = button.textContent;
-        button.textContent = 'Added!';
-        button.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
-        
+        sessionStorage.setItem('cartItems', JSON.stringify(cart));
+
+        // Update count badge
+        const totalCount = cart.reduce((n, it) => n + it.qty, 0);
+        sessionStorage.setItem('cartCount', String(totalCount));
+        const cartCount = document.querySelector('.cart-count');
+        if (cartCount) cartCount.textContent = String(totalCount);
+
+        // Toast & button feedback
+        const toast = document.getElementById('toast');
+        if (toast) {
+            toast.textContent = 'Added to cart';
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2000);
+        }
+        const btn = this;
+        const originalText = btn.textContent;
+        const originalBg = btn.style.background;
+        btn.textContent = 'Added!';
+        btn.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
         setTimeout(() => {
-            button.textContent = originalText;
-            button.style.background = 'linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))';
-        }, 2000);
+            btn.textContent = originalText;
+            btn.style.background = originalBg || 'linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))';
+        }, 1200);
     }
+
     
     // Initialize footer
     function initFooter(footer, contact) {

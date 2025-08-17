@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Cart — R S Trading Company</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Core styles -->
+  <link href="../css/main.css" rel="stylesheet"/>
+  <!-- Cart styles -->
+  <link href="../css/cart.css" rel="stylesheet"/>
+</head>
+<body>
+  <!-- Header (identical) -->
+  <header class="header" id="header">
+    <div class="header-content">
+      <a href="../index.html" class="logo">R S Tranding Company </a>
+
+      <nav class="nav">
+        <a href="../index.html">Home</a>
+        <a href="./listing.html">Shop</a>
+        <div class="nav-dropdown">
+          <a href="#categories">Categories</a>
+          <div class="desktop-categories-dropdown"><!-- populated --></div>
+        </div>
+        <a href="#blog">blog</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <!-- Search Modal -->
+      <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+          <span class="close-search">&times;</span>
+          <input type="text" id="searchInput" placeholder="Search products...">
+          <div id="searchResults"></div>
+        </div>
+      </div>
+
+      <div class="header-icons">
+        <button class="icon-btn search-btn" aria-label="Search">
+          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+        </button>
+        <button class="icon-btn cart-btn" aria-label="Cart">
+          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l3-8H6.4M7 13l-2 7h12m-8 0a2 2 0 100 4 2 2 0 000-4zm8 2a2 2 0 100 4 2 2 0 000-4z"/>
+          </svg>
+          <span class="cart-count">0</span>
+        </button>
+        <button class="icon-btn mobile-menu" aria-label="Menu">
+          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation -->
+  <div class="mobile-nav">
+    <a href="../index.html">Home</a>
+    <a href="./listing.html">Shop</a>
+    <div class="mobile-dropdown">
+      <a href="javascript:void(0)" class="mobile-category-toggle">Categories</a>
+      <div class="mobile-categories-dropdown"><!-- populated --></div>
+    </div>
+    <a href="#blog">blog</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <!-- Cart Intro Bar -->
+  <section class="cart-intro">
+    <div class="cart-intro-inner">
+      <div class="breadcrumb" aria-label="Breadcrumb">Home &gt; Cart</div>
+      <h1 class="cart-title">Your Cart</h1>
+      <p class="cart-subtitle">Items here are temporary and will be cleared when you leave.</p>
+    </div>
+  </section>
+
+  <!-- Main -->
+  <main class="container cart-container" role="main">
+    <!-- Left: Cart Items -->
+    <section class="cart-items-panel" aria-labelledby="cartItemsHeading">
+      <div class="cart-items-toolbar">
+        <label class="checkbox">
+          <input type="checkbox" id="selectAll" aria-label="Select all items">
+          <span>Select All</span>
+        </label>
+        <button class="btn-outline danger" id="removeSelected" disabled aria-disabled="true">Remove Selected</button>
+      </div>
+
+      <div id="cartItems" class="cart-items" role="list" aria-live="polite" aria-busy="false">
+        <!-- JS inserts items or empty state -->
+      </div>
+    </section>
+
+    <!-- Right: Contact Form + Summary -->
+    <aside class="contact-panel" aria-labelledby="contactPanelHeading">
+      <h2 id="contactPanelHeading" class="panel-title">Contact Us About Selected Items</h2>
+
+      <!-- Muted placeholder (no selection) -->
+      <div id="noSelection" class="no-selection" role="status">
+        Select one or more products from your cart to continue.
+      </div>
+
+      <!-- Form (visible when selection exists) -->
+      <form id="inquiryForm" class="inquiry-form" novalidate aria-hidden="true">
+        <div class="form-group">
+          <label for="selectedProducts">Selected Products</label>
+          <textarea id="selectedProducts" readonly rows="3" aria-readonly="true"></textarea>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input id="fullName" name="fullName" type="text" required placeholder="Your full name" autocomplete="name"/>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required placeholder="you@example.com" autocomplete="email"/>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input id="phone" name="phone" type="tel" required placeholder="+91-XXXXXXXXXX" autocomplete="tel"/>
+          </div>
+          <div class="form-group">
+            <label for="company">Company/Organization (optional)</label>
+            <input id="company" name="company" type="text" placeholder="Your organization (optional)"/>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="inquiryType">Inquiry Type</label>
+          <select id="inquiryType" name="inquiryType" required>
+            <option value="" disabled selected>Select inquiry type</option>
+            <option>General Query</option>
+            <option>Bulk Order</option>
+            <option>Custom Requirement</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="4" placeholder="e.g., Need pricing for 20 units with shipping to Mumbai" required></textarea>
+        </div>
+
+        <fieldset class="form-group">
+          <legend>Preferred Contact Method</legend>
+          <label class="radio"><input type="radio" name="contactMethod" value="Email" required> Email</label>
+          <label class="radio"><input type="radio" name="contactMethod" value="Phone" required> Phone</label>
+        </fieldset>
+
+        <label class="checkbox consent">
+          <input type="checkbox" id="consent" required>
+          <span>I agree to be contacted regarding my inquiry.</span>
+        </label>
+
+        <button type="submit" class="btn-solid" id="submitInquiry">Send Inquiry</button>
+      </form>
+
+      <!-- Summary -->
+      <div id="cartSummary" class="cart-summary" aria-live="polite">
+        <div class="summary-row">
+          <span>Total Items</span>
+          <span id="summaryCount">0</span>
+        </div>
+        <div class="summary-row">
+          <span>Estimated Total</span>
+          <span id="summaryTotal">₹0.00</span>
+        </div>
+        <div class="summary-note">* Informational only — no checkout on this site.</div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Toasts -->
+  <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+
+  <!-- Footer (populated) -->
+  <footer class="footer"><div class="container"><div id="footerContent"></div></div></footer>
+
+  <!-- Scripts -->
+  <script src="../js/main.js"></script>
+  <script src="../js/cart.js"></script>
+</body>
+</html>

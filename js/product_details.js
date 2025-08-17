@@ -57,6 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (heroProductTitle) heroProductTitle.textContent = product.name;
         if (heroProductDesc) heroProductDesc.textContent = product.description;
         if (productNameBreadcrumb) productNameBreadcrumb.textContent = product.name;
+        window.currentProduct = product;
 
         // Set price
         const priceElement = document.getElementById('productPrice');
@@ -274,36 +275,52 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Add to cart functionality
     function addToCart() {
-        const toast = document.getElementById('toast');
+        const P = window.currentProduct;
+        if (!P) { console.warn('No current product bound'); return; }
+
+        const item = {
+            id: P.id,
+            name: P.name,
+            price: (P.salePrice ?? P.price) || 0,
+            qty: 1,
+            thumbnail: (P.images && P.images[0]) || '',
+            specs: [
+            P.meshSize ? `Mesh: ${P.meshSize}` : null,
+            P.type ? `Type: ${P.type}` : null
+            ].filter(Boolean)
+        };
+
+        // Update cart
+        let cart = [];
+        try { cart = JSON.parse(sessionStorage.getItem('cartItems') || '[]'); } catch { cart = []; }
+        const idx = cart.findIndex(it => it.id === item.id);
+        if (idx >= 0) cart[idx].qty += 1; else cart.push(item);
+        sessionStorage.setItem('cartItems', JSON.stringify(cart));
+
+        // Update badges/counters
+        const totalCount = cart.reduce((n, it) => n + it.qty, 0);
+        sessionStorage.setItem('cartCount', String(totalCount));
         const cartCount = document.querySelector('.cart-count');
-        
-        // Update cart count
-        let currentCount = parseInt(cartCount.textContent) || 0;
-        cartCount.textContent = currentCount + 1;
-        
-        // Store in sessionStorage
-        sessionStorage.setItem('cartCount', cartCount.textContent);
-        
-        // Show toast
+        if (cartCount) cartCount.textContent = String(totalCount);
+
+        // Toast & button feedback
+        const toast = document.getElementById('toast');
         if (toast) {
+            toast.textContent = 'Added to cart';
             toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
+            setTimeout(() => toast.classList.remove('show'), 2000);
         }
-        
-        // Button feedback
         const button = this;
         const originalText = button.textContent;
         const originalBg = button.style.background;
         button.textContent = 'Added!';
         button.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
-        
         setTimeout(() => {
             button.textContent = originalText;
             button.style.background = originalBg || 'linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))';
-        }, 2000);
+        }, 1200);
     }
+
     
     // Contact modal functionality
     const contactModal = document.getElementById('contactModal');
