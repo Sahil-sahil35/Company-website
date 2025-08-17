@@ -4,7 +4,8 @@ function initCategoryDropdown() {
     const isProductPage = window.location.pathname.includes('product.html');
     const isListingPage = window.location.pathname.includes('listing.html');
     const isCatagoryPage = window.location.pathname.includes('category.html');
-    const basePath = isProductPage || isListingPage || isCatagoryPage ? '../' : './';
+    const isCartPage = window.location.pathname.includes('cart.html');
+    const basePath = isProductPage || isListingPage || isCatagoryPage || isCartPage ? '../' : './';
     const path = `${basePath}data/products.json`;
 
     fetch(path)
