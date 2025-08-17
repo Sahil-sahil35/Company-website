@@ -161,210 +161,93 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 
-    // ---------------------
-    // Search Modal Functionality (REPLACE THIS BLOCK)
-    // ---------------------
+    // Search Modal Functionality
     const searchModal = document.getElementById('searchModal');
     const searchInput = document.getElementById('searchInput');
     const searchResults = document.getElementById('searchResults');
     let allProducts = [];
 
-    // Determine whether current page is inside the /html/ folder
-    function isInnerHtmlPage() {
-    return window.location.pathname.includes('/html/');
-    }
-
-    // Build correct path to data/products.json depending on page location
-    function productsJsonPath() {
-    return (isInnerHtmlPage() ? '../' : './') + 'data/products.json';
-    }
-
-    // Safe HTML escape (to avoid injecting raw HTML)
-    function escapeHtml(str) {
-    if (!str) return '';
-    return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/'/g, '&#39;');
-    }
-
-    // Normalize image path and make it correct relative to the current page.
-    // Accepts a string or array (product.images may be an array).
-    function resolveImageSrc(img) {
-    if (!img) return 'images/placeholder.png';
-    if (Array.isArray(img)) img = img[0];
-    if (!img) return 'images/placeholder.png';
-    let p = String(img).trim();
-
-    // Full URL -> return as-is
-    if (/^https?:\/\//i.test(p)) return p;
-
-    // Remove leading slashes and any "Company-website/" prefix that may have been included
-    p = p.replace(/^\/+/, '').replace(/^Company-website\//, '');
-
-    // If we're inside /html/, image path should go up one folder
-    if (isInnerHtmlPage()) {
-        if (!p.startsWith('../') && !p.startsWith('./')) p = '../' + p;
-    } else {
-        // On root pages, ensure path is relative (this is optional, but consistent)
-        if (!p.startsWith('./') && !p.startsWith('../')) p = './' + p;
-    }
-
-    return p;
-    }
-
-    // Normalize category to a searchable string
-    function categoryToString(cat) {
-    if (!cat) return '';
-    if (Array.isArray(cat)) return cat.join(' ');
-    return String(cat);
-    }
-
-    // Attach search openers (header buttons)
+    // Open search modal
     document.querySelectorAll('.search-btn').forEach(btn => {
-    btn.addEventListener('click', openSearchModal);
+        btn.addEventListener('click', openSearchModal);
     });
 
-    // Close button (if present)
+    // Close search modal
     document.querySelector('.close-search')?.addEventListener('click', closeSearchModal);
 
-    // Fetch product list (path adjusted based on current page)
-    fetch(productsJsonPath())
-    .then(res => res.json())
-    .then(data => {
-        allProducts = data.products || [];
-        // Optionally precompute a lowercase search string for every product to speed filtering
-        allProducts.forEach(p => {
-        p._searchText = [
-            p.name,
-            p.slug,
-            p.description,
-            categoryToString(p.category),
-            p.sku,
-            (p.tags || []).join(' ')
-        ].filter(Boolean).join(' ').toLowerCase();
+    // Fetch products for search
+    fetch('./data/products.json')
+        .then(res => res.json())
+        .then(data => {
+            allProducts = data.products;
         });
-    })
-    .catch(err => {
-        console.error('Failed to load products for search:', err);
-    });
 
     function openSearchModal() {
-    if (!searchModal) return;
-    searchModal.style.display = 'block';
-    // Small timeout so focus works after display change
-    setTimeout(() => searchInput?.focus(), 50);
-    document.body.classList.add('no-scroll');
+        if (searchModal) {
+            searchModal.style.display = 'block';
+            searchInput.focus();
+            document.body.classList.add('no-scroll');
+        }
     }
 
     function closeSearchModal() {
-    if (!searchModal) return;
-    searchModal.style.display = 'none';
-    if (searchInput) searchInput.value = '';
-    if (searchResults) searchResults.innerHTML = '';
-    document.body.classList.remove('no-scroll');
+        if (searchModal) {
+            searchModal.style.display = 'none';
+            searchInput.value = '';
+            searchResults.innerHTML = '';
+            document.body.classList.remove('no-scroll');
+        }
     }
 
-    // Debounced search handler
-    let _searchTimer = null;
     if (searchInput) {
-    searchInput.addEventListener('input', (e) => {
-        clearTimeout(_searchTimer);
-        const value = e.target.value;
-        _searchTimer = setTimeout(() => runSearch(value), 120);
-    });
+        searchInput.addEventListener('input', function() {
+            const term = this.value.toLowerCase().trim();
+            searchResults.innerHTML = '';
+            
+            if (term.length < 2) return;
 
-    // Close on Escape
-    searchInput.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeSearchModal();
-    });
-    }
+            const filtered = allProducts.filter(product => {
+                const categoryStr = Array.isArray(product.category) ? product.category.join(' ') : (product.category || '');
+                return (
+                    (product.name && product.name.toLowerCase().includes(term)) ||
+                    (product.description && product.description.toLowerCase().includes(term)) ||
+                    (categoryStr.toLowerCase().includes(term))
+                );
+            }).slice(0, 10);
 
-    function runSearch(raw) {
-    if (!searchResults) return;
-    const term = String(raw || '').toLowerCase().trim();
-    searchResults.innerHTML = '';
-
-    // If query is empty, show nothing (you can change min length to 1 or 2)
-    if (term.length < 1) {
-        return;
-    }
-
-    // Filter safely using precomputed _searchText if available
-    const matches = allProducts.filter(prod => {
-        try {
-        if (prod._searchText) return prod._searchText.includes(term);
-        const hay = [
-            prod.name,
-            prod.slug,
-            prod.description,
-            categoryToString(prod.category),
-            prod.sku,
-            (prod.tags || []).join(' ')
-        ].filter(Boolean).join(' ').toLowerCase();
-        return hay.includes(term);
-        } catch (e) {
-        // Defensive: if any field throws, skip product
-        return false;
-        }
-    });
-
-    if (!matches.length) {
-        searchResults.innerHTML = '<div class="search-result-item">No products found</div>';
-        return;
-    }
-
-    // Limit to top 10
-    const limited = matches.slice(0, 10);
-
-    limited.forEach(product => {
-        const imgSrc = resolveImageSrc(product.images || product.image || '');
-        const priceVal = Number(product.salePrice ?? product.price ?? 0);
-        // Build correct link to product details depending on where we are
-        const href = isInnerHtmlPage()
-        ? `./product.html?id=${encodeURIComponent(product.id)}`
-        : `./html/product.html?id=${encodeURIComponent(product.id)}`;
-
-        const item = document.createElement('div');
-        item.className = 'search-result-item';
-        item.innerHTML = `
-        <a class="search-result-link" href="${href}">
-            <div style="display:flex;align-items:center;gap:10px;">
-            <img src="${escapeHtml(imgSrc)}" alt="${escapeHtml(product.name)}" style="width:56px;height:56px;object-fit:cover;border-radius:6px;" onerror="this.style.opacity=0.6;">
-            <div class="search-result-info">
-                <div class="search-result-name">${escapeHtml(product.name)}</div>
-                <div class="search-result-price">${priceVal ? ('₹' + priceVal.toFixed(2)) : ''}</div>
-            </div>
-            </div>
-        </a>
-        `;
-
-        // Clicking the result should navigate and close modal
-        item.addEventListener('click', (ev) => {
-        // follow the link (works in all browsers)
-        const link = item.querySelector('a.search-result-link');
-        if (link) {
-            window.location.href = link.href;
-        }
-        closeSearchModal();
+            if (filtered.length === 0) {
+                searchResults.innerHTML = '<div class="search-result-item">No products found</div>';
+                return;
+            }
+            
+            filtered.forEach(product => {
+                const img = Array.isArray(product.images) ? product.images[0] : product.images;
+                const item = document.createElement('div');
+                item.className = 'search-result-item';
+                item.innerHTML = `
+                    <div style="display: flex; align-items: center;">
+                        <img src="${img}" alt="${product.name}">
+                        <div class="search-result-info">
+                            <div class="search-result-name">${product.name}</div>
+                            <div class="search-result-price">$${(product.salePrice || product.price).toFixed(2)}</div>
+                        </div>
+                    </div>
+                `;
+                item.addEventListener('click', () => {
+                    window.location.href = `./html/product.html?id=${product.id}`;
+                    closeSearchModal();
+                });
+                searchResults.appendChild(item);
+            });
         });
-
-        searchResults.appendChild(item);
-    });
     }
 
-    // Close modal when clicking outside of it
+    // Close modal when clicking outside
     window.addEventListener('click', function(event) {
-    if (event.target === searchModal) {
-        closeSearchModal();
-    }
+        if (event.target === searchModal) {
+            closeSearchModal();
+        }
     });
-    // ---------------------
-    // End Search Modal Functionality
-    // ---------------------
-
     
     // Load cart count from sessionStorage
     const cartCount = document.querySelector('.cart-count');
