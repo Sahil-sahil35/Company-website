@@ -312,7 +312,6 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
         }
     }
-    
     // Load cart count from sessionStorage
     const cartCount = document.querySelector('.cart-count');
     if (cartCount && sessionStorage.getItem('cartCount')) {
