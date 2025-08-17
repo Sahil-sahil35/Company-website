@@ -3,7 +3,8 @@ function initCategoryDropdown() {
     // Determine correct path based on current page location
     const isProductPage = window.location.pathname.includes('product.html');
     const isListingPage = window.location.pathname.includes('listing.html');
-    const basePath = isProductPage || isListingPage ? '../' : './';
+    const isCatagoryPage = window.location.pathname.includes('category.html');
+    const basePath = isProductPage || isListingPage || isCatagoryPage ? '../' : './';
     const path = `${basePath}data/products.json`;
 
     fetch(path)
@@ -22,7 +23,11 @@ function createCategoryDropdown(categories) {
         desktopDropdown.innerHTML = '';
         categories.forEach(category => {
             const categoryLink = document.createElement('a');
-            categoryLink.href = `../html/listing.html?category=${encodeURIComponent(category)}`;
+            // Determine correct path based on current page location
+            const isProductPage = window.location.pathname.includes('product.html');
+            const isListingPage = window.location.pathname.includes('listing.html') || window.location.pathname.includes('category.html');
+            const basePath = isProductPage || isListingPage ? '../html/' : './html/';
+            categoryLink.href = `${basePath}category.html?category=${encodeURIComponent(category)}`;
             categoryLink.textContent = category;
             desktopDropdown.appendChild(categoryLink);
         });
@@ -34,7 +39,11 @@ function createCategoryDropdown(categories) {
         mobileDropdown.innerHTML = '';
         categories.forEach(category => {
             const categoryLink = document.createElement('a');
-            categoryLink.href = `../html/listing.html?category=${encodeURIComponent(category)}`;
+            // Determine correct path based on current page location
+            const isProductPage = window.location.pathname.includes('product.html');
+            const isListingPage = window.location.pathname.includes('listing.html') || window.location.pathname.includes('category.html');
+            const basePath = isProductPage || isListingPage ? '../html/' : './html/';
+            categoryLink.href = `${basePath}category.html?category=${encodeURIComponent(category)}`;
             categoryLink.textContent = category;
             mobileDropdown.appendChild(categoryLink);
         });

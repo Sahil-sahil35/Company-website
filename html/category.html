@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RS Tranding Company - Category</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="../css/main.css" rel="stylesheet">
+    <link href="../css/listing.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-content">
+            <a href="../index.html" class="logo">R S Tranding Company</a>
+            
+            <nav class="nav">
+                <a href="../index.html">Home</a>
+                <a href="../html/listing.html">Shop</a>
+                <div class="nav-dropdown">
+                <a href="#categories">Categories</a>
+                    <div class="desktop-categories-dropdown">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+                <a href="#blog">blog</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            
+            <div class="header-icons">
+                <button class="icon-btn cart-btn">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+                    </svg>
+                    <span class="cart-count">0</span>
+                </button>
+                <button class="icon-btn mobile-menu">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <a href="../index.html">Home</a>
+        <a href="./html/listing.html">Shop</a>
+        <div class="mobile-dropdown">
+                <a href="javascript:void(0)" class="mobile-category-toggle">Categories</a>
+                <div class="mobile-categories-dropdown">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </div>
+        <a href="#blog">blog</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <!-- Hero Banner -->
+    <section class="shop-hero">
+        <div class="shop-hero-bg"></div>
+        <div class="shop-hero-overlay"></div>
+        <div class="shop-hero-content">
+            <h1 id="category-title"></h1>
+            <p class="shop-hero-subtitle">Premium filtration solutions for every application</p>
+            <div class="breadcrumbs">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Filters & Sorting -->
+        <div class="shop-controls">
+            <div class="results-count">Loading products...</div>
+            <div class="sort-by">
+                <label for="sort">Sort by:</label>
+                <select id="sort">
+                    <option value="relevance">Relevance</option>
+                    <option value="price-low">Price Low-High</option>
+                    <option value="price-high">Price High-Low</option>
+                    <option value="newest">Newest</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="shop-container">
+            <!-- Filter Sidebar -->
+            <button class="filter-toggle" id="filterToggle">Filters</button>
+            <div class="filter-sidebar" id="filterSidebar">
+                <div class="filter-search">
+                    <input type="text" placeholder="Search products...">
+                </div>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="products-grid">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <ul class="pagination">
+            <!-- Will be populated by JavaScript -->
+        </ul>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">Added to temporary cart — clears when you leave</div>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Shop Links</h3>
+                    <!-- Will be populated by JavaScript -->
+                </div>
+                <div class="footer-section">
+                    <h3>Categories</h3>
+                    <!-- Will be populated by JavaScript -->
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <!-- Will be populated by JavaScript -->
+                </div>
+                <div class="footer-section">
+                    <h3>Stay Connected</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 20px;">Subscribe to our newsletter for the latest products and offers.</p>
+                    <div class="newsletter">
+                        <input type="email" placeholder="Enter your email">
+                        <button class="btn-primary">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/category.js"></script>
+</body>
+</html>
+
+

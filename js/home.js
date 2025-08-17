@@ -222,7 +222,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add categories from data
         categories.forEach(category => {
             const categoryCard = document.createElement('div');
-            categoryLink.card = `../html/listing.html?category=${encodeURIComponent(category)}`;
             categoryCard.className = 'category-card';
             categoryCard.innerHTML = `
                 <div class="category-bg" style="background-image: url('${category.image}')"></div>
@@ -231,6 +230,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p class="category-desc">${category.description}</p>
                 </div>
             `;
+            
+            // Add click event to navigate to category page
+            categoryCard.addEventListener('click', () => {
+                window.location.href = `./html/category.html?category=${encodeURIComponent(category.name)}`;
+            });
+            
             categoriesGrid.appendChild(categoryCard);
         });
     }
@@ -283,7 +288,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (categoriesSection) {
             categoriesSection.innerHTML = '<h3>Categories</h3>';
             footer.categories.forEach(category => {
-                categoriesSection.innerHTML += `<a href="${category.link}">${category.name}</a>`;
+                categoriesSection.innerHTML += `<a href="./html/category.html?category=${encodeURIComponent(category.name)}">${category.name}</a>`;
             });
         }
         

@@ -188,22 +188,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 <a href="#" class="active">Shop</a>
             `;
         }
-        const urlParams = new URLSearchParams(window.location.search);
-        const urlCategory = urlParams.get('category');
-        
-        // Check matching category checkbox
-        if (urlCategory) {
-            document.querySelectorAll('.filter-option input').forEach(input => {
-                input.addEventListener('change', filterProducts);
-            });
-
-            document.querySelectorAll('.filter-chip').forEach(chip => {
-                chip.addEventListener('click', function() {
-                    this.classList.toggle('active');
-                    filterProducts();
-                });
-            });
-        }
 
         // Set shop hero title
         const heroTitle = document.querySelector('.shop-hero h1');
@@ -223,17 +207,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <label for="filter-${category.toLowerCase().replace(/\s+/g, '-')}">${category}</label>
                 `;
                 categoryFilters.appendChild(option);
-                
-                // Pre-select category from URL
-                if (urlCategory && category === urlCategory) {
-                    option.querySelector('input').checked = true;
-                }
             });
-            
-            // Filter immediately if URL category exists
-            if (urlCategory) {
-                filterProducts();
-            }
         }
 
         // Initialize material chips
@@ -289,7 +263,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 filterSidebar.classList.toggle('active');
                 filterToggle.classList.toggle('active');
             });
-
         }
 
         // Initialize clear filters button
@@ -298,19 +271,17 @@ document.addEventListener('DOMContentLoaded', function() {
             clearFilters.addEventListener('click', resetAllFilters);
         }
 
-        // Add event listeners to filter checkboxes and chips after they're created
-        setTimeout(() => {
-            document.querySelectorAll('.filter-option input').forEach(input => {
-                input.addEventListener('change', filterProducts);
-            });
+        // Add event listeners
+        document.querySelectorAll('.filter-option input').forEach(input => {
+            input.addEventListener('change', filterProducts);
+        });
 
-            document.querySelectorAll('.filter-chip').forEach(chip => {
-                chip.addEventListener('click', function() {
-                    this.classList.toggle('active');
-                    filterProducts();
-                });
+        document.querySelectorAll('.filter-chip').forEach(chip => {
+            chip.addEventListener('click', function() {
+                this.classList.toggle('active');
+                filterProducts();
             });
-        }, 100);
+        });
         
         // Search input event listener
         const searchInput = document.querySelector('.filter-search input');
@@ -321,60 +292,71 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Filter products based on selected filters
     function filterProducts() {
-    // Get filter values
-    const priceRange = document.querySelector('.price-range');
-    const maxPrice = priceRange ? parseFloat(priceRange.value) : 500;
-    const searchInput = document.querySelector('.filter-search input');
-    const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
-    const urlParams = new URLSearchParams(window.location.search);
-    const urlCategory = urlParams.get('category');
+        // Get filter values
+        const priceRange = document.querySelector('.price-range');
+        const maxPrice = priceRange ? parseFloat(priceRange.value) : 500;
+        const searchInput = document.querySelector('.filter-search input');
+        const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
 
-    // Move these declarations to the top
-    const selectedCategories = Array.from(document.querySelectorAll('.filter-option input:checked'))
-        .map(input => input.value);
-    
-    const selectedMaterials = Array.from(document.querySelectorAll('.filter-chip.active'))
-        .map(chip => chip.textContent.trim());
-    
-    // Filter products from original list
-    const filteredProducts = allProducts.filter(product => {
-        // Search term filter
-        if (searchTerm && !(
-            product.name.toLowerCase().includes(searchTerm) || 
-            (product.description && product.description.toLowerCase().includes(searchTerm)) ||
-            (product.category && product.category.toLowerCase().includes(searchTerm))
-        )) {
-            return false;
-        }
+        // Get selected categories and materials
+        const selectedCategories = Array.from(document.querySelectorAll('.filter-option input:checked'))
+            .map(input => input.value);
         
-        // Price filter
-        const price = product.salePrice || product.price;
-        if (price > maxPrice) return false;
+        const selectedMaterials = Array.from(document.querySelectorAll('.filter-chip.active'))
+            .map(chip => chip.textContent.trim());
         
-        // Category filter
-        if (selectedCategories.length > 0) {
-            if (!selectedCategories.includes(product.category)) {
+        // Filter products from original list
+        const filteredProducts = allProducts.filter(product => {
+            // Search term filter
+            if (searchTerm && !(
+                product.name.toLowerCase().includes(searchTerm) || 
+                (product.description && product.description.toLowerCase().includes(searchTerm)) ||
+                (product.category && product.category.toString().toLowerCase().includes(searchTerm))
+            )) {
                 return false;
             }
-        } else if (urlCategory) {
-            // If no categories are selected but there's a URL category, use that
-            if (product.category !== urlCategory) {
-                return false;
+            
+            // Price filter
+            const price = product.salePrice || product.price;
+            if (price > maxPrice) return false;
+            
+            // Category filter - handle both arrays and single values
+            if (selectedCategories.length > 0) {
+                if (Array.isArray(product.category)) {
+                    // Product has multiple categories
+                    if (!product.category.some(cat => selectedCategories.includes(cat))) {
+                        return false;
+                    }
+                } else {
+                    // Product has single category
+                    if (!selectedCategories.includes(product.category)) {
+                        return false;
+                    }
+                }
             }
-        }
+            
+            // Material filter - handle both arrays and single values
+            if (selectedMaterials.length > 0) {
+                if (Array.isArray(product.material)) {
+                    // Product has multiple materials
+                    if (!product.material.some(mat => selectedMaterials.includes(mat))) {
+                        return false;
+                    }
+                } else {
+                    // Product has single material
+                    if (!selectedMaterials.includes(product.material)) {
+                        return false;
+                    }
+                }
+            }
+            
+            return true;
+        });
         
-        // Material filter
-        if (selectedMaterials.length > 0 && !selectedMaterials.includes(product.material)) {
-            return false;
-        }
-        
-        return true;
-    });
-    
-    // Update current products and reset to page 1
-    currentProducts = filteredProducts;
-    initProducts(currentProducts, 1);
-}
+        // Update current products and reset to page 1
+        currentProducts = filteredProducts;
+        initProducts(currentProducts, 1);
+    }
 
     // Sort products
     function sortProducts() {
@@ -536,4 +518,3 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 });
-
