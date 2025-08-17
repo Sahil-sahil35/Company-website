@@ -64,9 +64,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p class="product-desc">${product.description}</p>
                     <div class="product-price">
                         ${product.salePrice ? 
-                            `<span class="original">$${product.price.toFixed(2)}</span>
-                             <span class="sale">$${product.salePrice.toFixed(2)}</span>` : 
-                            `$${product.price.toFixed(2)}`
+                            `<span class="original">₹${product.price.toFixed(2)}</span>
+                             <span class="sale">₹${product.salePrice.toFixed(2)}</span>` : 
+                            `₹${product.price.toFixed(2)}`
                         }
                     </div>
                     <div class="stock-status ${product.stock > 0 ? 'in-stock' : 'out-of-stock'}">

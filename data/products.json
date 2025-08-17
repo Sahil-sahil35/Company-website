@@ -189,7 +189,7 @@
       "price": 7,
       "salePrice": 5,
       "sku": "SI-99.9",
-      "category": "Filter Media",
+      "category": ["Filter Media","Silica Sand"],
       "subCategory": "Core Sand Media",
       "material": "Rock Stone",
       "rating": 4.9,
@@ -241,7 +241,7 @@
       "sku": "FC-90",
       "category": "Filter Media",
       "subCategory": "Anthracite Filter Media",
-      "material": "Anthracite Coal",
+      "material": ["Anthracite","Coal"],
       "rating": 5,
       "reviewCount": 200,
       "stock": 1,
@@ -291,7 +291,7 @@
       "sku": "PAC-350",
       "category": "Activated Carbon",
       "subCategory": "Powder Activated Carbon -PAC",
-      "material": "Wood Coal Based",
+      "material": ["Wood","Coal"],
       "rating": 4.9,
       "reviewCount": 120,
       "stock": 1,
@@ -401,26 +401,28 @@
   "filters": {
     "categories": [
       "Filter Media",
-      "Filter Candles",
+      "Cartridge Filter",
       "Activated Carbon",
       "Anthracite Media",
       "Silica Sand",
-      "Accessories",
+      "plants and Machinery",
       "Spare Parts"
     ],
     "materials": [
       "Ceramic",
       "Carbon",
+      "Coal","Wood",
       "Coconut Shell",
       "Stainless Steel",
+      "Minerals",
       "Plastic",
       "Glass"
     ],
     "priceRanges": [
-      {"label": "Under $25", "min": 0, "max": 25},
-      {"label": "$25 - $50", "min": 25, "max": 50},
-      {"label": "$50 - $100", "min": 50, "max": 100},
-      {"label": "Over $100", "min": 100, "max": 1000}
+      {"label": "Under ₹25", "min": 0, "max": 25},
+      {"label": "₹25 - ₹50", "min": 25, "max": 50},
+      {"label": "₹50 - ₹100", "min": 50, "max": 100},
+      {"label": "Over ₹100", "min": 100, "max": 1000}
     ]
   }
 }

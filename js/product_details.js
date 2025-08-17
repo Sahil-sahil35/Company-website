@@ -63,11 +63,11 @@ document.addEventListener('DOMContentLoaded', function() {
         if (priceElement) {
             if (product.salePrice) {
                 priceElement.innerHTML = `
-                    <span class="original">$${product.price.toFixed(2)}</span>
-                    <span class="sale">$${product.salePrice.toFixed(2)}</span>
+                    <span class="original">₹${product.price.toFixed(2)}</span>
+                    <span class="sale">₹${product.salePrice.toFixed(2)}</span>
                 `;
             } else {
-                priceElement.textContent = `$${product.price.toFixed(2)}`;
+                priceElement.textContent = `₹${product.price.toFixed(2)}`;
             }
         }
         
