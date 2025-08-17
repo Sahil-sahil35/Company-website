@@ -332,7 +332,7 @@ body {
 }
 
 .hero-bg {
-    background: url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover;
+    background: url("/Company-website/images/Background-img/hero-bg.png") center/cover;
     z-index: -2;
 }
 
