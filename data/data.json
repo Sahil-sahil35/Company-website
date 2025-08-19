@@ -30,6 +30,8 @@
       {"value": "10K+", "label": "Liters Filtered"}
     ]
   },
+
+  
   "categories": [
     {
       "name": "Filter Media",
@@ -67,6 +69,9 @@
       "image": "/Company-website/images/Background-img/parts.png"
     }
   ],
+
+
+
   "features": [
     {
       "title": "Certified Quality",
@@ -84,6 +89,9 @@
       "icon": "💬"
     }
   ],
+
+
+
   "testimonials": [
     {
       "text": "\"RS Tranding Company's filtration systems have completely transformed our water quality. The difference is remarkable, and their customer service is absolutely exceptional.\"",
