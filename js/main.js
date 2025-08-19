@@ -254,4 +254,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if (cartCount && sessionStorage.getItem('cartCount')) {
         cartCount.textContent = sessionStorage.getItem('cartCount');
     }
+
+
+
+
+    
 });

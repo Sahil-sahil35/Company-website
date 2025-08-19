@@ -540,7 +540,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const footerBottom = document.querySelector('.footer-bottom');
         if (footerBottom) {
             footerBottom.innerHTML = `
-                <p>&copy; ${new Date().getFullYear()} RS Tranding Company. All rights reserved. | Privacy Policy | Terms of Service</p>
+                <p>&copy; ${new Date().getFullYear()} R S Tranding Company. All rights reserved. | Privacy Policy | Terms of Service</p>
             `;
         }
     }

@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us — R S Trading Company</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Core styles -->
+  <link href="../css/main.css" rel="stylesheet"/>
+  <!-- About styles -->
+  <link href="../css/about.css" rel="stylesheet"/>
+</head>
+<body>
+  <!-- Header (identical) -->
+  <header class="header" id="header">
+    <div class="header-content">
+      <a href="../index.html" class="logo">R S Tranding Company </a>
+
+      <nav class="nav">
+        <a href="../index.html">Home</a>
+        <a href="./listing.html">Shop</a>
+        <div class="nav-dropdown">
+          <a href="#categories">Categories</a>
+          <div class="desktop-categories-dropdown"><!-- populated --></div>
+        </div>
+        <a href="./about.html">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <!-- Search Modal -->
+      <div class="search-modal" id="searchModal">
+        <div class="search-modal-content">
+          <span class="close-search">&times;</span>
+          <input type="text" id="searchInput" placeholder="Search products...">
+          <div id="searchResults"></div>
+        </div>
+      </div>
+
+      <div class="header-icons">
+        <button class="icon-btn cart-btn" aria-label="Cart">
+          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l3-8H6.4M7 13l-2 7h12m-8 0a2 2 0 100 4 2 2 0 000-4zm8 2a2 2 0 100 4 2 2 0 000-4z"/>
+          </svg>
+          <span class="cart-count">0</span>
+        </button>
+        <button class="icon-btn mobile-menu" aria-label="Menu">
+          <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation -->
+  <div class="mobile-nav">
+    <a href="../index.html">Home</a>
+    <a href="./listing.html">Shop</a>
+    <div class="mobile-dropdown">
+      <a href="javascript:void(0)" class="mobile-category-toggle">Categories</a>
+      <div class="mobile-categories-dropdown"><!-- populated --></div>
+    </div>
+    <a href="./about.html">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="about-hero">
+    <div class="about-hero-bg"></div>
+    <div class="about-hero-overlay"></div>
+    <div class="about-hero-content">
+      <div class="breadcrumb" aria-label="Breadcrumb">Home &gt; About</div>
+      <h1 class="about-title">About R S Trading Company</h1>
+      <p class="about-subtitle">Delivering purity through innovation in water filtration</p>
+    </div>
+  </section>
+
+  <!-- Mission & Vision -->
+  <section class="mission-section">
+    <div class="container mission-container">
+      <div class="mission-content">
+        <div class="mission-block">
+          <h2 class="section-title"><span class="gold-underline">Our Mission</span></h2>
+          <p>To provide innovative, high-quality water filtration solutions that ensure purity and safety for homes, businesses, and industries worldwide. We're committed to developing sustainable technologies that make clean water accessible to all.</p>
+        </div>
+        <div class="mission-block">
+          <h2 class="section-title"><span class="gold-underline">Our Vision</span></h2>
+          <p>To be the global leader in water filtration technology, pioneering solutions that address the world's growing water challenges through continuous innovation, environmental stewardship, and uncompromising quality standards.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline -->
+  <section class="timeline-section">
+    <div class="container">
+      <h2 class="section-title">Our Journey</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-year">2010</div>
+          <div class="timeline-content">
+            <h3>Company Founded</h3>
+            <p>Established with a focus on reverse osmosis filter media and residential water solutions.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2014</div>
+          <div class="timeline-content">
+            <h3>Industrial Expansion</h3>
+            <p>Launched our first line of industrial-grade filtration systems for large-scale applications.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2018</div>
+          <div class="timeline-content">
+            <h3>Quality Certification</h3>
+            <p>Achieved ISO 9001 certification for our quality management systems and processes.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2022</div>
+          <div class="timeline-content">
+            <h3>Global Reach</h3>
+            <p>Expanded distribution network to serve clients in over 50 countries worldwide.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section class="certifications-section">
+    <div class="container">
+      <h2 class="section-title">Certifications & Standards</h2>
+      <div class="certifications-grid">
+        <div class="certification-card">
+          <div class="cert-icon">✓</div>
+          <h3>ISO 9001 Certified</h3>
+          <p>Meeting international quality management standards for consistent excellence.</p>
+        </div>
+        <div class="certification-card">
+          <div class="cert-icon">♻</div>
+          <h3>Eco-Friendly</h3>
+          <p>Sustainable manufacturing processes with minimal environmental impact.</p>
+        </div>
+        <div class="certification-card">
+          <div class="cert-icon">⚙</div>
+          <h3>NSF Tested</h3>
+          <p>Products independently verified for safety and performance standards.</p>
+        </div>
+        <div class="certification-card">
+          <div class="cert-icon">★</div>
+          <h3>Industry Leader</h3>
+          <p>Recognized by water treatment professionals worldwide for innovation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Solutions -->
+  <section class="solutions-section">
+    <div class="container">
+      <h2 class="section-title">Comprehensive Filtration Solutions</h2>
+      <div class="solutions-grid">
+        <div class="solution-card">
+          <div class="solution-bg" style="background-image: url('/Company-website/images/Background-img/Media.png')"></div>
+          <div class="solution-overlay">
+            <h3>Filter Media</h3>
+            <p>High-performance materials for all filtration needs</p>
+          </div>
+        </div>
+        <div class="solution-card">
+          <div class="solution-bg" style="background-image: url('/Company-website/images/Background-img/Filters.png')"></div>
+          <div class="solution-overlay">
+            <h3>Cartridge Filters</h3>
+            <p>Precision-engineered ceramic and carbon filters</p>
+          </div>
+        </div>
+        <div class="solution-card">
+          <div class="solution-bg" style="background-image: url('/Company-website/images/Background-img/Carbon.png')"></div>
+          <div class="solution-overlay">
+            <h3>Activated Carbon</h3>
+            <p>Superior adsorption for purification</p>
+          </div>
+        </div>
+        <div class="solution-card">
+          <div class="solution-bg" style="background-image: url('/Company-website/images/Background-img/silica.png')"></div>
+          <div class="solution-overlay">
+            <h3>Silica Sand</h3>
+            <p>High-purity filtration media</p>
+          </div>
+        </div>
+        <div class="solution-card">
+          <div class="solution-bg" style="background-image: url('/Company-website/images/Background-img/Plant.png')"></div>
+          <div class="solution-overlay">
+            <h3>Plants and Machinery</h3>
+            <p>Complete system components</p>
+          </div>
+        </div>
+        <div class="solution-card">
+          <div class="solution-bg" style="background-image: url('/Company-website/images/Background-img/parts.png')"></div>
+          <div class="solution-overlay">
+            <h3>Spare Parts</h3>
+            <p>Genuine replacements for all systems</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">10+</div>
+          <div class="stat-label">Countries Served</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">10K+</div>
+          <div class="stat-label">Satifactory Coustomers</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">1000+</div>
+          <div class="stat-label">Industrial Clients</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">10</div>
+          <div class="stat-label">Years of Expertise</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="about-cta">
+    <div class="about-cta-bg"></div>
+    <div class="about-cta-overlay"></div>
+    <div class="container">
+      <div class="about-cta-content">
+        <h2>Partner With R S Trading for Clean Water Solutions</h2>
+        <p>Reach out to us for custom solutions and bulk requirements.</p>
+        <a href="#contact" class="btn-primary">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Shop Links</h3>
+          <!-- Will be populated by JavaScript -->
+        </div>
+        <div class="footer-section">
+          <h3>Categories</h3>
+          <!-- Will be populated by JavaScript -->
+        </div>
+        <div class="footer-section">
+          <h3>Contact Info</h3>
+          <!-- Will be populated by JavaScript -->
+        </div>
+        <div class="footer-section">
+          <h3>Stay Connected</h3>
+          <p style="color: var(--text-muted); margin-bottom: 20px;">Subscribe to our newsletter for the latest products and offers.</p>
+          <div class="newsletter">
+            <input type="email" placeholder="Enter your email">
+            <button class="btn-primary">Subscribe</button>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <!-- Will be populated by JavaScript -->
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="../js/main.js"></script>
+  <script src="../js/about.js"></script>
+</body>
+</html>
