@@ -92,7 +92,7 @@ function initFooter() {
     const footerContent = document.querySelector('.footer-content');
     if (!footerContent) return;
     const pagePath = window.location.pathname;
-    const linkBasePath = pagePath.includes('/html/') ? './' : '../html/';
+    const linkBasePath = pagePath.includes('/html/') ? './' : './html/';
     const sections = footerContent.querySelectorAll('.footer-section');
     if (sections[0] && footerData.shopLinks) {
         sections[0].innerHTML = '<h3>Shop Links</h3>' + footerData.shopLinks.map(link => `<a href="${link.link}">${link.name}</a>`).join('');
