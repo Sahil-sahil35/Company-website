@@ -1148,12 +1148,46 @@ body {
     gap: 20px;
 }
 
+
 /* --- Reusable Card Grid Layout --- */
 .card-grid {
   display: grid;
   /* This is the key change: creates columns of a set size, but no larger. */
   grid-template-columns: repeat(auto-fit, minmax(300px, 350px));
   gap: 30px;
+}
+
+/* --- Loading Spinner --- */
+.loader-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px;
+    min-height: 300px; /* Ensures it's visible even on an empty page */
+    text-align: center;
+    color: var(--text-muted);
+    width: 100%;
+    grid-column: 1 / -1; /* Makes it span the full grid width */
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid var(--glass-border);
+    border-top-color: var(--accent-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 @media (max-width: 576px) {
