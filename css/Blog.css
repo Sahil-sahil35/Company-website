@@ -63,8 +63,6 @@
 }
 
 .featured-card {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
   gap: 40px;
   background: var(--bg-secondary);
   border: 1px solid var(--glass-border);
