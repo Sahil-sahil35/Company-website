@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
         featuredContainer.innerHTML = `
             <div class="featured-card">
               <div class="featured-image">
-                <img src="${article.imageUrl}" alt="${article.title}" loading="eager">
+                <img src="${article.imageUrl}" alt="${article.title}" loading="lazy">
               </div>
               <div class="featured-content">
                 <span class="category-tag">${article.category}</span>

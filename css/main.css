@@ -1,3 +1,14 @@
+/* --- Accessibility Focus Styles --- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px var(--shadow-light);
+}
+
 :root {
     --bg-primary: #0a0a0a;
     --bg-secondary: #1a1a1a;
@@ -1431,4 +1442,24 @@ body {
     .header-content {
         padding: 0 15px;
     }
+}
+
+#backToTopBtn {
+  display: none; /* Hidden by default */
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100;
+  border: none;
+  outline: none;
+  background-color: var(--accent-primary);
+  color: var(--bg-primary);
+  cursor: pointer;
+  padding: 0;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 20px;
+  box-shadow: 0 4px 12px var(--shadow-dark);
+  transition: opacity 0.3s, visibility 0.3s;
 }

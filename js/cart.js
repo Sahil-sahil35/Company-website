@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
       row.innerHTML = `
         <div class="cart-item-left">
           <label class="item-select checkbox" aria-label="Select item"><input type="checkbox" class="row-select" data-id="${item.id}"/></label>
-          <img class="item-thumb" src="${item.thumbnail}" alt="${item.name}">
+          <img class="item-thumb" src="${item.thumbnail}" alt="${item.name}" loading="lazy">
           <div>
             <h3 class="item-title"><a href="./product.html?id=${item.id}">${item.name}</a></h3>
             <div class="item-specs">${(item.specs || []).map(s => `<span class="chip">${s}</span>`).join('')}</div>

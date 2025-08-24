@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', function() {
             productCard.className = 'product-card';
             productCard.innerHTML = `
                 <div class="product-image">
-                    <img src="${product.images[0]}" alt="${product.name}">
+                    <img src="${product.images[0]}" alt="${product.name}" loading="lazy">
                 </div>
                 <div class="product-content">
                     <h3 class="product-name">${product.name}</h3>
