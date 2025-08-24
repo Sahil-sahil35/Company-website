@@ -1,0 +1,165 @@
+/* Service Page Styles - Adapted from Blog.css */
+
+/* Hero Section */
+.service-hero {
+  position: relative;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 60px;
+}
+
+.service-hero-bg {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: url("../images/Background-img/hero-bg.png") center/cover;
+  z-index: -2;
+  opacity: 0.8;
+}
+
+.service-hero-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(135deg, rgba(10, 10, 10, 0.9) 0%, rgba(26, 26, 26, 0.7) 100%);
+  z-index: -1;
+}
+
+.service-hero-content {
+  text-align: center;
+  max-width: 800px;
+  padding: 0 20px;
+  z-index: 1;
+}
+
+.service-title {
+  font-family: "Playfair Display", serif;
+  font-weight: 800;
+  font-size: clamp(32px, 5vw, 56px);
+  color: var(--text-primary);
+  text-shadow: 0 0 24px var(--shadow-light);
+  margin-bottom: 16px;
+}
+
+.service-subtitle {
+  font-size: clamp(16px, 2vw, 20px);
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Main Content & Controls */
+.service-content {
+  padding: 60px 0;
+  background: var(--bg-primary);
+}
+
+.service-controls {
+  display: flex;
+  justify-content: center; /* Center the search bar */
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+/* Service Grid */
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  margin-bottom: 60px;
+}
+
+.service-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px var(--shadow-dark);
+  display: flex;
+  flex-direction: column;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px var(--shadow-dark);
+  border-color: rgba(230, 184, 0, 0.3);
+}
+
+.service-card-image img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.service-card:hover .service-card-image img {
+  transform: scale(1.05);
+}
+
+.service-card-content {
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Allows button to stick to the bottom */
+}
+
+.service-card h3 {
+  font-size: 20px;
+  margin-top: 0;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.service-excerpt {
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.service-contact-btn {
+  margin-top: auto; /* Pushes button to the bottom */
+}
+
+/* CTA Section */
+.service-cta {
+  position: relative;
+  padding: 80px 0;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.service-cta-bg {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: url("../images/Background-img/hero-bg.png") center/cover;
+  z-index: -2;
+}
+
+.service-cta-overlay {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(135deg, rgba(10, 10, 10, 0.8) 0%, rgba(26, 26, 26, 0.6) 100%);
+  z-index: -1;
+}
+
+.service-cta-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.service-cta h2 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(28px, 4vw, 42px);
+  margin-bottom: 20px;
+  color: var(--text-primary);
+}
+
+.service-cta p {
+  font-size: 18px;
+  color: var(--text-muted);
+  margin-bottom: 30px;
+}

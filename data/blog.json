@@ -1,0 +1,125 @@
+{
+  "articles": [
+    {
+      "id": "blog-001",
+      "featured": true,
+      "imageUrl": "../images/blog/featured-article.jpg",
+      "category": "Filter Media",
+      "title": "How to Choose the Right Water Filter Media for Your Needs",
+      "excerpt": "A comprehensive guide to selecting the optimal filtration media based on water quality, flow rate, and specific contaminants you need to remove.",
+      "date": "June 15, 2023",
+      "readTime": "8 min read",
+      "articleUrl": "./article.html"
+    },
+    {
+      "id": "blog-002",
+      "featured": false,
+      "imageUrl": "../images/blog/article-1.jpg",
+      "category": "Filter Media",
+      "title": "Activated Carbon: Types and Applications",
+      "excerpt": "Explore the different types of activated carbon and their specific applications in water purification systems.",
+      "date": "May 22, 2023",
+      "readTime": "6 min read",
+      "articleUrl": "./article.html"
+    },
+    {
+      "id": "blog-003",
+      "featured": false,
+      "imageUrl": "../images/blog/article-2.jpg",
+      "category": "Silica Sand",
+      "title": "The Science Behind Silica Sand in Filtration",
+      "excerpt": "Understanding how silica sand works as a filtration medium and why it's essential for water treatment systems.",
+      "date": "April 18, 2023",
+      "readTime": "5 min read",
+      "articleUrl": "./article.html"
+    },
+    {
+      "id": "blog-004",
+      "featured": false,
+      "imageUrl": "../images/blog/article-3.jpg",
+      "category": "Candles",
+      "title": "Top 5 Signs You Need to Replace Your Filter Candle",
+      "excerpt": "Learn to recognize the warning signs that indicate it's time to replace your filter candle for optimal performance.",
+      "date": "March 12, 2023",
+      "readTime": "4 min read",
+      "articleUrl": "./article.html"
+    },
+    {
+      "id": "blog-005",
+      "featured": false,
+      "imageUrl": "../images/blog/article-4.jpg",
+      "category": "Industrial",
+      "title": "Industrial Water Filtration: Best Practices",
+      "excerpt": "Key considerations and best practices for implementing effective water filtration in industrial settings.",
+      "date": "February 28, 2023",
+      "readTime": "7 min read",
+      "articleUrl": "./article.html"
+    },
+    {
+      "id": "blog-006",
+      "featured": false,
+      "imageUrl": "../images/blog/article-5.jpg",
+      "category": "Carbon",
+      "title": "Coconut Shell vs. Coal-Based Activated Carbon",
+      "excerpt": "A comparative analysis of coconut shell and coal-based activated carbon for water filtration applications.",
+      "date": "January 15, 2023",
+      "readTime": "5 min read",
+      "articleUrl": "./article.html"
+    },
+    {
+      "id": "blog-007",
+      "featured": false,
+      "imageUrl": "../images/blog/article-6.jpg",
+      "category": "Filter Media",
+      "title": "Water Quality Testing: What You Need to Know",
+      "excerpt": "Essential water quality parameters to test for and how to interpret the results for filtration system selection.",
+      "date": "December 5, 2022",
+      "readTime": "8 min read",
+      "articleUrl": "./article.html"
+    },
+    {
+      "id": "blog-008",
+      "featured": false,
+      "imageUrl": "../images/blog/article-5.jpg",
+      "category": "Carbon",
+      "title": "Coconut Shell vs. Coal-Based Activated Carbon",
+      "excerpt": "A comparative analysis of coconut shell and coal-based activated carbon for water filtration applications.",
+      "date": "January 15, 2023",
+      "readTime": "5 min read",
+      "articleUrl": "./article.html"
+    },
+        {
+      "id": "blog-009",
+      "featured": false,
+      "imageUrl": "../images/blog/article-5.jpg",
+      "category": "Carbon",
+      "title": "Coconut Shell vs. Coal-Based Activated Carbon",
+      "excerpt": "A comparative analysis of coconut shell and coal-based activated carbon for water filtration applications.",
+      "date": "January 15, 2023",
+      "readTime": "5 min read",
+      "articleUrl": "./article.html"
+    },
+        {
+      "id": "blog-010",
+      "featured": false,
+      "imageUrl": "../images/blog/article-5.jpg",
+      "category": "Carbon",
+      "title": "Coconut Shell vs. Coal-Based Activated Carbon",
+      "excerpt": "A comparative analysis of coconut shell and coal-based activated carbon for water filtration applications.",
+      "date": "January 15, 2023",
+      "readTime": "5 min read",
+      "articleUrl": "./article.html"
+    },
+        {
+      "id": "blog-011",
+      "featured": false,
+      "imageUrl": "../images/blog/article-5.jpg",
+      "category": "Carbon",
+      "title": "Coconut Shell vs. Coal-Based Activated Carbon",
+      "excerpt": "A comparative analysis of coconut shell and coal-based activated carbon for water filtration applications.",
+      "date": "January 15, 2023",
+      "readTime": "5 min read",
+      "articleUrl": "./article.html"
+    }
+  ]
+}

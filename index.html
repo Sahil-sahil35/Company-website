@@ -24,9 +24,10 @@
                         <!-- Populated by JavaScript -->
                     </div>
                 </div>
+                <a href="./services.html">Services</a>
                 <a href="#blog">blog</a>
                 <a href="./html/about.html">About</a>
-                <a href="#contact">Contact</a>
+                <a href="#" class="js-contact-modal-trigger">Contact</a>
             </nav>
 
             <!-- Search Modal -->
@@ -69,9 +70,10 @@
                     <!-- Populated by JavaScript -->
                 </div>
             </div>
+        <a href="./services.html">Services</a>
         <a href="#blog">blog</a>
         <a href="./html/about.html">About</a>
-        <a href="#contact">Contact</a>
+        <a href="#" class="js-contact-modal-trigger">Contact</a>
     </div>
 
     <!-- Hero Section -->
@@ -149,6 +151,43 @@
         </div>
     </section>
 
+    <div class="modal" id="contactModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Contact Us About: <span id="modalInquirySubject">Your Inquiry</span></h2>
+            <form id="contactForm" action="https://formspree.io/f/myzdgwqv" method="POST">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="modalName">Your Name</label>
+                        <input type="text" id="modalName" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="modalEmail">Email</label>
+                        <input type="email" id="modalEmail" name="email" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="modalPhone">Phone Number (Optional)</label>
+                    <input type="tel" id="modalPhone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="modalCategory">Inquiry Type</label>
+                    <select id="modalCategory" name="inquiry_type" required>
+                        <option value="" disabled selected>Select a category...</option>
+                        <option value="General Inquiry">General Inquiry</option>
+                        <option value="Bulk Order">Place a Bulk Order</option>
+                        <option value="Technical Support">Technical Support</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="modalMessage">Message</label>
+                    <textarea id="modalMessage" name="message" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn-solid">Send Message</button>
+            </form>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="footer" id="contact">
         <div class="container">
@@ -179,7 +218,6 @@
             </div>
         </div>
     </footer>
-
 
 
     <!-- Toast Notification -->

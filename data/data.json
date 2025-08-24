@@ -108,19 +108,19 @@
   ],
   "footer": {
     "shopLinks": [
+      {"name": "Home", "link": "#"},
+      {"name": "Shop", "link": "#"},
+      {"name": "Blog", "link": "#"},
+      {"name": "About", "link": "#"},
+      {"name": "Contact", "link": "#"}
+    ],
+    "categories": [
       {"name": "Filter Media", "link": "#"},
       {"name": "Cartridge Filter", "link": "#"},
       {"name": "Activated Carbon", "link": "#"},
       {"name": "Silica Sand", "link": "#"},
-      {"name": "Accessories", "link": "#"},
+      {"name": "plants and Machinery", "link": "#"},
       {"name": "Spare Parts", "link": "#"}
-    ],
-    "categories": [
-      {"name": "Home Filtration", "link": "#"},
-      {"name": "Commercial Systems", "link": "#"},
-      {"name": "Industrial Solutions", "link": "#"},
-      {"name": "Replacement Parts", "link": "#"},
-      {"name": "Maintenance Kits", "link": "#"}
     ]
   }
 }

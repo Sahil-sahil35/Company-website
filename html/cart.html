@@ -26,9 +26,10 @@
           <a href="#categories">Categories</a>
           <div class="desktop-categories-dropdown"><!-- populated --></div>
         </div>
+        <a href="./services.html">Services</a>
         <a href="#blog">blog</a>
         <a href="./about.html">About</a>
-        <a href="#contact">Contact</a>
+        <a href="#" class="js-contact-modal-trigger">Contact</a>
       </nav>
 
       <!-- Search Modal -->
@@ -64,9 +65,10 @@
       <a href="javascript:void(0)" class="mobile-category-toggle">Categories</a>
       <div class="mobile-categories-dropdown"><!-- populated --></div>
     </div>
+    <a href="./services.html">Services</a>
     <a href="#blog">blog</a>
     <a href="./about.html">About</a>
-    <a href="#contact">Contact</a>
+    <a href="#" class="js-contact-modal-trigger">Contact</a>
   </div>
 
   <!-- Cart Intro Bar -->
@@ -106,60 +108,60 @@
 
       <!-- Form (visible when selection exists) -->
       <form id="inquiryForm" class="inquiry-form" novalidate aria-hidden="true">
-        <div class="form-group">
-          <label for="selectedProducts">Selected Products</label>
-          <textarea id="selectedProducts" readonly rows="3" aria-readonly="true"></textarea>
-        </div>
-
-        <div class="form-row">
           <div class="form-group">
-            <label for="fullName">Full Name</label>
-            <input id="fullName" name="fullName" type="text" required placeholder="Your full name" autocomplete="name"/>
+              <label for="selectedProducts">Selected Products</label>
+              <textarea id="selectedProducts" name="selected_products" readonly rows="3" aria-readonly="true"></textarea>
           </div>
+
+          <div class="form-row">
+              <div class="form-group">
+                  <label for="fullName">Full Name</label>
+                  <input id="fullName" name="name" type="text" required placeholder="Your full name" autocomplete="name"/>
+              </div>
+              <div class="form-group">
+                  <label for="email">Email</label>
+                  <input id="email" name="email" type="email" required placeholder="you@example.com" autocomplete="email"/>
+              </div>
+          </div>
+
+          <div class="form-row">
+              <div class="form-group">
+                  <label for="phone">Phone Number</label>
+                  <input id="phone" name="phone" type="tel" required placeholder="+91-XXXXXXXXXX" autocomplete="tel"/>
+              </div>
+              <div class="form-group">
+                  <label for="company">Company/Organization (optional)</label>
+                  <input id="company" name="company" type="text" placeholder="Your organization (optional)"/>
+              </div>
+          </div>
+
           <div class="form-group">
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" required placeholder="you@example.com" autocomplete="email"/>
+              <label for="inquiryType">Inquiry Type</label>
+              <select id="inquiryType" name="inquiry_type" required>
+                  <option value="" disabled selected>Select inquiry type</option>
+                  <option value="General Query">General Query</option>
+                  <option value="Bulk Order">Bulk Order</option>
+                  <option value="Custom Requirement">Custom Requirement</option>
+              </select>
           </div>
-        </div>
 
-        <div class="form-row">
           <div class="form-group">
-            <label for="phone">Phone Number</label>
-            <input id="phone" name="phone" type="tel" required placeholder="+91-XXXXXXXXXX" autocomplete="tel"/>
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="4" placeholder="e.g., Need pricing for 20 units with shipping to Mumbai" required></textarea>
           </div>
-          <div class="form-group">
-            <label for="company">Company/Organization (optional)</label>
-            <input id="company" name="company" type="text" placeholder="Your organization (optional)"/>
-          </div>
-        </div>
 
-        <div class="form-group">
-          <label for="inquiryType">Inquiry Type</label>
-          <select id="inquiryType" name="inquiryType" required>
-            <option value="" disabled selected>Select inquiry type</option>
-            <option>General Query</option>
-            <option>Bulk Order</option>
-            <option>Custom Requirement</option>
-          </select>
-        </div>
+          <fieldset class="form-group">
+              <legend>Preferred Contact Method</legend>
+              <label class="radio"><input type="radio" name="contact_method" value="Email" required> Email</label>
+              <label class="radio"><input type="radio" name="contact_method" value="Phone" required> Phone</label>
+          </fieldset>
 
-        <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="4" placeholder="e.g., Need pricing for 20 units with shipping to Mumbai" required></textarea>
-        </div>
+          <label class="checkbox consent">
+              <input type="checkbox" id="consent" name="consent" value="agreed" required>
+              <span>I agree to be contacted regarding my inquiry.</span>
+          </label>
 
-        <fieldset class="form-group">
-          <legend>Preferred Contact Method</legend>
-          <label class="radio"><input type="radio" name="contactMethod" value="Email" required> Email</label>
-          <label class="radio"><input type="radio" name="contactMethod" value="Phone" required> Phone</label>
-        </fieldset>
-
-        <label class="checkbox consent">
-          <input type="checkbox" id="consent" required>
-          <span>I agree to be contacted regarding my inquiry.</span>
-        </label>
-
-        <button type="submit" class="btn-solid" id="submitInquiry">Send Inquiry</button>
+          <button type="submit" class="btn-solid" id="submitInquiry">Send Inquiry</button>
       </form>
 
       <!-- Summary -->
@@ -179,6 +181,44 @@
 
   <!-- Toasts -->
   <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+
+
+    <div class="modal" id="contactModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Contact Us About: <span id="modalInquirySubject">Your Inquiry</span></h2>
+            <form id="contactForm" action="https://formspree.io/f/myzdgwqv" method="POST">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="modalName">Your Name</label>
+                        <input type="text" id="modalName" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="modalEmail">Email</label>
+                        <input type="email" id="modalEmail" name="email" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="modalPhone">Phone Number (Optional)</label>
+                    <input type="tel" id="modalPhone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="modalCategory">Inquiry Type</label>
+                    <select id="modalCategory" name="inquiry_type" required>
+                        <option value="" disabled selected>Select a category...</option>
+                        <option value="General Inquiry">General Inquiry</option>
+                        <option value="Bulk Order">Place a Bulk Order</option>
+                        <option value="Technical Support">Technical Support</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="modalMessage">Message</label>
+                    <textarea id="modalMessage" name="message" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn-solid">Send Message</button>
+            </form>
+        </div>
+    </div>
 
   <!-- Footer -->
   <footer class="footer" id="contact">
@@ -210,6 +250,8 @@
           </div>
       </div>
   </footer>
+
+  
   
   <!-- Scripts -->
   <script src="../js/main.js"></script>

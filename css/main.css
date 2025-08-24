@@ -995,6 +995,40 @@ body {
   padding-bottom: 8px;
 }
 
+/* Add these new rules to the end of main.css */
+
+.nav-dropdown .desktop-categories-dropdown > .has-secondary-dropdown {
+    position: relative;
+}
+
+.nav-dropdown .secondary-dropdown {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 200px;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    padding: 15px;
+    display: none;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 110;
+    box-shadow: 10px 10px 30px var(--shadow-dark);
+}
+
+.nav-dropdown .has-secondary-dropdown:hover > .secondary-dropdown {
+    display: flex;
+}
+
+.secondary-dropdown a {
+    border-bottom: 1px solid var(--glass-border);
+    padding-bottom: 5px;
+}
+
+.secondary-dropdown a:last-child {
+    border-bottom: none;
+}
 .gold-underline::after {
   content: '';
   position: absolute;
@@ -1014,6 +1048,57 @@ body {
 .timeline-item.show {
   opacity: 1;
   transform: translateY(0);
+}
+
+.blog-card {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Responsive additions for blog */
+@media (max-width: 1024px) {
+  .blog-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .featured-card {
+    grid-template-columns: 1fr;
+  }
+  
+  .blog-controls {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .search-container {
+    width: 100%;
+  }
+  
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .featured-content {
+    padding: 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter-chips {
+    gap: 8px;
+  }
+  
+  .filter-chip {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+  
+  .pagination {
+    flex-wrap: wrap;
+  }
 }
 
 /* Responsive additions */
