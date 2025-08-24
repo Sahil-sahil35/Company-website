@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Set shop hero title
         const heroTitle = document.querySelector('.shop-hero h1');
         const heroSubtitle = document.querySelector('.shop-hero-subtitle');
-        if (heroTitle) heroTitle.textContent = siteData.title + ' Products';
+        if (heroTitle) heroTitle.textContent = siteData.title;
         if (heroSubtitle) heroSubtitle.textContent = siteData.description;
 
         // Initialize category filters
