@@ -138,6 +138,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 documentsList.innerHTML = '<p>No documents available</p>';
             }
         }
+
+        const tagsContainer = document.getElementById('productTags');
+        if (tagsContainer && product.tags && product.tags.length > 0) {
+            tagsContainer.innerHTML = ''; // Clear it first
+            product.tags.forEach(tag => {
+                const tagLink = document.createElement('a');
+                tagLink.className = 'filter-chip'; // Reuse a nice style
+                tagLink.href = `./tag.html?tag=${encodeURIComponent(tag)}`;
+                tagLink.textContent = tag;
+                tagsContainer.appendChild(tagLink);
+            });
+        }
     }
 
     // --- THIS IS THE RESTORED FUNCTION FOR SIMILAR PRODUCTS ---

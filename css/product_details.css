@@ -372,3 +372,30 @@
 
 
 }
+
+
+/* --- Product Tags Styles --- */
+.product-tags-container {
+    margin: 30px 0;
+}
+.product-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.product-tags .filter-chip {
+    text-decoration: none;
+    background: var(--bg-secondary);
+    border: 1px solid var(--glass-border);
+    color: var(--text-secondary);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.product-tags .filter-chip:hover {
+    background: var(--accent-primary);
+    color: var(--bg-primary);
+    border-color: var(--accent-primary);
+}

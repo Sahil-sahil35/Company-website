@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tagged Content — R S Trading Company</title>
+    <link href="../css/main.css" rel="stylesheet">
+    <link href="../css/listing.css" rel="stylesheet">
+    <link href="../css/Blog.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="header-content">
+        <a href="../index.html" class="logo">R S Tranding Company </a>
+
+        <nav class="nav">
+            <a href="../index.html">Home</a>
+            <a href="./listing.html">Shop</a>
+            <div class="nav-dropdown">
+            <a href="#categories">Categories</a>
+            <div class="desktop-categories-dropdown"><!-- populated --></div>
+            </div>
+            <a href="./services.html">Services</a>
+            <a href="./Blog.html">Blog</a>
+            <a href="./about.html">About</a>
+            <a href="#" class="js-contact-modal-trigger">Contact</a>
+        </nav>
+
+        <!-- Search Modal -->
+        <div class="search-modal" id="searchModal">
+            <div class="search-modal-content">
+            <span class="close-search">&times;</span>
+            <input type="text" id="searchInput" placeholder="Search products...">
+            <div id="searchResults"></div>
+            </div>
+        </div>
+
+        <div class="header-icons">
+            <button class="icon-btn search-btn">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                </svg>
+            </button>
+            <button class="icon-btn cart-btn" aria-label="Cart">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l3-8H6.4M7 13l-2 7h12m-8 0a2 2 0 100 4 2 2 0 000-4zm8 2a2 2 0 100 4 2 2 0 000-4z"/>
+            </svg>
+            <span class="cart-count">0</span>
+            </button>
+            <button class="icon-btn mobile-menu" aria-label="Menu">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+            </button>
+        </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <a href="../index.html">Home</a>
+        <a href="./listing.html">Shop</a>
+        <div class="mobile-dropdown">
+        <a href="javascript:void(0)" class="mobile-category-toggle">Categories</a>
+        <div class="mobile-categories-dropdown"><!-- populated --></div>
+        </div>
+        <a href="./services.html">Services</a>
+        <a href="./Blog.html">Blog</a>
+        <a href="./about.html">About</a>
+        <a href="#" class="js-contact-modal-trigger">Contact</a>
+    </div>
+
+    <section class="shop-hero">
+        <div class="shop-hero-bg"></div>
+        <div class="shop-hero-overlay"></div>
+        <div class="shop-hero-content">
+            <h1 id="tag-title">Results for...</h1>
+            <p class="shop-hero-subtitle">Products, articles, and services related to this topic.</p>
+            <div class="breadcrumbs">
+                <a href="../index.html">Home</a>
+                <span class="separator">/</span>
+                <span>Tags</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="shop-container" style="display: block;"> <div id="tag-results-grid" class="card-grid" style="padding-top: 40px;">
+                <div class="loader-container">
+                    <div class="loader"></div>
+                    <p>Loading content...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="contactModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Contact Us About: <span id="modalInquirySubject">Your Inquiry</span></h2>
+            <form id="contactForm" action="https://formspree.io/f/myzdgwqv" method="POST">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="modalName">Your Name</label>
+                        <input type="text" id="modalName" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="modalEmail">Email</label>
+                        <input type="email" id="modalEmail" name="email" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="modalPhone">Phone Number (Optional)</label>
+                    <input type="tel" id="modalPhone" name="phone">
+                </div>
+                <div class="form-group">
+                    <label for="modalCategory">Inquiry Type</label>
+                    <select id="modalCategory" name="inquiry_type" required>
+                        <option value="" disabled selected>Select a category...</option>
+                        <option value="General Inquiry">General Inquiry</option>
+                        <option value="Bulk Order">Place a Bulk Order</option>
+                        <option value="Technical Support">Technical Support</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="modalMessage">Message</label>
+                    <textarea id="modalMessage" name="message" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn-solid">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <button id="backToTopBtn" title="Go to top">▲</button>
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Shop Links</h3>
+                    <!-- Shop links will be populated by JavaScript -->
+                </div>
+                <div class="footer-section">
+                    <h3>Categories</h3>
+                    <!-- Categories will be populated by JavaScript -->
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <!-- Contact info will be populated by JavaScript -->
+                </div>
+                <div class="footer-section">
+                    <h3>Stay Connected</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 20px;">Subscribe to our newsletter for the latest products and offers.</p>
+                    <div class="newsletter">
+                        <input type="email" placeholder="Enter your email">
+                        <button class="btn-primary">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <!-- Footer text will be populated by JavaScript -->
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/tag.js"></script>
+</body>
+</html>
