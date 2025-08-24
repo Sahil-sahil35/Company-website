@@ -23,7 +23,6 @@ function closeContactModal() {
 
 // --- SHARED FUNCTIONALITY ---
 async function fetchGlobalData(basePath = './') {
-    // This function ensures we only fetch the data once
     if (allSiteProducts.length > 0 && Object.keys(siteData).length > 0) return;
     try {
         const [productsResponse, siteDataResponse] = await Promise.all([
@@ -39,7 +38,6 @@ async function fetchGlobalData(basePath = './') {
 }
 
 function createCategoryDropdown() {
-    // This function depends on 'siteData' and 'allSiteProducts'
     if (!siteData.categories || !allSiteProducts) {
         console.error("Category data not available to build dropdown.");
         return;
@@ -54,7 +52,12 @@ function createCategoryDropdown() {
     const generateLinks = (isMobile = false) => {
         let html = '';
         const pagePath = window.location.pathname;
-        const linkBasePath = pagePath.includes('/html/') ? './' : '../html/';
+        const isInnerPage = pagePath.includes('/html/');
+        
+        // *** THE FIX IS ON THIS LINE ***
+        // It should be './html/' for the homepage, not '../html/'.
+        const linkBasePath = isInnerPage ? './' : './html/';
+
         categories.forEach(category => {
             const categoryUrl = `${linkBasePath}category.html?category=${encodeURIComponent(category)}`;
             if (category === 'plants and Machinery' && subcategories.length > 0 && !isMobile) {
@@ -74,7 +77,6 @@ function createCategoryDropdown() {
     
     const mobileCategoryToggle = document.querySelector('.mobile-category-toggle');
     if (mobileCategoryToggle && mobileDropdown) {
-        // Check if a listener already exists before adding a new one
         if (!mobileCategoryToggle.dataset.listenerAttached) {
             mobileCategoryToggle.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -145,16 +147,12 @@ document.addEventListener('DOMContentLoaded', async function() {
     const isInnerPage = pagePath.includes('/html/');
     const basePath = isInnerPage ? '../' : './';
 
-    // --- EXECUTION ORDER ---
-    // 1. Fetch all required data first.
     await fetchGlobalData(basePath);
     
-    // 2. Now that data is ready, build the components that depend on it.
     createCategoryDropdown();
     initFooter();
 
-    // 3. Initialize all other event listeners.
-    // Global Modal
+    // Initialize all other event listeners.
     const contactModalTriggers = document.querySelectorAll('.js-contact-modal-trigger');
     contactModalTriggers.forEach(trigger => {
         trigger.addEventListener('click', (e) => { e.preventDefault(); openContactModal(); });
@@ -173,7 +171,6 @@ document.addEventListener('DOMContentLoaded', async function() {
         });
     }
     
-    // Header, Mobile Nav, and Cart Icon
     const header = document.getElementById('header');
     const mobileMenuButton = document.querySelector('.mobile-menu');
     const mobileNav = document.querySelector('.mobile-nav');
@@ -199,7 +196,6 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
     if (cartCountBadge) cartCountBadge.textContent = sessionStorage.getItem('cartCount') || '0';
 
-    // Search
     const searchModal = document.getElementById('searchModal');
     const searchInput = document.getElementById('searchInput');
     const searchResults = document.getElementById('searchResults');
