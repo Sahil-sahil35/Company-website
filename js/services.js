@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const serviceGrid = document.getElementById('serviceGrid');
     const paginationContainer = document.getElementById('servicePagination');
     const searchInput = document.getElementById('serviceSearch');
-
+    
     async function loadServices() {
         try {
             const response = await fetch('../data/services.json');
@@ -22,13 +22,28 @@ document.addEventListener('DOMContentLoaded', function() {
     function renderServices(servicesToRender) {
         if (!serviceGrid) return;
         serviceGrid.innerHTML = '';
+
         if (servicesToRender.length === 0) {
             serviceGrid.innerHTML = '<p>No services found matching your criteria.</p>';
             return;
         }
+
         servicesToRender.forEach(service => {
             const card = document.createElement('article');
             card.className = 'service-card';
+            
+            // Generate HTML for tags if they exist
+            let tagsHTML = '';
+            if (service.tags && service.tags.length > 0) {
+                tagsHTML = `
+                    <div class="product-tags" style="margin-top: auto; padding-top: 15px;">
+                        ${service.tags.map(tag => 
+                            `<a href="./tag.html?tag=${encodeURIComponent(tag)}" class="filter-chip">${tag}</a>`
+                        ).join('')}
+                    </div>
+                `;
+            }
+
             card.innerHTML = `
                 <div class="service-card-image">
                   <img src="${service.imageUrl}" alt="${service.title}" loading="lazy">
@@ -37,6 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   <h3>${service.title}</h3>
                   <p class="service-excerpt">${service.excerpt}</p>
                   <button class="btn-outline service-contact-btn" data-id="${service.id}">Inquire Now</button>
+                  ${tagsHTML}
                 </div>
             `;
             serviceGrid.appendChild(card);
@@ -46,12 +62,11 @@ document.addEventListener('DOMContentLoaded', function() {
             button.addEventListener('click', handleContactClick);
         });
     }
-    
+
     function handleContactClick(event) {
         const serviceId = event.target.dataset.id;
         const service = allServices.find(s => s.id === serviceId);
         if (service) {
-            // Use the global function from main.js
             openContactModal(service.title);
         }
     }
@@ -70,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
             paginationContainer.appendChild(pageLink);
         }
     }
-    
+
     function filterAndRender() {
         const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
         let filteredServices = allServices;
@@ -93,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
             filterAndRender();
         });
     }
-    
+
     if (paginationContainer) {
         paginationContainer.addEventListener('click', (e) => {
             e.preventDefault();

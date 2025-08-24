@@ -35,61 +35,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Check on scroll
     window.addEventListener('scroll', checkTimeline);
 
-    // Initialize footer
-    function initFooter(footer, contact) {
-        const footerContent = document.querySelector('.footer-content');
-        if (!footerContent) return;
-        
-        // Clear existing footer sections except newsletter
-        const sections = footerContent.querySelectorAll('.footer-section');
-        sections.forEach((section, index) => {
-            if (index < 3) { // Don't clear the newsletter section
-                section.innerHTML = '';
-            }
-        });
-        
-        // Update contact info
-        if (sections[2] && contact) {
-            sections[2].innerHTML = `
-                <h3>Contact Info</h3>
-                <a href="mailto:${contact.email}">${contact.email}</a>
-                <a href="tel:${contact.phone}">${contact.phone}</a>
-                <a href="#">${contact.address}</a>
-                <a href="#">${contact.hours}</a>
-            `;
-        }
-        
-        // Update shop links
-        if (sections[0] && footer && footer.shopLinks) {
-            sections[0].innerHTML = '<h3>Shop Links</h3>';
-            footer.shopLinks.forEach(link => {
-                const a = document.createElement('a');
-                a.href = link.url || link.link || '#';
-                a.textContent = link.name || link.text;
-                sections[0].appendChild(a);
-            });
-        }
-        
-        // Update categories
-        if (sections[1] && footer && footer.categories) {
-            sections[1].innerHTML = '<h3>Categories</h3>';
-            footer.categories.forEach(category => {
-                const a = document.createElement('a');
-                a.href = category.url || category.link || '#';
-                a.textContent = category.name;
-                sections[1].appendChild(a);
-            });
-        }
-        
-        // Update footer bottom text
-        const footerBottom = document.querySelector('.footer-bottom');
-        if (footerBottom) {
-            footerBottom.innerHTML = `
-                <p>&copy; ${new Date().getFullYear()} R S Tranding Company. All rights reserved. | Privacy Policy | Terms of Service</p>
-            `;
-        }
-    }
-
     // Initialize category dropdown
     function initCategoryDropdown() {
         fetch('../data/products.json')

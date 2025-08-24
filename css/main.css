@@ -158,6 +158,11 @@ body {
     background: rgba(10, 10, 10, 0.1);
     backdrop-filter: blur(5px);
 }
+.header-logo {
+  height: 40px;  /* This sets the display size */
+  width: auto;   /* This lets the width scale correctly */
+  display: block; /* Good practice for logo images */
+}
 
 .header.scrolled {
     background: rgba(10, 10, 10, 0.95);
@@ -193,6 +198,7 @@ body {
     transition: all 0.3s ease;
     position: relative;
     z-index: 10;
+    font-size: initial;
 }
 
 .logo:hover {

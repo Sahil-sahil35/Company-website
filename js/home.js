@@ -258,57 +258,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Initialize footer
-    function initFooter(footer, contact) {
-        const footerContent = document.querySelector('.footer-content');
-        if (!footerContent) return;
-        
-        // Clear existing footer sections
-        const sections = footerContent.querySelectorAll('.footer-section');
-        sections.forEach(section => {
-            if (!section.querySelector('.newsletter')) {
-                section.innerHTML = '';
-            }
-        });
-        
-        // Update shop links
-        const shopSection = sections[0];
-        if (shopSection) {
-            shopSection.innerHTML = '<h3>Shop Links</h3>';
-            footer.shopLinks.forEach(link => {
-                shopSection.innerHTML += `<a href="${link.link}">${link.name}</a>`;
-            });
-        }
-        
-        // Update categories
-        const categoriesSection = sections[1];
-        if (categoriesSection) {
-            categoriesSection.innerHTML = '<h3>Categories</h3>';
-            footer.categories.forEach(category => {
-                categoriesSection.innerHTML += `<a href="./html/category.html?category=${encodeURIComponent(category.name)}">${category.name}</a>`;
-            });
-        }
-        
-        // Update contact info
-        const contactSection = sections[2];
-        if (contactSection) {
-            contactSection.innerHTML = `
-                <h3>Contact Info</h3>
-                <a href="mailto:${contact.email}">${contact.email}</a>
-                <a href="tel:${contact.phone}">${contact.phone}</a>
-                <a href="#">${contact.address}</a>
-                <a href="#">${contact.hours}</a>
-            `;
-        }
-        
-        // Update footer bottom text
-        const footerBottom = document.querySelector('.footer-bottom');
-        if (footerBottom) {
-            footerBottom.innerHTML = `
-                <p>&copy; ${new Date().getFullYear()} R S Tranding Company. All rights reserved. | Privacy Policy | Terms of Service</p>
-            `;
-        }
-    }
+
 
     
     // Load cart count from sessionStorage

@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
         featuredContainer.innerHTML = `
             <div class="featured-card">
               <div class="featured-image">
-                <img src="${article.imageUrl}" alt="${article.title}" loading="lazy">
+                <img src="${article.imageUrl}" alt="${article.title}" loading="eager">
               </div>
               <div class="featured-content">
                 <span class="category-tag">${article.category}</span>
@@ -60,7 +60,19 @@ document.addEventListener('DOMContentLoaded', function() {
         articlesToRender.forEach(article => {
             const card = document.createElement('article');
             card.className = 'blog-card';
-            card.setAttribute('data-category', article.category);
+            
+            // Generate HTML for tags if they exist
+            let tagsHTML = '';
+            if (article.tags && article.tags.length > 0) {
+                tagsHTML = `
+                    <div class="product-tags" style="margin-top: 15px;">
+                        ${article.tags.map(tag => 
+                            `<a href="./tag.html?tag=${encodeURIComponent(tag)}" class="filter-chip">${tag}</a>`
+                        ).join('')}
+                    </div>
+                `;
+            }
+
             card.innerHTML = `
                 <div class="blog-card-image">
                   <img src="${article.imageUrl}" alt="${article.title}" loading="lazy">
@@ -74,6 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <span class="read-time">${article.readTime}</span>
                   </div>
                   <a href="${article.articleUrl}?id=${article.id}" class="read-more">Read More →</a>
+                  ${tagsHTML} 
                 </div>
             `;
             blogGrid.appendChild(card);
@@ -85,45 +98,37 @@ document.addEventListener('DOMContentLoaded', function() {
         paginationContainer.innerHTML = '';
         const totalPages = Math.ceil(totalArticles / articlesPerPage);
         if (totalPages <= 1) return;
-
         for (let i = 1; i <= totalPages; i++) {
             const pageLink = document.createElement('a');
             pageLink.href = '#';
             pageLink.textContent = i;
-            // Store the page number in a data attribute
             pageLink.dataset.page = i;
             pageLink.className = 'page-link' + (i === currentPage ? ' active' : '');
             paginationContainer.appendChild(pageLink);
         }
     }
-    
+
     function filterAndRender() {
         const activeChip = document.querySelector('.filter-chip.active');
         const category = activeChip ? activeChip.dataset.category : 'all';
         const searchTerm = searchInput ? searchInput.value.toLowerCase() : '';
-
         let filteredArticles = nonFeaturedArticles;
-
         if (category !== 'all') {
             filteredArticles = filteredArticles.filter(a => a.category === category);
         }
-
         if (searchTerm) {
             filteredArticles = filteredArticles.filter(a => 
                 a.title.toLowerCase().includes(searchTerm) ||
                 a.excerpt.toLowerCase().includes(searchTerm)
             );
         }
-        
         const startIndex = (currentPage - 1) * articlesPerPage;
         const endIndex = startIndex + articlesPerPage;
         const paginatedArticles = filteredArticles.slice(startIndex, endIndex);
-        
         renderArticles(paginatedArticles);
         renderPagination(filteredArticles.length, articlesPerPage, currentPage);
     }
 
-    // Event listeners for controls
     filterChips.forEach(chip => {
         chip.addEventListener('click', function() {
             filterChips.forEach(c => c.classList.remove('active'));
@@ -140,12 +145,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // *** PAGINATION FIX ***
-    // Use a single event listener on the container
     if (paginationContainer) {
         paginationContainer.addEventListener('click', (e) => {
             e.preventDefault();
-            // Check if a page link was clicked
             if (e.target.matches('.page-link')) {
                 const pageNum = parseInt(e.target.dataset.page, 10);
                 if (pageNum !== currentPage) {

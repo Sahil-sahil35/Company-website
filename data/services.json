@@ -4,43 +4,50 @@
       "id": "serv-001",
       "title": "Industrial Water Treatment Solutions",
       "excerpt": "Comprehensive solutions for large-scale industrial water purification, ensuring compliance and efficiency. We handle everything from system design to implementation.",
-      "imageUrl": "../images/Background-img/Plant.png"
+      "imageUrl": "../images/Background-img/Plant.png",
+      "tags": [""]
     },
     {
       "id": "serv-002",
       "title": "Commercial Filtration Systems",
       "excerpt": "High-performance filtration systems for businesses, restaurants, and offices. Ensure your customers and employees have access to the purest water.",
-      "imageUrl": "../images/Background-img/Filters.png"
+      "imageUrl": "../images/Background-img/Filters.png",
+      "tags": [""]
     },
     {
       "id": "serv-003",
       "title": "Residential Water Purification",
       "excerpt": "State-of-the-art RO and UV purification systems for your home. We provide installation, maintenance, and support for all our products.",
-      "imageUrl": "../images/Background-img/clean.png"
+      "imageUrl": "../images/Background-img/clean.png",
+      "tags": [""]
     },
     {
       "id": "serv-004",
       "title": "Bulk Filter Media Supply",
       "excerpt": "Reliable supply of high-quality filter media including activated carbon, silica sand, and anthracite for your existing filtration plants.",
-      "imageUrl": "../images/Background-img/Media.png"
+      "imageUrl": "../images/Background-img/Media.png",
+      "tags": [""]
     },
     {
       "id": "serv-005",
       "title": "System Maintenance & Support",
       "excerpt": "Our expert technicians provide annual maintenance contracts (AMC), on-call support, and genuine spare parts to keep your systems running smoothly.",
-      "imageUrl": "../images/Background-img/parts.png"
+      "imageUrl": "../images/Background-img/parts.png",
+      "tags": [""]
     },
     {
       "id": "serv-006",
       "title": "Water Quality Testing",
       "excerpt": "Professional water quality analysis to identify contaminants and recommend the most effective and economical treatment solution for your needs.",
-      "imageUrl": "../images/Gravel/Core-sand.png"
+      "imageUrl": "../images/Gravel/Core-sand.png",
+      "tags": [""]
     },
     {
       "id": "serv-007",
       "title": "Custom Filtration Plant Design",
       "excerpt": "We design and commission custom water treatment plants tailored to your specific requirements, from flow rate to contaminant removal.",
-      "imageUrl": "../images/Gravel/Filter-Media-Gravels.png"
+      "imageUrl": "../images/Gravel/Filter-Media-Gravels.png",
+      "tags": [""]
     }
   ]
 }

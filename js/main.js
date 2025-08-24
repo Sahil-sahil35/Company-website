@@ -134,7 +134,7 @@ function initFooter() {
 
     const footerBottom = document.querySelector('.footer-bottom');
     if (footerBottom) {
-        footerBottom.innerHTML = `<p>&copy; ${new Date().getFullYear()} R S Tranding Company. All rights reserved.</p>`;
+        footerBottom.innerHTML = `<p>&copy; ${new Date().getFullYear()} Styvonix Future Pvt. Ltd. All rights reserved.</p>`;
     }
 }
 
