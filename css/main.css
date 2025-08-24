@@ -1148,6 +1148,15 @@ body {
     gap: 20px;
 }
 
+/* --- Reusable Card Grid Layout --- */
+.card-grid {
+  display: grid;
+  /* This is the key change: creates columns of a set size, but no larger. */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 350px));
+  justify-content: center; /* Centers the whole group of cards */
+  gap: 30px;
+}
+
 @media (max-width: 576px) {
     .modal-content .form-row {
         grid-template-columns: 1fr;
