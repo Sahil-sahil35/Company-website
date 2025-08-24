@@ -108,11 +108,12 @@
   ],
   "footer": {
     "shopLinks": [
-      {"name": "Home", "link": "#"},
-      {"name": "Shop", "link": "#"},
-      {"name": "Blog", "link": "#"},
-      {"name": "About", "link": "#"},
-      {"name": "Contact", "link": "#"}
+      { "name": "Home", "link": "index.html" },
+      { "name": "Shop", "link": "html/listing.html" },
+      { "name": "Services", "link": "html/services.html" },
+      { "name": "Blog", "link": "html/blog.html" },
+      { "name": "About", "link": "html/about.html" },
+      { "name": "Contact", "link": "#", "isModalTrigger": true }
     ],
     "categories": [
       {"name": "Filter Media", "link": "#"},

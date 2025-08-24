@@ -93,18 +93,45 @@ function initFooter() {
     const { footer: footerData, site: { contact: contactData } } = siteData;
     const footerContent = document.querySelector('.footer-content');
     if (!footerContent) return;
+    
     const pagePath = window.location.pathname;
-    const linkBasePath = pagePath.includes('/html/') ? './' : './html/';
+    const isInnerPage = pagePath.includes('/html/');
+    const linkBasePath = isInnerPage ? '.' : './html';
+    
     const sections = footerContent.querySelectorAll('.footer-section');
+
+    // Updated Shop Links Logic
     if (sections[0] && footerData.shopLinks) {
-        sections[0].innerHTML = '<h3>Shop Links</h3>' + footerData.shopLinks.map(link => `<a href="${link.link}">${link.name}</a>`).join('');
+        sections[0].innerHTML = '<h3>Shop Links</h3>' + footerData.shopLinks.map(link => {
+            // If it's a modal trigger, create a special link
+            if (link.isModalTrigger) {
+                return `<a href="#" class="js-contact-modal-trigger">${link.name}</a>`;
+            }
+
+            let finalHref = '';
+            // If on an inner page, links to index.html need to go up one level
+            if (isInnerPage) {
+                finalHref = link.link === 'index.html' ? `../${link.link}` : link.link.replace('html/', './');
+            } else {
+            // If on the homepage, all links go into the html/ folder
+                finalHref = link.link;
+            }
+            return `<a href="${finalHref}">${link.name}</a>`;
+        }).join('');
     }
+
+    // Updated Categories Logic
     if (sections[1] && footerData.categories) {
-        sections[1].innerHTML = '<h3>Categories</h3>' + footerData.categories.map(cat => `<a href="${linkBasePath}category.html?category=${encodeURIComponent(cat.name)}">${cat.name}</a>`).join('');
+        sections[1].innerHTML = '<h3>Categories</h3>' + footerData.categories.map(cat => 
+            `<a href="${linkBasePath}/category.html?category=${encodeURIComponent(cat.name)}">${cat.name}</a>`
+        ).join('');
     }
+
+    // Contact Info (no changes needed)
     if (sections[2] && contactData) {
         sections[2].innerHTML = `<h3>Contact Info</h3><a href="mailto:${contactData.email}">${contactData.email}</a><a href="tel:${contactData.phone}">${contactData.phone}</a><p>${contactData.address}</p><p>${contactData.hours}</p>`;
     }
+
     const footerBottom = document.querySelector('.footer-bottom');
     if (footerBottom) {
         footerBottom.innerHTML = `<p>&copy; ${new Date().getFullYear()} R S Tranding Company. All rights reserved.</p>`;
