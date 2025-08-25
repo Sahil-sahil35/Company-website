@@ -6,9 +6,10 @@
       "slug": "premium-Activated-Carbon-Powder",
       "description": "Premium Coconut Shell Based Granular Activated Carbon for superior water & air purification with high adsorption capacity and long-lasting performance.",
       "detailedDescription": "Coconut Shell Based Granular Activated Carbon (GAC)Our Coconut Shell Based Granular Activated Carbon (GAC) is a premium-grade filtration media widely used in water treatment, air purification, food & beverage, and industrial applications. Manufactured from high-quality coconut shells, this activated carbon offers exceptional adsorption capacity, high surface area, and durability, making it the preferred choice for industries and households worldwide.Key Benefits of Coconut Shell Activated Carbon: 100% Natural & Sustainable – made from renewable coconut shells High Adsorption Capacity – effective removal of chlorine, VOCs, organic compounds, taste, odor, and color Superior Hardness & Low Dust – ensures long service life and better performance compared to coal or wood-based carbon Optimized Pore Structure – rich in micropores, ideal for removing small contaminants and improving water quality Versatile Applications – effective in both water and air purification    Why Choose Us as Your Activated Carbon Supplier?   We provide high-quality coconut shell activated carbon at competitive prices, ensuring consistent performance, bulk availability, and customized packaging options. Whether you need granular activated carbon (GAC), powdered activated carbon (PAC), or pelletized activated carbon, we deliver solutions tailored to your needs.",
+      "negotiable": false,
       "price": 125,
       "salePrice": 110,
-      "sku": "GAC-1000", 
+      "sku": "GAC-1000",
       "category": "Activated Carbon",
       "subCategory": "Granular Activated Carbon",
       "material": "Coconut Shell",
@@ -18,40 +19,64 @@
       "images": [
         "/Company-website/images/Carbon/Granular-Activated-Carbon.jpg"
       ],
-       "videoUrl": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+      "videoUrl": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
       "specs": {
         "meshSize": "4x8, 8x16, 16x32",
         "iodineNumber": "≥1000 mg/g",
         "bulkDensity": "0.45-0.55 g/cm³",
         "moisture": "≤5%",
-        "applications": ["Drinking Water Purification & Wastewater Treatment","Food & Beverage Processing (sugar, wine, soft drinks, edible oils)","Pharmaceutical & ChemicalIndustries","Air & Gas Purification Systems","Gold Recovery & Solvent Recovery","Aquarium & Aquaculture Filtration"]
+        "applications": [
+          "Drinking Water Purification & Wastewater Treatment",
+          "Food & Beverage Processing (sugar, wine, soft drinks, edible oils)",
+          "Pharmaceutical & ChemicalIndustries",
+          "Air & Gas Purification Systems",
+          "Gold Recovery & Solvent Recovery",
+          "Aquarium & Aquaculture Filtration"
+        ]
       },
       "documents": [
-        {"name": "Product Sheet", "url": "#"},
-        {"name": "MSDS", "url": "#"},
-        {"name": "Installation Guide", "url": "#"}
+        {
+          "name": "Product Sheet",
+          "url": "#"
+        },
+        {
+          "name": "MSDS",
+          "url": "#"
+        },
+        {
+          "name": "Installation Guide",
+          "url": "#"
+        }
       ],
-      "tags": ["best-seller", "eco-friendly", "high-capacity"]
+      "tags": [
+        "best-seller",
+        "eco-friendly",
+        "high-capacity"
+      ]
     },
-
-
     {
       "id": "prod-002",
       "name": "Silica Sand",
       "slug": "High Qualica Sand",
       "description": "High-purity Silica Sand for water treatment, construction, glass manufacturing, and industrial applications – durable, reliable, and eco-friendly.",
       "detailedDescription": "Silica Sand – Premium Quality for Industrial & Commercial Use\n\nOur Silica Sand is a high-grade, naturally occurring mineral widely used in water treatment, glass manufacturing, construction, and industrial applications. With its high silica content, consistent grain size, and excellent chemical purity, it is one of the most reliable filtration and processing media available.",
+      "negotiable": false,
       "price": 7,
       "salePrice": 5,
       "sku": "SI-99.9",
-      "category": ["Filter Media","Silica Sand"],
+      "category": [
+        "Filter Media",
+        "Silica Sand"
+      ],
       "subCategory": "Sand Media",
       "material": "Rock Stone",
       "rating": 4.9,
       "reviewCount": 150,
       "stock": 1,
-      "images": ["/Company-website/images/Silica-Sand/Silica-sand.png"],
-       "videoUrl": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+      "images": [
+        "/Company-website/images/Silica-Sand/Silica-sand.png"
+      ],
+      "videoUrl": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
       "specs": {
         "meshSize": "8*16,16*32",
         "bulkDensity": "1600kg/m^3",
@@ -65,9 +90,18 @@
         ]
       },
       "documents": [
-        {"name": "Product Sheet", "url": "#"},
-        {"name": "MSDS", "url": "#"},
-        {"name": "Installation Guide", "url": "#"}
+        {
+          "name": "Product Sheet",
+          "url": "#"
+        },
+        {
+          "name": "MSDS",
+          "url": "#"
+        },
+        {
+          "name": "Installation Guide",
+          "url": "#"
+        }
       ],
       "tags": [
         "Silica Sand",
@@ -77,32 +111,29 @@
         "Silica Sand for Glass Industry"
       ]
     },
-
-
-
-
-
-
-
-
-
     {
       "id": "prod-003",
       "name": "Pebbles",
       "slug": "Best Quality Pebbles",
       "description": "Natural Pebbles Media for water treatment, filtration plants, landscaping, and construction – durable, eco-friendly, and long-lasting performance.",
       "detailedDescription": "Pebbles Media – Reliable Filtration & Multi-Purpose Use\n\nOur Pebbles Media is a natural, hard, and durable material widely used in water treatment plants, sand filters, landscaping, and construction applications. Carefully graded and screened, these pebbles provide excellent support media for sand, anthracite, and other filter materials, ensuring maximum efficiency in filtration processes.",
+      "negotiable": false,
       "price": 7,
       "salePrice": 5,
       "sku": "P-100",
-      "category": ["Filter Media","Pebbles"],
+      "category": [
+        "Filter Media",
+        "Pebbles"
+      ],
       "subCategory": "Pebbles Media",
       "material": "River Stone",
       "rating": 4.9,
       "reviewCount": 155,
       "stock": 1,
-      "images": ["/Company-website/images/Gravel/Pebbles.png"],
-       "videoUrl": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+      "images": [
+        "/Company-website/images/Gravel/Pebbles.png"
+      ],
+      "videoUrl": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
       "specs": {
         "meshSize": "5-10mm,10-20mm,20-50mm",
         "moisture": "<=.5%",
@@ -114,9 +145,18 @@
         ]
       },
       "documents": [
-        {"name": "Product Sheet", "url": "#"},
-        {"name": "MSDS", "url": "#"},
-        {"name": "Installation Guide", "url": "#"}
+        {
+          "name": "Product Sheet",
+          "url": "#"
+        },
+        {
+          "name": "MSDS",
+          "url": "#"
+        },
+        {
+          "name": "Installation Guide",
+          "url": "#"
+        }
       ],
       "tags": [
         "Pebbles Media",
@@ -126,21 +166,13 @@
         "Natural Pebbles for Filters"
       ]
     },
-
-
-
-
-
-
-
-
-
     {
       "id": "prod-004",
       "name": "Gravels",
       "slug": "Best Quality Gravels",
       "description": "High-quality Gravel Media for water filtration, wastewater treatment, and construction applications – durable, natural, and long-lasting support media.",
       "detailedDescription": "Gravel Media – Strong & Reliable Filtration Support\n\nOur Gravel Media is a naturally hard, durable, and chemically inert material used as a support media in water filtration systems and construction applications. With consistent grain size and high strength, gravel ensures efficient water flow, improved filtration, and long service life of treatment plants.",
+      "negotiable": false,
       "price": 7,
       "salePrice": 5,
       "sku": "SI-99.9",
@@ -150,8 +182,10 @@
       "rating": 4.9,
       "reviewCount": 152,
       "stock": 1,
-      "images": ["/Company-website/images/Gravel/Filter-Media-Gravels.png"],
-       "videoUrl": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+      "images": [
+        "/Company-website/images/Gravel/Filter-Media-Gravels.png"
+      ],
+      "videoUrl": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
       "specs": {
         "meshSize": "5-10mm,10-20mm,20-50mm",
         "moisture": "<=.5%",
@@ -163,9 +197,18 @@
         ]
       },
       "documents": [
-        {"name": "Product Sheet", "url": "#"},
-        {"name": "MSDS", "url": "#"},
-        {"name": "Installation Guide", "url": "#"}
+        {
+          "name": "Product Sheet",
+          "url": "#"
+        },
+        {
+          "name": "MSDS",
+          "url": "#"
+        },
+        {
+          "name": "Installation Guide",
+          "url": "#"
+        }
       ],
       "tags": [
         "Gravel Media",
@@ -175,32 +218,29 @@
         "Gravel Media Manufacturer"
       ]
     },
-
-
-
-
-
-
-
-
-
     {
       "id": "prod-005",
       "name": "Core Sand",
       "slug": "High Qualica Core Sand",
       "description": "High-purity Silica Sand for water treatment, construction, glass manufacturing, and industrial applications – durable, reliable, and eco-friendly.",
       "detailedDescription": "Core Sand – Premium Quality for Industrial & Commercial Use\n\nOur Silica Sand is a high-grade, naturally occurring mineral widely used in water treatment, glass manufacturing, construction, and industrial applications. With its high silica content, consistent grain size, and excellent chemical purity, it is one of the most reliable filtration and processing media available.",
+      "negotiable": false,
       "price": 7,
       "salePrice": 5,
       "sku": "SI-99.9",
-      "category": ["Filter Media","Silica Sand"],
+      "category": [
+        "Filter Media",
+        "Silica Sand"
+      ],
       "subCategory": "Core Sand Media",
       "material": "Rock Stone",
       "rating": 4.9,
       "reviewCount": 150,
       "stock": 1,
-      "images": ["/Company-website/images/Gravel/Core-sand.png"],
-       "videoUrl": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+      "images": [
+        "/Company-website/images/Gravel/Core-sand.png"
+      ],
+      "videoUrl": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
       "specs": {
         "meshSize": "2-5mm,5-10mm",
         "bulkDensity": "1.6g/cm3",
@@ -214,9 +254,18 @@
         ]
       },
       "documents": [
-        {"name": "Product Sheet", "url": "#"},
-        {"name": "MSDS", "url": "#"},
-        {"name": "Installation Guide", "url": "#"}
+        {
+          "name": "Product Sheet",
+          "url": "#"
+        },
+        {
+          "name": "MSDS",
+          "url": "#"
+        },
+        {
+          "name": "Installation Guide",
+          "url": "#"
+        }
       ],
       "tags": [
         "Silica Sand",
@@ -226,32 +275,32 @@
         "Silica Sand for Glass Industry"
       ]
     },
-
-
-
-
-
-
-
-
-
     {
       "id": "prod-006",
       "name": "Anthracite Media",
       "slug": "Anthracite Filter Media",
       "description": "High-grade Anthracite Filter Media for water treatment, wastewater purification, and industrial filtration – durable, efficient, and long-lasting.",
       "detailedDescription": "Anthracite Filter Media – Premium Quality for Water Treatment\n\nOur Anthracite Filter Media is a high-carbon, durable filtration material widely used in multimedia filters, drinking water plants, wastewater treatment, and industrial filtration systems. With its angular shape and high hardness, anthracite provides excellent turbidity removal, improved filtration rates, and longer filter runs compared to sand alone.",
+      "negotiable": false,
       "price": 60,
       "salePrice": 45,
       "sku": "FC-90",
-      "category": ["Filter Media","Anthracite Media"],
+      "category": [
+        "Filter Media",
+        "Anthracite Media"
+      ],
       "subCategory": "Anthracite Media",
-      "material": ["Anthracite","Coal"],
+      "material": [
+        "Anthracite",
+        "Coal"
+      ],
       "rating": 5,
       "reviewCount": 200,
       "stock": 1,
-      "images": ["/Company-website/images/Anthracite/Anthracite-Media.jpg"],
-       "videoUrl": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+      "images": [
+        "/Company-website/images/Anthracite/Anthracite-Media.jpg"
+      ],
+      "videoUrl": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
       "specs": {
         "meshSize": "4*8,8*16,16*32",
         "bulkDensity": "1.4-1.6g/cm3",
@@ -264,9 +313,18 @@
         ]
       },
       "documents": [
-        {"name": "Product Sheet", "url": "#"},
-        {"name": "MSDS", "url": "#"},
-        {"name": "Installation Guide", "url": "#"}
+        {
+          "name": "Product Sheet",
+          "url": "#"
+        },
+        {
+          "name": "MSDS",
+          "url": "#"
+        },
+        {
+          "name": "Installation Guide",
+          "url": "#"
+        }
       ],
       "tags": [
         "Anthracite Filter Media",
@@ -276,33 +334,29 @@
         "Anthracite Filter Media Manufacturer"
       ]
     },
-
-
-
-
-
-
-
-
-
-
     {
       "id": "prod-007",
       "name": "Powder Activated Carbon",
       "slug": "High Quality Powder Activated Carbon",
       "description": "High-quality Powder Activated Carbon (PAC) for water purification, wastewater treatment, air filtration, and industrial applications – fine, efficient, and fast-acting.",
       "detailedDescription": "Powder Activated Carbon (PAC) – Fast-Acting & High Adsorption\n\nOur Powder Activated Carbon (PAC) is a fine, high-purity adsorbent made from natural raw materials such as coconut shells and coal. Known for its large surface area, high adsorption capacity, and quick action, PAC is widely used in drinking water purification, wastewater treatment, food & beverage processing, and air purification.",
+      "negotiable": false,
       "price": 200,
       "salePrice": 160,
       "sku": "PAC-350",
       "category": "Activated Carbon",
       "subCategory": "Powder Activated Carbon -PAC",
-      "material": ["Wood","Coal"],
+      "material": [
+        "Wood",
+        "Coal"
+      ],
       "rating": 4.9,
       "reviewCount": 120,
       "stock": 1,
-      "images": ["/Company-website/images/Carbon/Powder-Activated-Carbon.jpg"],
-       "videoUrl": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+      "images": [
+        "/Company-website/images/Carbon/Powder-Activated-Carbon.jpg"
+      ],
+      "videoUrl": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
       "specs": {
         "meshSize": "200-250",
         "iodineNumber": "100-350MB",
@@ -316,9 +370,18 @@
         ]
       },
       "documents": [
-        {"name": "Product Sheet", "url": "#"},
-        {"name": "MSDS", "url": "#"},
-        {"name": "Installation Guide", "url": "#"}
+        {
+          "name": "Product Sheet",
+          "url": "#"
+        },
+        {
+          "name": "MSDS",
+          "url": "#"
+        },
+        {
+          "name": "Installation Guide",
+          "url": "#"
+        }
       ],
       "tags": [
         "Powder Activated Carbon",
@@ -328,25 +391,13 @@
         "PAC Manufacturer in India"
       ]
     },
-
-
-
-
-
-
-
-
-
-
-
-
-
     {
       "id": "prod-008",
       "name": "MNo2",
       "slug": "Best Grade MNo2",
       "description": "High-purity Manganese Dioxide (MnO₂) filter media for efficient removal of iron, manganese, and hydrogen sulfide from water – durable and long-lasting.",
       "detailedDescription": "Manganese Dioxide (MnO₂) Filter Media – Effective Iron & Manganese Removal\n\nOur Manganese Dioxide (MnO₂) filter media is a naturally occurring mineral specially processed for water treatment applications. Known for its strong oxidizing and catalytic properties, MnO₂ efficiently removes iron, manganese, and hydrogen sulfide (H₂S) from groundwater and industrial water supplies.",
+      "negotiable": false,
       "price": 40,
       "salePrice": 30,
       "sku": "MNo2-60",
@@ -356,8 +407,10 @@
       "rating": 4.8,
       "reviewCount": 140,
       "stock": 1,
-      "images": ["/Company-website/images/Anthracite/MnO2.jpg"],
-       "videoUrl": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+      "images": [
+        "/Company-website/images/Anthracite/MnO2.jpg"
+      ],
+      "videoUrl": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
       "specs": {
         "meshSize": "4*8,8*16,16*32",
         "bulkDensity": "1900kg/m3",
@@ -370,9 +423,18 @@
         ]
       },
       "documents": [
-        {"name": "Product Sheet", "url": "#"},
-        {"name": "MSDS", "url": "#"},
-        {"name": "Installation Guide", "url": "#"}
+        {
+          "name": "Product Sheet",
+          "url": "#"
+        },
+        {
+          "name": "MSDS",
+          "url": "#"
+        },
+        {
+          "name": "Installation Guide",
+          "url": "#"
+        }
       ],
       "tags": [
         "Manganese Dioxide Filter Media",
@@ -381,31 +443,191 @@
         "Manganese Removal Filter Media",
         "Hydrogen Sulfide Removal Media"
       ]
+    },
+    {
+      "id": "Prod-009",
+      "name": "Water Softener Plant",
+      "slug": "High quality Plant",
+      "description": "\"\"High-performance Water Softener Plant designed to remove hardness from water, ensuring scale-free plumbing, efficient appliances, and pure water for industrial and domestic use.\"\"",
+      "detailedDescription": "A Water Softener Plant is an advanced water treatment system designed to remove hardness-causing minerals like calcium (Ca²?) and magnesium (Mg²?) from water using ion exchange technology. Hard water creates scaling in pipelines, boilers, RO membranes, cooling towers, and household appliances, reducing efficiency and increasing maintenance costs. Our Water Softener Plant ensures:\n\n100% soft water for domestic, commercial, and industrial applications\n\nProtection against scaling, clogging, and corrosion\n\nLonger life of pipelines, boilers, and appliances\n\nLow maintenance & highly durable resin system\n\nAvailable in manual, semi-automatic, and fully automatic models\n\nBy using premium-grade resins and a robust FRP/MS vessel design, our softeners deliver consistent performance with minimal salt and water usage during regeneration.",
+      "negotiable": true,
+      "price": 0,
+      "salePrice": 0,
+      "sku": "WSP-01",
+      "category": "Plant and Machinery",
+      "subCategory": "Water Softener Plant",
+      "material": "FRP/MS",
+      "rating": 4.9,
+      "reviewCount": 98,
+      "stock": 1,
+      "images": [],
+      "videoUrl": "",
+      "specs": {
+        "meshSize": "CUSTOMIZE",
+        "iodineNumber": "",
+        "bulkDensity": "",
+        "moisture": "",
+        "applications": [
+          "Domestic Homes – for bathing",
+          "washing",
+          "and kitchen use",
+          "Hotels & Restaurants – for laundry",
+          "kitchen",
+          "and guest facilities",
+          "Industrial Boilers & Cooling Towers – to prevent scale formation",
+          "Textile & Dyeing Units – for process water softening",
+          "Hospitals & Laboratories – for pure",
+          "soft water\n?? Food & Beverage Industry – for improved product quality",
+          "RO/DM Plant Pre-Treatment"
+        ]
+      },
+      "documents": [],
+      "tags": [
+        "Water Softener Plant",
+        "Industrial Water Softener",
+        "Domestic Water Softener System",
+        "Commercial Water Softener Machine",
+        "Hard Water Treatment Plant",
+        "Ion Exchange Softener",
+        "Water Softener for Boiler",
+        "Automatic Water Softener Plant",
+        "FRP/MS Water Softener System",
+        "Best Water Softener in India",
+        "water softener plant in delhi"
+      ]
+    },
+    {
+      "id": "prod-010",
+      "name": "DM Plant",
+      "slug": "High quality Plant",
+      "description": "\"\"High-efficiency Demineralization (DM) Plant designed to remove dissolved salts, minerals, and impurities, delivering 100% pure demineralized water for industrial and laboratory applications.\"\"",
+      "detailedDescription": "A Demineralization (DM) Plant is a specialized water treatment system that removes dissolved salts, minerals, and impurities through cation and anion exchange resin technology. It produces high-purity demineralized water ideal for industrial, pharmaceutical, and laboratory use. Our DM Plant features:\n\nAdvanced ion-exchange resins for complete demineralization\n\nRemoves TDS, calcium, magnesium, sodium, chlorides, sulfates, nitrates etc.\n\nDelivers water with conductivity as low as 0.1 µS/cm\n\nAvailable in manual, semi-automatic & fully automatic models\n\nCompact design, low maintenance, and durable performance\n\nCan be supplied in FRP, MS, or SS vessels depending on application\n\nWith reliable operation and cost-effective regeneration, our DM Plant ensures consistent production of ultra-pure water.",
+      "negotiable": true,
+      "price": 0,
+      "salePrice": 0,
+      "sku": "DMP-01",
+      "category": "Plant and Machinery",
+      "subCategory": "Demineralization (DM) Plant",
+      "material": "FRP/MS",
+      "rating": 4.9,
+      "reviewCount": 56,
+      "stock": 1,
+      "images": [],
+      "videoUrl": "",
+      "specs": {
+        "meshSize": "CUSTOMIZE",
+        "iodineNumber": "",
+        "bulkDensity": "",
+        "moisture": "",
+        "applications": [
+          "Power Plants – boiler feed water",
+          "Pharmaceutical Industry – process & formulation water",
+          "Laboratories – chemical testing & analysis",
+          "Electronics & Semiconductor Industry – ultra-pure water",
+          "Textile & Dyeing – high-quality processing water",
+          "Food & Beverage Industry – safe and pure production water",
+          "RO/EDI Systems – as pre-treatment or polishing units"
+        ]
+      },
+      "documents": [],
+      "tags": [
+        "DM Plant",
+        "Demineralization Plant",
+        "Demineralised Water System",
+        "Industrial DM Plant",
+        "DM Water Treatment Plant",
+        "Cation Anion Exchange Plant",
+        "High Purity Water System",
+        "Boiler Feed Water DM Plant",
+        "Automatic DM Plant",
+        "Demineralized Water for Industry",
+        "DM Plant in Delhi"
+      ]
+    },
+    {
+      "id": "prod-011",
+      "name": "RO Planr",
+      "slug": "High quality Plant",
+      "description": "\"\"High-performance Reverse Osmosis (RO) Plant designed for pure, safe, and crystal-clear water by removing TDS, chemicals, salts, and impurities for industrial, commercial, and domestic use.\"\"",
+      "detailedDescription": "A Reverse Osmosis (RO) Plant is an advanced water purification system that removes dissolved salts, heavy metals, bacteria, viruses, and chemical contaminants through a semi-permeable membrane. It ensures safe, healthy, and great-tasting water for industrial, commercial, and domestic applications. Our RO Plant features:\n\nAdvanced RO membrane technology with high salt rejection rate\n\nRemoves TDS, hardness, fluoride, arsenic, nitrates, chlorine, bacteria & viruses\n\nDelivers water with low TDS and excellent taste\n\nAvailable in domestic, commercial, and industrial models\n\nEnergy-efficient design with durable pumps and membranes\n\nOptions in FRP, SS, or skid-mounted systems for easy installation\n\nLow maintenance, high recovery, and long service life\n\nWith a compact and robust design, our RO Plant ensures consistent supply of pure and safe water for multiple applications.",
+      "negotiable": true,
+      "price": 0,
+      "salePrice": 0,
+      "sku": "ROP-01",
+      "category": "Plant and Machinery",
+      "subCategory": "Reverse Osmosis (RO) Plant",
+      "material": "FRP/PVC/SS",
+      "rating": 4.9,
+      "reviewCount": 98,
+      "stock": 1,
+      "images": [],
+      "videoUrl": "",
+      "specs": {
+        "meshSize": "CUSTOMIZE",
+        "iodineNumber": "",
+        "bulkDensity": "",
+        "moisture": "",
+        "applications": [
+          "Domestic Homes – safe & pure drinking water",
+          "Commercial Offices – cafeterias & staff drinking water",
+          "Schools",
+          "Colleges & Hospitals – safe water for large-scale use",
+          "Food & Beverage Industry – water for processing & production",
+          "Pharmaceutical Industry – ultrapure process water",
+          "Textile & Dyeing Industry – high-quality process water",
+          "Industrial Use – boiler feed water",
+          "cooling towers",
+          "and production lines",
+          "Hotels & Restaurants – safe water for guests & kitchen use"
+        ]
+      },
+      "documents": [],
+      "tags": [
+        "RO Plant",
+        "Reverse Osmosis Plant",
+        "Industrial RO System",
+        "Commercial RO Plant",
+        "Domestic RO Water Purifier",
+        "RO Water Treatment Plant",
+        "Mineral Water RO Plant",
+        "Automatic RO Plant",
+        "Best RO Plant in India",
+        "RO Plant for Drinking Water",
+        "RO Plant in Delhi"
+      ]
     }
-
-
-
-
-
-
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   ],
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   "filters": {
     "categories": [
       "Filter Media",
@@ -419,7 +641,8 @@
     "materials": [
       "Ceramic",
       "Carbon",
-      "Coal","Wood",
+      "Coal",
+      "Wood",
       "Coconut Shell",
       "Stainless Steel",
       "Minerals",
@@ -427,10 +650,26 @@
       "Glass"
     ],
     "priceRanges": [
-      {"label": "Under ₹25", "min": 0, "max": 25},
-      {"label": "₹25 - ₹50", "min": 25, "max": 50},
-      {"label": "₹50 - ₹100", "min": 50, "max": 100},
-      {"label": "Over ₹100", "min": 100, "max": 1000}
+      {
+        "label": "Under ₹25",
+        "min": 0,
+        "max": 25
+      },
+      {
+        "label": "₹25 - ₹50",
+        "min": 25,
+        "max": 50
+      },
+      {
+        "label": "₹50 - ₹100",
+        "min": 50,
+        "max": 100
+      },
+      {
+        "label": "Over ₹100",
+        "min": 100,
+        "max": 1000
+      }
     ]
   }
 }

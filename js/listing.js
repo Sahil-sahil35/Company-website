@@ -55,19 +55,28 @@ document.addEventListener('DOMContentLoaded', function() {
         paginatedProducts.forEach(product => {
             const productCard = document.createElement('div');
             productCard.className = 'product-card';
+            
+            // --- START: MODIFIED PRICE LOGIC ---
+            let priceHTML = '';
+            if (product.negotiable) {
+                priceHTML = `<span class="negotiable-text">Negotiable</span>`;
+            } else if (product.salePrice) {
+                priceHTML = `<span class="original">₹${product.price.toFixed(2)}</span>
+                             <span class="sale">₹${product.salePrice.toFixed(2)}</span>`;
+            } else {
+                priceHTML = `₹${product.price.toFixed(2)}`;
+            }
+            // --- END: MODIFIED PRICE LOGIC ---
+
             productCard.innerHTML = `
                 <div class="product-image">
-                    <img src="${product.images[0]}" alt="${product.name}" loading="lazy" >
+                    <img src="${product.images[0] || ''}" alt="${product.name}" loading="lazy" >
                 </div>
                 <div class="product-content">
                     <h3 class="product-name">${product.name}</h3>
                     <p class="product-desc">${product.description}</p>
                     <div class="product-price">
-                        ${product.salePrice ? 
-                            `<span class="original">₹${product.price.toFixed(2)}</span>
-                             <span class="sale">₹${product.salePrice.toFixed(2)}</span>` : 
-                            `₹${product.price.toFixed(2)}`
-                        }
+                        ${priceHTML}
                     </div>
                     <div class="stock-status ${product.stock > 0 ? 'in-stock' : 'out-of-stock'}">
                         ${product.stock > 0 ? 'In Stock' : 'Out of Stock'}
@@ -105,24 +114,18 @@ document.addEventListener('DOMContentLoaded', function() {
         pagination.innerHTML = '';
         
         if (totalPages <= 1) {
-            // Update results count
             const startIndex = totalProducts > 0 ? 1 : 0;
             const endIndex = totalProducts;
             resultsCount.textContent = `Showing ${startIndex}–${endIndex} of ${totalProducts} products`;
             return;
         }
         
-        // Previous button
         const prevItem = document.createElement('li');
         prevItem.className = 'page-item';
         if (currentPageNum === 1) {
             prevItem.classList.add('disabled');
         }
-        prevItem.innerHTML = `
-            <a class="page-link" href="#">
-                Previous
-            </a>
-        `;
+        prevItem.innerHTML = `<a class="page-link" href="#">Previous</a>`;
         if (currentPageNum > 1) {
             prevItem.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -131,7 +134,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         pagination.appendChild(prevItem);
         
-        // Page numbers
         const maxVisiblePages = 5;
         let startPage = Math.max(1, currentPageNum - Math.floor(maxVisiblePages / 2));
         let endPage = startPage + maxVisiblePages - 1;
@@ -152,17 +154,12 @@ document.addEventListener('DOMContentLoaded', function() {
             pagination.appendChild(pageItem);
         }
         
-        // Next button
         const nextItem = document.createElement('li');
         nextItem.className = 'page-item';
         if (currentPageNum === totalPages) {
             nextItem.classList.add('disabled');
         }
-        nextItem.innerHTML = `
-            <a class="page-link" href="#">
-                Next
-            </a>
-        `;
+        nextItem.innerHTML = `<a class="page-link" href="#">Next</a>`;
         if (currentPageNum < totalPages) {
             nextItem.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -171,7 +168,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         pagination.appendChild(nextItem);
         
-        // Update results count
         const startIndex = (currentPageNum - 1) * itemsPerPage + 1;
         const endIndex = Math.min(currentPageNum * itemsPerPage, totalProducts);
         resultsCount.textContent = `Showing ${startIndex}–${endIndex} of ${totalProducts} products`;
@@ -231,7 +227,6 @@ document.addEventListener('DOMContentLoaded', function() {
             priceRange.max = 500;
             priceRange.value = 500;
             
-            // Update price display
             const updatePriceDisplay = () => {
                 if (priceValues) {
                     const spans = priceValues.querySelectorAll('span');
@@ -283,7 +278,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
         
-        // Search input event listener
         const searchInput = document.querySelector('.filter-search input');
         if (searchInput) {
             searchInput.addEventListener('input', filterProducts);
@@ -292,22 +286,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Filter products based on selected filters
     function filterProducts() {
-        // Get filter values
         const priceRange = document.querySelector('.price-range');
         const maxPrice = priceRange ? parseFloat(priceRange.value) : 500;
         const searchInput = document.querySelector('.filter-search input');
         const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
-
-        // Get selected categories and materials
-        const selectedCategories = Array.from(document.querySelectorAll('.filter-option input:checked'))
-            .map(input => input.value);
+        const selectedCategories = Array.from(document.querySelectorAll('.filter-option input:checked')).map(input => input.value);
+        const selectedMaterials = Array.from(document.querySelectorAll('.filter-chip.active')).map(chip => chip.textContent.trim());
         
-        const selectedMaterials = Array.from(document.querySelectorAll('.filter-chip.active'))
-            .map(chip => chip.textContent.trim());
-        
-        // Filter products from original list
         const filteredProducts = allProducts.filter(product => {
-            // Search term filter
             if (searchTerm && !(
                 product.name.toLowerCase().includes(searchTerm) || 
                 (product.description && product.description.toLowerCase().includes(searchTerm)) ||
@@ -316,34 +302,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 return false;
             }
             
-            // Price filter
             const price = product.salePrice || product.price;
-            if (price > maxPrice) return false;
+            if (price > maxPrice && !product.negotiable) return false;
             
-            // Category filter - handle both arrays and single values
             if (selectedCategories.length > 0) {
                 if (Array.isArray(product.category)) {
-                    // Product has multiple categories
                     if (!product.category.some(cat => selectedCategories.includes(cat))) {
                         return false;
                     }
                 } else {
-                    // Product has single category
                     if (!selectedCategories.includes(product.category)) {
                         return false;
                     }
                 }
             }
             
-            // Material filter - handle both arrays and single values
             if (selectedMaterials.length > 0) {
                 if (Array.isArray(product.material)) {
-                    // Product has multiple materials
                     if (!product.material.some(mat => selectedMaterials.includes(mat))) {
                         return false;
                     }
                 } else {
-                    // Product has single material
                     if (!selectedMaterials.includes(product.material)) {
                         return false;
                     }
@@ -353,7 +332,6 @@ document.addEventListener('DOMContentLoaded', function() {
             return true;
         });
         
-        // Update current products and reset to page 1
         currentProducts = filteredProducts;
         initProducts(currentProducts, 1);
     }
@@ -373,7 +351,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 sortedProducts.sort((a, b) => (b.salePrice || b.price) - (a.salePrice || a.price));
                 break;
             case 'newest':
-                // Assuming newer products have higher IDs
                 sortedProducts.sort((a, b) => {
                     const aId = parseInt(a.id.split('-')[1]) || 0;
                     const bId = parseInt(b.id.split('-')[1]) || 0;
@@ -381,32 +358,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
                 break;
             default:
-                // Default is relevance (no sorting)
                 break;
         }
         
-        // Update current products and reset to page 1
         currentProducts = sortedProducts;
         initProducts(currentProducts, 1);
     }
 
     // Reset all filters
     function resetAllFilters() {
-        // Uncheck all checkboxes
-        document.querySelectorAll('.filter-option input').forEach(input => {
-            input.checked = false;
-        });
-        
-        // Remove active class from chips
-        document.querySelectorAll('.filter-chip').forEach(chip => {
-            chip.classList.remove('active');
-        });
-        
-        // Reset price range
+        document.querySelectorAll('.filter-option input').forEach(input => { input.checked = false; });
+        document.querySelectorAll('.filter-chip').forEach(chip => { chip.classList.remove('active'); });
         const priceRange = document.querySelector('.price-range');
         if (priceRange) {
             priceRange.value = priceRange.max;
-            // Update price display
             const priceValues = document.querySelector('.price-range-values');
             if (priceValues) {
                 const spans = priceValues.querySelectorAll('span');
@@ -415,65 +380,39 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
         }
-        
-        // Reset sort dropdown
         const sortSelect = document.getElementById('sort');
-        if (sortSelect) {
-            sortSelect.value = 'relevance';
-        }
-        
-        // Reset search input
+        if (sortSelect) { sortSelect.value = 'relevance'; }
         const searchInput = document.querySelector('.filter-search input');
-        if (searchInput) {
-            searchInput.value = '';
-        }
+        if (searchInput) { searchInput.value = ''; }
         
-        // Reset to all products
         currentProducts = [...allProducts];
         initProducts(currentProducts, 1);
     }
 
     // Add to cart function
     function addToCart() {
-        const id = this.dataset.id; // from button
-        // Prefer the master list if available; fall back to currentProducts/allProducts variables
-        const source = (typeof allProducts !== 'undefined' && allProducts.length) ? allProducts
-                    : (typeof currentProducts !== 'undefined' && currentProducts.length) ? currentProducts
-                    : [];
+        const id = this.dataset.id;
+        const source = (typeof allProducts !== 'undefined' && allProducts.length) ? allProducts : [];
         const product = source.find(p => p.id === id);
-        if (!product) { console.warn('Product not found for cart:', id); return; }
+        if (!product) { return; }
 
-        // Build cart item
         const item = {
-            id: product.id,
-            name: product.name,
-            price: (product.salePrice ?? product.price) || 0,
-            qty: 1,
-            thumbnail: (product.images && product.images[0]) || '',
-            specs: [
-            product.meshSize ? `Mesh: ${product.meshSize}` : null,
-            product.type ? `Type: ${product.type}` : null
-            ].filter(Boolean)
+            id: product.id, name: product.name, price: (product.salePrice ?? product.price) || 0,
+            qty: 1, thumbnail: (product.images && product.images[0]) || '',
+            specs: [ product.meshSize ? `Mesh: ${product.meshSize}` : null, product.type ? `Type: ${product.type}` : null ].filter(Boolean)
         };
 
-        // Get and update session cart
         let cart = [];
         try { cart = JSON.parse(sessionStorage.getItem('cartItems') || '[]'); } catch { cart = []; }
         const idx = cart.findIndex(it => it.id === item.id);
-        if (idx >= 0) {
-            cart[idx].qty += 1;
-        } else {
-            cart.push(item);
-        }
+        if (idx >= 0) { cart[idx].qty += 1; } else { cart.push(item); }
         sessionStorage.setItem('cartItems', JSON.stringify(cart));
 
-        // Update count badge
         const totalCount = cart.reduce((n, it) => n + it.qty, 0);
         sessionStorage.setItem('cartCount', String(totalCount));
         const cartCount = document.querySelector('.cart-count');
         if (cartCount) cartCount.textContent = String(totalCount);
 
-        // Toast & button feedback
         const toast = document.getElementById('toast');
         if (toast) {
             toast.textContent = 'Added to cart';
@@ -482,50 +421,32 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         const btn = this;
         const originalText = btn.textContent;
-        const originalBg = btn.style.background;
         btn.textContent = 'Added!';
         btn.style.background = 'linear-gradient(135deg, #28a745, #20c997)';
         setTimeout(() => {
             btn.textContent = originalText;
-            btn.style.background = originalBg || 'linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))';
+            btn.style.background = 'linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))';
         }, 1200);
     }
-
     
     // Initialize footer
     function initFooter(footer, contact) {
         const footerContent = document.querySelector('.footer-content');
         if (!footerContent) return;
         
-        // Clear existing footer sections
         const sections = footerContent.querySelectorAll('.footer-section');
-        sections.forEach(section => {
-            if (!section.querySelector('.newsletter')) {
-                section.innerHTML = '';
-            }
-        });
+        sections.forEach(section => { if (!section.querySelector('.newsletter')) { section.innerHTML = ''; } });
         
-        // Update contact info
         if (sections[2] && contact) {
-            sections[2].innerHTML = `
-                <h3>Contact Info</h3>
-                <a href="mailto:${contact.email}">${contact.email}</a>
-                <a href="tel:${contact.phone}">${contact.phone}</a>
-                <a href="#">${contact.address}</a>
-                <a href="#">${contact.hours}</a>
-            `;
+            sections[2].innerHTML = `<h3>Contact Info</h3><a href="mailto:${contact.email}">${contact.email}</a><a href="tel:${contact.phone}">${contact.phone}</a><a href="#">${contact.address}</a><a href="#">${contact.hours}</a>`;
         }
         
-        // Update shop links
         const shopSection = sections[0];
         if (shopSection) {
             shopSection.innerHTML = '<h3>Shop Links</h3>';
-            footer.shopLinks.forEach(link => {
-                shopSection.innerHTML += `<a href="${link.link}">${link.name}</a>`;
-            });
+            footer.shopLinks.forEach(link => { shopSection.innerHTML += `<a href="${link.link}">${link.name}</a>`; });
         }
         
-        // Update categories
         if (sections[1] && footer && footer.categories) {
             sections[1].innerHTML = '<h3>Categories</h3>';
             footer.categories.forEach(category => {
@@ -536,12 +457,9 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
         
-        // Update footer bottom
         const footerBottom = document.querySelector('.footer-bottom');
         if (footerBottom) {
-            footerBottom.innerHTML = `
-                <p>&copy; ${new Date().getFullYear()} R S Tranding Company. All rights reserved. | Privacy Policy | Terms of Service</p>
-            `;
+            footerBottom.innerHTML = `<p>&copy; ${new Date().getFullYear()} R S Tranding Company. All rights reserved. | Privacy Policy | Terms of Service</p>`;
         }
     }
 });

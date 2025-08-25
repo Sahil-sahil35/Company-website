@@ -18,18 +18,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 initSimilarProducts(allProducts, product);
                 setupActionButtons(product);
 
-                // --- START: Simplified Calculator Visibility Logic ---
                 const calculatorFabContainer = document.getElementById('calculatorFabContainer');
-                
-                // Check if the product category is 'Filter Media' (case-insensitive)
                 const isFilterMedia = Array.isArray(product.category) ?
                     product.category.some(cat => cat.toLowerCase() === 'filter media') :
                     (product.category || '').toLowerCase() === 'filter media';
 
                 if (isFilterMedia && calculatorFabContainer) {
-                    calculatorFabContainer.style.display = 'block'; // Show the FAB
+                    calculatorFabContainer.style.display = 'block';
                 }
-                // --- END: Simplified Calculator Visibility Logic ---
 
             } else {
                 console.error('Product not found');
@@ -45,12 +41,18 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('heroProductDesc').textContent = product.description;
         document.getElementById('productNameBreadcrumb').textContent = product.name;
 
+        // --- START: MODIFIED PRICE LOGIC ---
         const priceElement = document.getElementById('productPrice');
         if (priceElement) {
-            priceElement.innerHTML = product.salePrice ?
-                `<span class="original">₹${product.price.toFixed(2)}</span> <span class="sale">₹${product.salePrice.toFixed(2)}</span>` :
-                `₹${product.price.toFixed(2)}`;
+            if (product.negotiable) {
+                priceElement.innerHTML = `<span class="negotiable-text">Negotiable</span>`;
+            } else if (product.salePrice) {
+                priceElement.innerHTML = `<span class="original">₹${product.price.toFixed(2)}</span> <span class="sale">₹${product.salePrice.toFixed(2)}</span>`;
+            } else {
+                priceElement.textContent = `₹${product.price.toFixed(2)}`;
+            }
         }
+        // --- END: MODIFIED PRICE LOGIC ---
 
         const stockElement = document.getElementById('stockStatus');
         if (stockElement) {
