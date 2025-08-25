@@ -53,9 +53,6 @@ function createCategoryDropdown() {
         let html = '';
         const pagePath = window.location.pathname;
         const isInnerPage = pagePath.includes('/html/');
-        
-        // *** THE FIX IS ON THIS LINE ***
-        // It should be './html/' for the homepage, not '../html/'.
         const linkBasePath = isInnerPage ? './' : './html/';
 
         categories.forEach(category => {
@@ -100,34 +97,27 @@ function initFooter() {
     
     const sections = footerContent.querySelectorAll('.footer-section');
 
-    // Updated Shop Links Logic
     if (sections[0] && footerData.shopLinks) {
         sections[0].innerHTML = '<h3>Shop Links</h3>' + footerData.shopLinks.map(link => {
-            // If it's a modal trigger, create a special link
             if (link.isModalTrigger) {
                 return `<a href="#" class="js-contact-modal-trigger">${link.name}</a>`;
             }
-
             let finalHref = '';
-            // If on an inner page, links to index.html need to go up one level
             if (isInnerPage) {
                 finalHref = link.link === 'index.html' ? `../${link.link}` : link.link.replace('html/', './');
             } else {
-            // If on the homepage, all links go into the html/ folder
                 finalHref = link.link;
             }
             return `<a href="${finalHref}">${link.name}</a>`;
         }).join('');
     }
 
-    // Updated Categories Logic
     if (sections[1] && footerData.categories) {
         sections[1].innerHTML = '<h3>Categories</h3>' + footerData.categories.map(cat => 
             `<a href="${linkBasePath}/category.html?category=${encodeURIComponent(cat.name)}">${cat.name}</a>`
         ).join('');
     }
 
-    // Contact Info (no changes needed)
     if (sections[2] && contactData) {
         sections[2].innerHTML = `<h3>Contact Info</h3><a href="mailto:${contactData.email}">${contactData.email}</a><a href="tel:${contactData.phone}">${contactData.phone}</a><p>${contactData.address}</p><p>${contactData.hours}</p>`;
     }
@@ -179,31 +169,13 @@ document.addEventListener('DOMContentLoaded', async function() {
     createCategoryDropdown();
     initFooter();
 
-    // Initialize all other event listeners.
-    const contactModalTriggers = document.querySelectorAll('.js-contact-modal-trigger');
-    contactModalTriggers.forEach(trigger => {
-        trigger.addEventListener('click', (e) => { e.preventDefault(); openContactModal(); });
-    });
-    const contactModal = document.getElementById('contactModal');
-    const closeModalBtn = document.querySelector('.close-modal');
-    const contactForm = document.getElementById('contactForm');
-    if(closeModalBtn) closeModalBtn.addEventListener('click', closeContactModal);
-    if(contactModal) window.addEventListener('click', (event) => { if (event.target === contactModal) closeContactModal(); });
-    if(contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            showToast('Thank you! Your message has been sent.');
-            closeContactModal();
-            this.reset();
-        });
-    }
-    
+    // --- START: EVENT LISTENERS ---
     const header = document.getElementById('header');
+    if (header) window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 50); });
+
+    // Mobile Menu
     const mobileMenuButton = document.querySelector('.mobile-menu');
     const mobileNav = document.querySelector('.mobile-nav');
-    const cartBtn = document.querySelector('.cart-btn');
-    const cartCountBadge = document.querySelector('.cart-count');
-    if (header) window.addEventListener('scroll', () => { header.classList.toggle('scrolled', window.scrollY > 50); });
     if (mobileMenuButton && mobileNav) {
         mobileMenuButton.addEventListener('click', () => {
             mobileNav.classList.toggle('active');
@@ -216,13 +188,72 @@ document.addEventListener('DOMContentLoaded', async function() {
             });
         });
     }
+
+    // Cart Button & Count
+    const cartBtn = document.querySelector('.cart-btn');
     if (cartBtn) {
         cartBtn.addEventListener('click', () => {
             window.location.href = `${isInnerPage ? '.' : './html'}/cart.html`;
         });
     }
+    const cartCountBadge = document.querySelector('.cart-count');
     if (cartCountBadge) cartCountBadge.textContent = sessionStorage.getItem('cartCount') || '0';
 
+    // Global Contact Modal Triggers
+    document.body.addEventListener('click', function(e) {
+        if (e.target.matches('.js-contact-modal-trigger')) {
+            e.preventDefault();
+            openContactModal();
+        }
+    });
+    
+    // --- START: MODAL FORM SUBMISSION FIX ---
+    const contactModal = document.getElementById('contactModal');
+    const contactForm = document.getElementById('contactForm');
+    const closeModalBtn = contactModal ? contactModal.querySelector('.close-modal') : null;
+
+    if (closeModalBtn) closeModalBtn.addEventListener('click', closeContactModal);
+    if (contactModal) window.addEventListener('click', (event) => { if (event.target === contactModal) closeContactModal(); });
+    
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const form = e.target;
+            const formData = new FormData(form);
+            const submitButton = form.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.textContent;
+
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
+            
+            fetch(form.action, {
+                method: form.method,
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            }).then(response => {
+                if (response.ok) {
+                    showToast('Thank you! Your message has been sent.');
+                    form.reset();
+                    closeContactModal();
+                } else {
+                    return response.json().then(data => {
+                        if (Object.hasOwn(data, 'errors')) {
+                            throw new Error(data["errors"].map(error => error["message"]).join(", "));
+                        }
+                        throw new Error('Oops! There was a problem submitting your form');
+                    });
+                }
+            }).catch(error => {
+                showToast('Error: ' + error.message, false);
+            }).finally(() => {
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
+            });
+        });
+    }
+    // --- END: MODAL FORM SUBMISSION FIX ---
+
+    // Search Modal
     const searchModal = document.getElementById('searchModal');
     const searchInput = document.getElementById('searchInput');
     const searchResults = document.getElementById('searchResults');
@@ -250,18 +281,18 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
     window.addEventListener('click', (event) => { if (event.target === searchModal) closeSearchModal(); });
 
-    // --- Back to Top Button Logic ---
+    // Back to Top Button
     const backToTopButton = document.getElementById("backToTopBtn");
-
-    window.onscroll = function() {
-    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-        backToTopButton.style.display = "block";
-    } else {
-        backToTopButton.style.display = "none";
+    if (backToTopButton) {
+        window.onscroll = function() {
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        };
+        backToTopButton.addEventListener("click", function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
     }
-    };
-
-    backToTopButton.addEventListener("click", function() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
 });
