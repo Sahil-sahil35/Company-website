@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderCalculatorBody(shape) {
         let inputsHTML = '';
         switch (shape) {
-            case 'cylinder':
+            case 'cylindrical':
                 inputsHTML = `
                     <div class="form-group">
                         <label for="calc-input-type">Input Type</label>
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function attachCalculatorEventListeners() {
-        if (currentShape === 'cylinder') {
+        if (currentShape === 'cylindrical') {
             document.getElementById('calc-input-type').addEventListener('change', (e) => {
                 const label = document.getElementById('calc-main-label');
                 const input = document.getElementById('calc-main-input');
@@ -195,10 +195,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             switch (currentShape) {
-                case 'cylinder':
+                case 'cylindrical':
                     const inputType = document.getElementById('calc-input-type').value;
                     const mainInput = parseFloat(document.getElementById('calc-main-input').value);
-                    if (isNaN(mainInput)) throw new Error('Invalid input for cylinder.');
+                    if (isNaN(mainInput)) throw new Error('Invalid input for cylindrical tank.');
                     let radiusMM = 0;
                     if (inputType === 'diameter') { radiusMM = (mainInput * unitMultiplier) / 2; } 
                     else if (inputType === 'radius') { radiusMM = mainInput * unitMultiplier; } 

@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     // Set the page title based on the tag in the URL
     if (titleEl && tag) {
         titleEl.textContent = `Results for: "${tag}"`;
-        document.title = `Results for "${tag}" — R S Trading Company`;
+        document.title = `Results for "${tag}" — Styvonix Future Pvt. Ltd.`;
     }
 
     if (!tag) {

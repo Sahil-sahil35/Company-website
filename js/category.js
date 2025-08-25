@@ -101,6 +101,19 @@ document.addEventListener('DOMContentLoaded', function() {
         paginatedProducts.forEach(product => {
             const productCard = document.createElement('div');
             productCard.className = 'product-card';
+
+            // --- START: MODIFIED PRICE LOGIC ---
+            let priceHTML = '';
+            if (product.negotiable) {
+                priceHTML = `<span class="negotiable-text">Negotiable</span>`;
+            } else if (product.salePrice) {
+                priceHTML = `<span class="original">₹${product.price.toFixed(2)}</span>
+                             <span class="sale">₹${product.salePrice.toFixed(2)}</span>`;
+            } else {
+                priceHTML = `₹${product.price.toFixed(2)}`;
+            }
+            // --- END: MODIFIED PRICE LOGIC ---
+
             productCard.innerHTML = `
                 <div class="product-image">
                     <img src="${product.images[0]}" alt="${product.name}" loading="lazy">
@@ -109,11 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <h3 class="product-name">${product.name}</h3>
                     <p class="product-desc">${product.description}</p>
                     <div class="product-price">
-                        ${product.salePrice ? 
-                            `<span class="original">₹${product.price.toFixed(2)}</span>
-                             <span class="sale">₹${product.salePrice.toFixed(2)}</span>` : 
-                            `₹${product.price.toFixed(2)}`
-                        }
+                        ${priceHTML}
                     </div>
                     <div class="stock-status ${product.stock > 0 ? 'in-stock' : 'out-of-stock'}">
                         ${product.stock > 0 ? 'In Stock' : 'Out of Stock'}
@@ -461,54 +470,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 3000);
         }
     }
-
-    // Initialize footer
-    function initFooter(footerData, contactData) {
-        // Shop links
-        const shopLinksSection = document.querySelector('.footer-section:nth-child(1)');
-        if (shopLinksSection && footerData.shopLinks) {
-            const linksContainer = shopLinksSection.querySelector('h3').nextElementSibling || document.createElement('div');
-            if (!shopLinksSection.contains(linksContainer)) {
-                shopLinksSection.appendChild(linksContainer);
-            }
-            linksContainer.innerHTML = footerData.shopLinks.map(link => 
-                `<a href="${link.url}">${link.name}</a>`
-            ).join('');
-        }
-
-        // Categories
-        const categoriesSection = document.querySelector('.footer-section:nth-child(2)');
-        if (categoriesSection && footerData.categories) {
-            const categoriesContainer = categoriesSection.querySelector('h3').nextElementSibling || document.createElement('div');
-            if (!categoriesSection.contains(categoriesContainer)) {
-                categoriesSection.appendChild(categoriesContainer);
-            }
-            categoriesContainer.innerHTML = footerData.categories.map(category => 
-                `<a href="../html/category.html?category=${encodeURIComponent(category)}">${category}</a>`
-            ).join('');
-        }
-
-        // Contact info
-        const contactSection = document.querySelector('.footer-section:nth-child(3)');
-        if (contactSection && contactData) {
-            const contactContainer = contactSection.querySelector('h3').nextElementSibling || document.createElement('div');
-            if (!contactSection.contains(contactContainer)) {
-                contactSection.appendChild(contactContainer);
-            }
-            contactContainer.innerHTML = `
-                <p>${contactData.address}</p>
-                <p>Phone: ${contactData.phone}</p>
-                <p>Email: ${contactData.email}</p>
-            `;
-        }
-
-        // Footer bottom
-        const footerBottom = document.querySelector('.footer-bottom');
-        if (footerBottom && footerData.copyright) {
-            footerBottom.innerHTML = `<p>${footerData.copyright}</p>`;
-        }
-    }
-
+    
     const cartCount = document.querySelector('.cart-count');
     if (cartCount && sessionStorage.getItem('cartCount')) {
         cartCount.textContent = sessionStorage.getItem('cartCount');

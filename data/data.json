@@ -1,11 +1,11 @@
 {
   "site": {
-    "title": "STYVONIX FUTURE PVT. LTD.",
+    "title": "Styvonix Future Pvt. Ltd.",
     "tagline": "Pure Water. Pure Innovation.",
     "description": "Premium filtration solutions for home, commercial, and industrial needs. Experience the future of clean water technology.",
     "contact": {
-      "email": "styvonixfuturepvtltd@gmail.com",
-      "phone": "+919501642199",
+      "email": "info@styvonix.com",
+      "phone": "+91-9501642199",
       "address": "Ashok Vihar, Delhi - 110052",
       "hours": "Mon-Sat 9AM-6PM EST"
     },
@@ -34,37 +34,37 @@
     {
       "name": "Filter Media",
       "description": "High-performance filtration media for all industrial applications",
-      "image": "/Company-website/images/Background-img/Media.png"
+      "image": "/images/Background-img/Media.png"
     },
     {
       "name": "Cartridge Filter",
       "description": "Precision-engineered ceramic candles for superior filtration",
-      "image": "/Company-website/images/Background-img/Filters.png"
+      "image": "/images/Background-img/Filters.png"
     },
     {
       "name": "Activated Carbon",
       "description": "Premium activated carbon for maximum adsorption capacity",
-      "image": "/Company-website/images/Background-img/Carbon.png"
+      "image": "/images/Background-img/Carbon.png"
     },
     {
       "name": "Anthracite Media",
       "description": "Premium Anthracite Media for maximum adsorption capacity",
-      "image": "/Company-website/images/Background-img/anthra.png"
+      "image": "/images/Background-img/anthra.png"
     },
     {
       "name": "Silica Sand",
       "description": "Ultra-pure silica sand for water treatment systems",
-      "image": "/Company-website/images/Background-img/silica.png"
+      "image": "/images/Background-img/silica.png"
     },
     {
-      "name": "plants and Machinery",
+      "name": "Plants and Machinery",
       "description": "Complete range of filtration accessories and components",
-      "image": "/Company-website/images/Background-img/Plant.png"
+      "image": "/images/Background-img/Plant.png"
     },
     {
       "name": "Spare Parts",
       "description": "Genuine replacement parts for all filtration systems",
-      "image": "/Company-website/images/Background-img/parts.png"
+      "image": "/images/Background-img/parts.png"
     }
   ],
   "features": [
@@ -120,7 +120,7 @@
       {"name": "Cartridge Filter", "link": "#"},
       {"name": "Activated Carbon", "link": "#"},
       {"name": "Silica Sand", "link": "#"},
-      {"name": "plants and Machinery", "link": "#"},
+      {"name": "Plants and Machinery", "link": "#"},
       {"name": "Spare Parts", "link": "#"}
     ]
   }

@@ -17,7 +17,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: url("../images/blog/hero-bg.jpg") center/cover;
+  background: url("../images/Background-img/hero-bg.png") center/cover;
   z-index: -2;
   opacity: 0.8;
 }
@@ -339,7 +339,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: url("../images/blog/cta-bg.jpg") center/cover;
+  background: url("../images/Background-img/hero-bg.png") center/cover;
   z-index: -2;
 }
 

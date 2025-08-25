@@ -179,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function () {
     e.preventDefault();
     
     // Replace this with your new "Cart Inquiry" endpoint URL from Formspree
-    const FORM_ENDPOINT = "https://formspree.io/f/mldwrbyz";
+    const FORM_ENDPOINT = "https://formspree.io/f/xldwrkoa";
 
     const formData = new FormData(formEl);
     submitBtn.disabled = true;

@@ -15,7 +15,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    background: url("/Company-website/images/Background-img/hero-bg.png");
+    background: url("../images/Background-img/hero-bg.png");
     height: 100%;
 }
 
@@ -330,7 +330,7 @@
     background-color: var(--accent-primary);
 }
 
-/* --- Floating Action Button Styles --- */
+/* --- START: Floating Action Button Styles --- */
 .fab-container {
     position: fixed;
     bottom: 20px;
@@ -352,35 +352,31 @@
     position: relative;
 }
 
+/* This is the new style for the text button */
 .fab-btn {
-    background-color: var(--accent-primary);
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
     color: var(--bg-primary);
+    padding: 10px 20px;
     border: none;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 14px;
     cursor: pointer;
-    box-shadow: 0 4px 12px var(--shadow-dark);
     transition: all 0.3s ease;
-}
-
-.fab-btn svg {
-    stroke: var(--bg-primary);
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0 4px 12px var(--shadow-dark);
 }
 
 .fab-btn:hover {
+    box-shadow: 0 8px 25px var(--shadow-light);
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px var(--shadow-dark);
 }
 
 .fab-shape-selector {
     position: absolute;
-    right: calc(100% + 15px);
-    top: 50%;
-    transform: translateY(-50%);
+    right: 0;
+    bottom: calc(100% + 10px); /* Position above the button */
     width: 180px;
     padding: 10px;
     background: var(--bg-secondary);
@@ -390,13 +386,16 @@
     cursor: pointer;
     visibility: hidden;
     opacity: 0;
+    transform: translateY(10px);
     transition: all 0.3s ease;
 }
 
 .calculator-fab-container.active .fab-shape-selector {
     visibility: visible;
     opacity: 1;
+    transform: translateY(0);
 }
+/* --- END: Floating Action Button Styles --- */
 
 /* --- Media Calculator Modal Styles --- */
 #calculatorModal .modal-content {

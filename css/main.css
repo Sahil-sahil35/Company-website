@@ -349,7 +349,7 @@ body {
 }
 
 .hero-bg {
-    background: url("/Company-website/images/Background-img/hero-bg.png") center/cover;
+    background: url("../images/Background-img/hero-bg.png") center/cover;
     z-index: -2;
 }
 
