@@ -399,3 +399,54 @@
     color: var(--bg-primary);
     border-color: var(--accent-primary);
 }
+
+/* --- Video Thumbnail Styles --- */
+.video-thumbnail-wrapper {
+  position: relative;
+  cursor: pointer;
+}
+
+.video-thumbnail-wrapper .thumbnail {
+  width: 100%;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid var(--glass-border);
+  transition: all 0.3s ease;
+}
+
+.video-thumbnail-wrapper:hover .thumbnail,
+.video-thumbnail-wrapper.active .thumbnail {
+  border-color: var(--accent-primary);
+}
+
+.video-play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none; /* Allows clicks to go to the wrapper */
+  transition: background-color 0.3s ease;
+}
+
+.video-play-icon::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 12px solid white;
+  margin-left: 3px;
+}
+
+.video-thumbnail-wrapper:hover .video-play-icon {
+  background-color: var(--accent-primary);
+}

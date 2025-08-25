@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const urlParams = new URLSearchParams(window.location.search);
     const productId = urlParams.get('id');
-    
+
     if (!productId) {
         window.location.href = 'listing.html';
         return;
@@ -13,30 +13,24 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => {
             const allProducts = data.products;
             const product = allProducts.find(p => p.id === productId);
-            
-            if (product) {
-                // Now that we have the product, display all its details
-                displayProductDetails(product);
 
-                // --- RESTORED FUNCTIONALITY: Load the similar products section ---
+            if (product) {
+                displayProductDetails(product);
                 initSimilarProducts(allProducts, product);
 
-                // Setup page-specific event listeners
                 const contactBtn = document.getElementById('contactBtn');
                 if (contactBtn) {
                     contactBtn.addEventListener('click', function() {
-                        // This calls the global modal function from main.js
                         openContactModal(product.name);
                     });
                 }
-                
+
                 const addToCartBtn = document.getElementById('addToCartBtn');
                 if (addToCartBtn) {
-                    addToCartBtn.onclick = null; // Clear previous listeners to be safe
+                    addToCartBtn.onclick = null;
                     if (product.stock > 0) {
                         addToCartBtn.disabled = false;
                         addToCartBtn.textContent = 'Add to Cart';
-                        // The global addToCart function is defined in main.js
                         addToCartBtn.addEventListener('click', () => addToCart(product.id, addToCartBtn));
                     } else {
                         addToCartBtn.disabled = true;
@@ -50,8 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         })
         .catch(error => console.error('Error loading product data:', error));
-    
-    // This is the complete function to display ALL product details
+
     function displayProductDetails(product) {
         // Set main text content
         document.getElementById('productTitle').textContent = product.name;
@@ -59,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('heroProductTitle').textContent = product.name;
         document.getElementById('heroProductDesc').textContent = product.description;
         document.getElementById('productNameBreadcrumb').textContent = product.name;
-        
+
         // Set price
         const priceElement = document.getElementById('productPrice');
         if (priceElement) {
@@ -69,42 +62,72 @@ document.addEventListener('DOMContentLoaded', function() {
                 priceElement.textContent = `₹${product.price.toFixed(2)}`;
             }
         }
-        
-        // Set stock status
+
+        // Set stock status and rating
         const stockElement = document.getElementById('stockStatus');
         if (stockElement) {
             stockElement.textContent = product.stock > 0 ? 'In Stock' : 'Out of Stock';
             stockElement.className = 'stock-status ' + (product.stock > 0 ? 'in-stock' : 'out-of-stock');
         }
-        
-        // Set rating
-        const reviewCount = product.reviewCount || 0;
         const reviewCountElement = document.getElementById('reviewCount');
         if (reviewCountElement) {
-            reviewCountElement.textContent = `(${reviewCount} reviews)`;
+            reviewCountElement.textContent = `(${product.reviewCount || 0} reviews)`;
         }
-        
-        // Populate Image Gallery
-        const mainImage = document.getElementById('mainImage');
+
+        // --- START: MODIFIED GALLERY LOGIC ---
+        const mainMediaContainer = document.getElementById('mainMediaContainer');
         const thumbnailsContainer = document.getElementById('thumbnails');
-        if (product.images && product.images.length > 0 && mainImage && thumbnailsContainer) {
-            mainImage.src = product.images[0];
-            mainImage.alt = product.name;
+
+        // Function to show an image in the main view
+        function showImage(src) {
+            mainMediaContainer.innerHTML = `<img src="${src}" alt="${product.name}" class="main-image" id="mainImage">`;
+        }
+
+        // Function to show a video in the main view
+        function showVideo(src) {
+            mainMediaContainer.innerHTML = `<video src="${src}" class="main-image" controls autoplay playsinline loop></video>`;
+        }
+
+        if (product.images && product.images.length > 0 && mainMediaContainer && thumbnailsContainer) {
+            // Initial view is the first image
+            showImage(product.images[0]);
             thumbnailsContainer.innerHTML = '';
+
+            // Create image thumbnails
             product.images.forEach((image, index) => {
                 const thumbnail = document.createElement('img');
                 thumbnail.src = image;
                 thumbnail.alt = `${product.name} thumbnail ${index + 1}`;
                 thumbnail.className = 'thumbnail' + (index === 0 ? ' active' : '');
                 thumbnail.addEventListener('click', () => {
-                    mainImage.src = image;
-                    document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+                    showImage(image);
+                    document.querySelectorAll('.thumbnail, .video-thumbnail-wrapper').forEach(t => t.classList.remove('active'));
                     thumbnail.classList.add('active');
                 });
                 thumbnailsContainer.appendChild(thumbnail);
             });
+
+            // Create video thumbnail if videoUrl exists
+            if (product.videoUrl) {
+                const videoThumbWrapper = document.createElement('div');
+                videoThumbWrapper.className = 'video-thumbnail-wrapper';
+
+                videoThumbWrapper.innerHTML = `
+                    <img src="${product.images[0]}" alt="Product video thumbnail" class="thumbnail">
+                    <div class="video-play-icon"></div>
+                `;
+
+                videoThumbWrapper.addEventListener('click', () => {
+                    showVideo(product.videoUrl);
+                    document.querySelectorAll('.thumbnail, .video-thumbnail-wrapper').forEach(t => t.classList.remove('active'));
+                    videoThumbWrapper.classList.add('active');
+                });
+
+                thumbnailsContainer.appendChild(videoThumbWrapper);
+            }
         }
-        
+        // --- END: MODIFIED GALLERY LOGIC ---
+
         // Populate Specifications Table
         const specsTable = document.getElementById('specsTable');
         if (specsTable) {
@@ -121,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 tbody.innerHTML = '<tr><td colspan="2">No specifications available</td></tr>';
             }
         }
-        
+
         // Populate Documents List
         const documentsList = document.getElementById('documentsList');
         if (documentsList) {
@@ -139,12 +162,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
+        // Populate Tags
         const tagsContainer = document.getElementById('productTags');
         if (tagsContainer && product.tags && product.tags.length > 0) {
-            tagsContainer.innerHTML = ''; // Clear it first
+            tagsContainer.innerHTML = '';
             product.tags.forEach(tag => {
                 const tagLink = document.createElement('a');
-                tagLink.className = 'filter-chip'; // Reuse a nice style
+                tagLink.className = 'filter-chip';
                 tagLink.href = `./tag.html?tag=${encodeURIComponent(tag)}`;
                 tagLink.textContent = tag;
                 tagsContainer.appendChild(tagLink);
@@ -152,30 +176,24 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // --- THIS IS THE RESTORED FUNCTION FOR SIMILAR PRODUCTS ---
     function initSimilarProducts(allProducts, currentProduct) {
         const productsScroll = document.getElementById('productsScroll');
         if (!productsScroll) return;
 
-        // Find products with a matching category, excluding the current one
         let similarProducts = allProducts.filter(p => {
-            // Handle cases where category is a string or an array
             const currentCategories = Array.isArray(currentProduct.category) ? currentProduct.category : [currentProduct.category];
             const pCategories = Array.isArray(p.category) ? p.category : [p.category];
             const hasCommonCategory = currentCategories.some(cat => pCategories.includes(cat));
-            
             return p.id !== currentProduct.id && hasCommonCategory;
-        }).slice(0, 6); // Limit to 6 similar products
+        }).slice(0, 6);
 
-        // If no similar products found in the same category, show some random products
         if (similarProducts.length === 0) {
             similarProducts = allProducts
                 .filter(p => p.id !== currentProduct.id)
-                .sort(() => 0.5 - Math.random()) // Shuffle
+                .sort(() => 0.5 - Math.random())
                 .slice(0, 6);
         }
 
-        // Display the found products
         productsScroll.innerHTML = '';
         similarProducts.forEach(product => {
             const productCard = document.createElement('div');

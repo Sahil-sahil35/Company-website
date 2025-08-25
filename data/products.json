@@ -18,6 +18,7 @@
       "images": [
         "/Company-website/images/Carbon/Granular-Activated-Carbon.jpg"
       ],
+       "videoUrl": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
       "specs": {
         "meshSize": "4x8, 8x16, 16x32",
         "iodineNumber": "≥1000 mg/g",
@@ -50,6 +51,7 @@
       "reviewCount": 150,
       "stock": 1,
       "images": ["/Company-website/images/Silica-Sand/Silica-sand.png"],
+       "videoUrl": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
       "specs": {
         "meshSize": "8*16,16*32",
         "bulkDensity": "1600kg/m^3",
@@ -100,6 +102,7 @@
       "reviewCount": 155,
       "stock": 1,
       "images": ["/Company-website/images/Gravel/Pebbles.png"],
+       "videoUrl": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
       "specs": {
         "meshSize": "5-10mm,10-20mm,20-50mm",
         "moisture": "<=.5%",
@@ -148,6 +151,7 @@
       "reviewCount": 152,
       "stock": 1,
       "images": ["/Company-website/images/Gravel/Filter-Media-Gravels.png"],
+       "videoUrl": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
       "specs": {
         "meshSize": "5-10mm,10-20mm,20-50mm",
         "moisture": "<=.5%",
@@ -196,6 +200,7 @@
       "reviewCount": 150,
       "stock": 1,
       "images": ["/Company-website/images/Gravel/Core-sand.png"],
+       "videoUrl": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
       "specs": {
         "meshSize": "2-5mm,5-10mm",
         "bulkDensity": "1.6g/cm3",
@@ -246,6 +251,7 @@
       "reviewCount": 200,
       "stock": 1,
       "images": ["/Company-website/images/Anthracite/Anthracite-Media.jpg"],
+       "videoUrl": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
       "specs": {
         "meshSize": "4*8,8*16,16*32",
         "bulkDensity": "1.4-1.6g/cm3",
@@ -296,6 +302,7 @@
       "reviewCount": 120,
       "stock": 1,
       "images": ["/Company-website/images/Carbon/Powder-Activated-Carbon.jpg"],
+       "videoUrl": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
       "specs": {
         "meshSize": "200-250",
         "iodineNumber": "100-350MB",
@@ -350,6 +357,7 @@
       "reviewCount": 140,
       "stock": 1,
       "images": ["/Company-website/images/Anthracite/MnO2.jpg"],
+       "videoUrl": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
       "specs": {
         "meshSize": "4*8,8*16,16*32",
         "bulkDensity": "1900kg/m3",
