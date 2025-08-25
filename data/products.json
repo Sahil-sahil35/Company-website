@@ -344,7 +344,7 @@
       "price": 200,
       "salePrice": 160,
       "sku": "PAC-350",
-      "category": "Activated Carbon",
+      "category": ["Activated Carbon","Filter Media"],
       "subCategory": "Powder Activated Carbon -PAC",
       "material": [
         "Wood",
@@ -401,7 +401,7 @@
       "price": 40,
       "salePrice": 30,
       "sku": "MNo2-60",
-      "category": "MNo2",
+      "category": ["MNo2","Filter Media"],
       "subCategory": "Mno2 Media",
       "material": "Minerals",
       "rating": 4.8,
