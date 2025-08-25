@@ -282,17 +282,20 @@ document.addEventListener('DOMContentLoaded', async function() {
     window.addEventListener('click', (event) => { if (event.target === searchModal) closeSearchModal(); });
 
     // Back to Top Button
-    const backToTopButton = document.getElementById("backToTopBtn");
+     const backToTopButton = document.getElementById("backToTopBtn");
     if (backToTopButton) {
+        const fabContainer = backToTopButton.parentElement; // Get the .fab-container
         window.onscroll = function() {
-            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-                backToTopButton.style.display = "block";
-            } else {
-                backToTopButton.style.display = "none";
+            const isScrolled = document.body.scrollTop > 100 || document.documentElement.scrollTop > 100;
+            backToTopButton.style.display = isScrolled ? "block" : "none";
+            // ADDED THIS LINE to toggle a class on the parent container
+            if (fabContainer) {
+                fabContainer.classList.toggle('btt-hidden', !isScrolled);
             }
         };
         backToTopButton.addEventListener("click", function() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
+    // --- END: BACK TO TOP BUTTON
 });

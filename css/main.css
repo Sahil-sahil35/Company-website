@@ -1102,8 +1102,8 @@ body {
 .close-modal {
     color: var(--text-muted);
     position: absolute;
-    top: 15px;
-    right: 25px;
+    top: -7px;
+    right: 15px;
     font-size: 28px;
     font-weight: bold;
     transition: color 0.3s ease;

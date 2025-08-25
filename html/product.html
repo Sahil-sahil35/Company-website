@@ -14,48 +14,21 @@
     <header class="header" id="header">
         <div class="header-content">
             <a href="../index.html" class="logo"><img src="/Company-website/images/logo/logo.png" alt="Styvonix Logo" class="header-logo"></a>
-            
             <nav class="nav">
                 <a href="../index.html">Home</a>
                 <a href="listing.html">Shop</a>
                 <div class="nav-dropdown">
-                <a href="#categories">Categories</a>
-                    <div class="desktop-categories-dropdown">
-                        <!-- Populated by JavaScript -->
-                    </div>
+                    <a href="#categories">Categories</a>
+                    <div class="desktop-categories-dropdown"></div>
                 </div>
                 <a href="./services.html">Services</a>
                 <a href="./Blog.html">Blog</a>
                 <a href="./about.html">About</a>
                 <a href="#" class="js-contact-modal-trigger">Contact</a>
             </nav>
-
-            <!-- Search Modal -->
-            <div class="search-modal" id="searchModal">
-                <div class="search-modal-content">
-                    <span class="close-search">&times;</span>
-                    <input type="text" id="searchInput" placeholder="Search products...">
-                    <div id="searchResults"></div>
-                </div>
-            </div>
-                    
             <div class="header-icons">
-                <button class="icon-btn search-btn">
-                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                    </svg>
-                </button>
-                <button class="icon-btn cart-btn">
-                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
-                    </svg>
-                    <span class="cart-count">0</span>
-                </button>
-                <button class="icon-btn mobile-menu">
-                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                    </svg>
-                </button>
+                <button class="icon-btn cart-btn"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/></svg><span class="cart-count">0</span></button>
+                <button class="icon-btn mobile-menu"><svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg></button>
             </div>
         </div>
     </header>
@@ -64,12 +37,7 @@
     <div class="mobile-nav">
         <a href="../index.html">Home</a>
         <a href="./listing.html">Shop</a>
-        <div class="mobile-dropdown">
-                <a href="javascript:void(0)" class="mobile-category-toggle">Categories</a>
-                <div class="mobile-categories-dropdown">
-                    <!-- Populated by JavaScript -->
-                </div>
-            </div>
+        <div class="mobile-dropdown"><a href="javascript:void(0)" class="mobile-category-toggle">Categories</a><div class="mobile-categories-dropdown"></div></div>
         <a href="./services.html">Services</a>
         <a href="./Blog.html">Blog</a>
         <a href="./about.html">About</a>
@@ -84,11 +52,7 @@
             <h1 id="heroProductTitle">Shop All Products</h1>
             <p class="product-hero-subtitle" id="heroProductDesc">Premium filtration solutions for every application</p>
             <div class="breadcrumbs">
-                <a href="../index.html">Home</a>
-                <span class="separator">/</span>
-                <a href="listing.html">Shop</a>
-                <span class="separator">/</span>
-                <span id="productNameBreadcrumb">Product</span>
+                <a href="../index.html">Home</a><span class="separator">/</span><a href="listing.html">Shop</a><span class="separator">/</span><span id="productNameBreadcrumb">Product</span>
             </div>
         </div>
     </section>
@@ -97,64 +61,29 @@
     <div class="container">
         <div class="product-detail">
             <div class="product-gallery">
-                <div class="thumbnail-container" id="thumbnails">
-                    <!-- Thumbnails will be populated by JavaScript -->
-                </div>
-                <div class="main-image-container" id="mainMediaContainer">
-                    <img src="" alt="Main Product Image" class="main-image" id="mainImage">
-                </div>
+                <div class="thumbnail-container" id="thumbnails"></div>
+                <div class="main-image-container" id="mainMediaContainer"><img src="" alt="Main Product Image" class="main-image" id="mainImage"></div>
             </div>
-
             <div class="product-info">
                 <h1 class="product-title" id="productTitle">Product Name</h1>
                 <div class="product-meta">
-                    <div class="product-rating">
-                        <span class="rating-stars">★★★★★</span>
-                        <span class="review-count" id="reviewCount">(0 reviews)</span>
-                    </div>
+                    <div class="product-rating"><span class="rating-stars">★★★★★</span><span class="review-count" id="reviewCount">(0 reviews)</span></div>
                     <div class="stock-status in-stock" id="stockStatus">In Stock</div>
                 </div>
-                <div class="product-price" id="productPrice">
-                    $0.00
-                </div>
-                <p class="product-description" id="productDescription">
-                    Product description will be loaded here...
-                </p>
-                
+                <div class="product-price" id="productPrice">$0.00</div>
+                <p class="product-description" id="productDescription">Product description will be loaded here...</p>
                 <div class="product-actions">
                     <button class="btn-outline" id="contactBtn">Contact Us</button>
                     <button class="btn-solid" id="addToCartBtn">Add to Cart</button>
                 </div>
-
-                <div class="product-tags-container">
-                    <div id="productTags" class="product-tags">
-                        </div>
-                </div>
-
-                <div class="product-specs">
-                    <h3>Specifications</h3>
-                    <table class="specs-table" id="specsTable">
-                        <!-- Specifications will be populated by JavaScript -->
-                    </table>
-                </div>
-
-                <div class="product-documents">
-                    <h3>Documents</h3>
-                    <div class="documents-list" id="documentsList">
-                        <!-- Documents will be populated by JavaScript -->
-                    </div>
-                </div>
+                <div class="product-tags-container"><div id="productTags" class="product-tags"></div></div>
+                <div class="product-specs"><h3>Specifications</h3><table class="specs-table" id="specsTable"></table></div>
+                <div class="product-documents"><h3>Documents</h3><div class="documents-list" id="documentsList"></div></div>
             </div>
         </div>
-
-        <!-- Similar Products Section -->
         <section class="section products-section" id="similarProducts">
             <h2 class="section-title">Similar Products</h2>
-            <div class="products-container">
-                <div class="products-scroll" id="productsScroll">
-                    <!-- Similar products will be populated by JavaScript -->
-                </div>
-            </div>
+            <div class="products-container"><div class="products-scroll" id="productsScroll"></div></div>
         </section>
     </div>
 
@@ -162,77 +91,79 @@
     <div class="toast" id="toast">Added to temporary cart — clears when you leave</div>
 
     <!-- Contact Modal -->
-<div class="modal" id="contactModal">
-    <div class="modal-content">
-        <span class="close-modal">&times;</span>
-        <h2>Contact Us: <span id="modalInquirySubject">Your Inquiry</span></h2>
-        <form id="contactForm" action="https://formspree.io/f/myzdgwqv" method="POST">
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="modalName">Your Name</label>
-                    <input type="text" id="modalName" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="modalEmail">Email</label>
-                    <input type="email" id="modalEmail" name="email" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="modalPhone">Phone Number (Optional)</label>
-                <input type="tel" id="modalPhone" name="phone">
-            </div>
-            <div class="form-group">
-                <label for="modalCategory">Inquiry Type</label>
-                <select id="modalCategory" name="inquiry_type" required>
-                    <option value="" disabled selected>Select a category...</option>
-                    <option value="General Inquiry">General Inquiry</option>
-                    <option value="Bulk Order">Place a Bulk Order</option>
-                    <option value="Technical Support">Technical Support</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="modalMessage">Message</label>
-                <textarea id="modalMessage" name="message" rows="4" required></textarea>
-            </div>
-            <button type="submit" class="btn-solid">Send Message</button>
-        </form>
+    <div class="modal" id="contactModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Contact Us About: <span id="modalInquirySubject">Your Inquiry</span></h2>
+            <form id="contactForm" action="https://formspree.io/f/myzdgwqv" method="POST">
+                <div class="form-row"><div class="form-group"><label for="modalName">Your Name</label><input type="text" id="modalName" name="name" required></div><div class="form-group"><label for="modalEmail">Email</label><input type="email" id="modalEmail" name="email" required></div></div>
+                <div class="form-group"><label for="modalPhone">Phone Number (Optional)</label><input type="tel" id="modalPhone" name="phone"></div>
+                <div class="form-group"><label for="modalCategory">Inquiry Type</label><select id="modalCategory" name="inquiry_type" required><option value="" disabled selected>Select a category...</option><option value="General Inquiry">General Inquiry</option><option value="Bulk Order">Place a Bulk Order</option><option value="Technical Support">Technical Support</option></select></div>
+                <div class="form-group"><label for="modalMessage">Message</label><textarea id="modalMessage" name="message" rows="4" required></textarea></div>
+                <button type="submit" class="btn-solid">Send Message</button>
+            </form>
+        </div>
     </div>
-</div>
 
-    <button id="backToTopBtn" title="Go to top">▲</button>
+    <!-- Calculator Modal -->
+    <div class="modal" id="calculatorModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="calculator-modal-layout">
+                <div class="calculator-main">
+                    <h2 id="calculatorTitle">Media Calculator</h2>
+                    <div class="form-group"><label for="calculatorUnit">Measurement Unit</label><select id="calculatorUnit"><option value="mm">Millimeter (mm)</option><option value="cm">Centimeter (cm)</option><option value="m">Meter (m)</option><option value="in">Inches (in)</option></select></div>
+                    <div id="calculatorBody"></div>
+                </div>
+                <div class="calculator-promo">
+                    <h2>Water Traetment Engineer App</h2>
+                    <p>Whether its Media, Resin Or something else</p>
+                    <p>Get precise calculations on the go with our dedicated mobile app.</p>
+                    <a href="https://play.google.com/store/apps/details?id=com.sahil.tankmediacalculator&pcampaignid=web_share" target="_blank" class="promo-download-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3 22v-20l18 10-18 10z"/></svg>
+                        <span>Download Now</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Floating Action Buttons Container -->
+    <div class="fab-container">
+        <div id="calculatorFabContainer" class="calculator-fab-container" style="display: none;">
+            <select id="calculatorShapeSelector" class="fab-shape-selector">
+                <option value="" disabled selected>Select Shape</option>
+                <option value="cylinder">Cylindrical</option>
+                <option value="cube">Cube</option>
+                <option value="cuboid">Cuboid</option>
+            </select>
+            <button id="calculateMediaBtn" class="fab-btn" title="Calculate Media">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="stroke-width: 0;">
+                    <text x="6" y="10" font-size="12" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold">÷</text>
+                    <text x="18" y="10" font-size="12" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold">×</text>
+                    <text x="6" y="20" font-size="12" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold">−</text>
+                    <text x="18" y="20" font-size="12" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold">+</text>
+                </svg>
+            </button>
+        </div>
+        <button id="backToTopBtn" title="Go to top">▲</button>
+    </div>
 
     <!-- Footer -->
     <footer class="footer" id="contact">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Shop Links</h3>
-                    <!-- Will be populated by JavaScript -->
-                </div>
-                <div class="footer-section">
-                    <h3>Categories</h3>
-                    <!-- Will be populated by JavaScript -->
-                </div>
-                <div class="footer-section">
-                    <h3>Contact Info</h3>
-                    <!-- Will be populated by JavaScript -->
-                </div>
-                <div class="footer-section">
-                    <h3>Stay Connected</h3>
-                    <p style="color: var(--text-muted); margin-bottom: 20px;">Subscribe to our newsletter for the latest products and offers.</p>
-                    <div class="newsletter">
-                        <input type="email" placeholder="Enter your email">
-                        <button class="btn-primary">Subscribe</button>
-                    </div>
-                </div>
+                <div class="footer-section"><h3>Shop Links</h3></div>
+                <div class="footer-section"><h3>Categories</h3></div>
+                <div class="footer-section"><h3>Contact Info</h3></div>
+                <div class="footer-section"><h3>Stay Connected</h3><p style="color: var(--text-muted); margin-bottom: 20px;">Subscribe to our newsletter for the latest products and offers.</p><div class="newsletter"><input type="email" placeholder="Enter your email"><button class="btn-primary">Subscribe</button></div></div>
             </div>
-            <div class="footer-bottom">
-                <!-- Will be populated by JavaScript -->
-            </div>
+            <div class="footer-bottom"></div>
         </div>
     </footer>
 
     <script src="../js/main.js"></script>
     <script src="../js/product_details.js"></script>
+    <script src="../js/calculator.js"></script>
 </body>
 </html>

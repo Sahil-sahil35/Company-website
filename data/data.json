@@ -25,9 +25,9 @@
   ],
   "hero": {
     "stats": [
-      {"value": "99.9%", "label": "Satisfactory Rate"},
+      {"value": "100%", "label": "Quality assurance"},
       {"value": "10+", "label": "Countries"},
-      {"value": "10K+", "label": "Liters Filtered"}
+      {"value": "10K+", "label": "Satisfied Coustomers"}
     ]
   },
   "categories": [
