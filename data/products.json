@@ -464,9 +464,6 @@
       "videoUrl": "",
       "specs": {
         "meshSize": "CUSTOMIZE",
-        "iodineNumber": "",
-        "bulkDensity": "",
-        "moisture": "",
         "applications": [
           "Domestic Homes – for bathing",
           "washing",
@@ -481,7 +478,20 @@
           "RO/DM Plant Pre-Treatment"
         ]
       },
-      "documents": [],
+      "documents": [
+        {
+          "name": "Product Sheet",
+          "url": "#"
+        },
+        {
+          "name": "MSDS",
+          "url": "#"
+        },
+        {
+          "name": "Installation Guide",
+          "url": "#"
+        }
+      ],
       "tags": [
         "Water Softener Plant",
         "Industrial Water Softener",
@@ -516,9 +526,6 @@
       "videoUrl": "",
       "specs": {
         "meshSize": "CUSTOMIZE",
-        "iodineNumber": "",
-        "bulkDensity": "",
-        "moisture": "",
         "applications": [
           "Power Plants – boiler feed water",
           "Pharmaceutical Industry – process & formulation water",
@@ -529,7 +536,20 @@
           "RO/EDI Systems – as pre-treatment or polishing units"
         ]
       },
-      "documents": [],
+      "documents": [
+        {
+          "name": "Product Sheet",
+          "url": "#"
+        },
+        {
+          "name": "MSDS",
+          "url": "#"
+        },
+        {
+          "name": "Installation Guide",
+          "url": "#"
+        }
+      ],
       "tags": [
         "DM Plant",
         "Demineralization Plant",
@@ -564,9 +584,6 @@
       "videoUrl": "",
       "specs": {
         "meshSize": "CUSTOMIZE",
-        "iodineNumber": "",
-        "bulkDensity": "",
-        "moisture": "",
         "applications": [
           "Domestic Homes – safe & pure drinking water",
           "Commercial Offices – cafeterias & staff drinking water",
@@ -581,7 +598,20 @@
           "Hotels & Restaurants – safe water for guests & kitchen use"
         ]
       },
-      "documents": [],
+      "documents": [
+        {
+          "name": "Product Sheet",
+          "url": "#"
+        },
+        {
+          "name": "MSDS",
+          "url": "#"
+        },
+        {
+          "name": "Installation Guide",
+          "url": "#"
+        }
+      ],
       "tags": [
         "RO Plant",
         "Reverse Osmosis Plant",
@@ -635,7 +665,7 @@
       "Activated Carbon",
       "Anthracite Media",
       "Silica Sand",
-      "plants and Machinery",
+      "Plants and Machinery",
       "Spare Parts"
     ],
     "materials": [
